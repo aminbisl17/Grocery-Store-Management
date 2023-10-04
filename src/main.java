@@ -19,10 +19,9 @@ class main extends JFrame implements ActionListener, MouseListener {
   private JTextArea textarea;
   private JButton[] buttons = new JButton[3];
   private JButton b1, b2, b3;
-  private Color whiteColor = new Color(255, 255, 255), blackColor = new Color(0, 0, 0),
-      bTextColor = new Color(192, 192, 192);
+  private Color whiteColor = new Color(255, 255, 255), blackColor = new Color(0, 0, 0), bTextColor = new Color(192, 192, 192);
   private CardLayout cl = new CardLayout();;
-  private Border border = BorderFactory.createMatteBorder(0, 0, 2, 0, blackColor);
+  private Border border = BorderFactory.createMatteBorder(0, 0, 2, 0, blackColor), border2 = BorderFactory.createLineBorder(Color.BLACK, 2);
   Timer timer;
 
   Dashboard dashboard = new Dashboard(); // classes
@@ -83,6 +82,10 @@ class main extends JFrame implements ActionListener, MouseListener {
     buttons[1] = b2;
     buttons[2] = b3;
 
+    textarea = new JTextArea();
+    textarea.setBounds(45, 25, 200, 100);
+    textarea.setBorder(border2);
+
     topPanel = new JPanel();
     topPanel.setLayout(null);
     panelCustomiser(topPanel, new Color(65, 68, 75));
@@ -94,6 +97,11 @@ class main extends JFrame implements ActionListener, MouseListener {
     container.setBounds(30, 50, 240, 450);
     panelCustomiser(container, new Color(46, 47, 53));
     container.add(dateText);
+
+    bottomPanel = new JPanel();
+    panelCustomiser(bottomPanel, new Color(65,68,75));
+    bottomPanel.setPreferredSize(new Dimension(100, 150));
+    bottomPanel.add(textarea);
 
     for (int x = 0; x < buttons.length; x++) { // this adds all buttons in container panel
       container.add(buttons[x]);
@@ -112,8 +120,9 @@ class main extends JFrame implements ActionListener, MouseListener {
     leftPanel.setLayout(new BorderLayout());
     leftPanel.setBackground(whiteColor);
     leftPanel.setPreferredSize(new Dimension(300, 100));
-    leftPanel.add(container, BorderLayout.CENTER);
     leftPanel.add(topPanel, BorderLayout.NORTH);
+    leftPanel.add(container, BorderLayout.CENTER);
+    leftPanel.add(bottomPanel, BorderLayout.SOUTH);
 
     setDefaultCloseOperation(main.EXIT_ON_CLOSE);
     setBounds(100, 50, 1400, 800);

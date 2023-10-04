@@ -1,9 +1,6 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import javax.swing.border.Border;
 
@@ -54,7 +51,7 @@ class login extends JFrame implements ActionListener{
 
     login() {
             
-            font = new Font("Serif", Font.BOLD | Font.ITALIC, 14);
+            font = new Font("Serif", Font.BOLD, 14);
             // this is a comment
 
             border = BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(0,0,0));
@@ -75,7 +72,7 @@ class login extends JFrame implements ActionListener{
             textCustomiser(text2, 100, 180, 80, 20, blackColor, font);
 
             text3 = new JLabel("Kyçu");
-            textCustomiser(text3, 150, 60, 80, 30, blackColor, new Font("MV Boli", Font.BOLD | Font.ITALIC, 22));
+            textCustomiser(text3, 150, 60, 80, 30, blackColor, new Font("MV Boli", Font.BOLD, 22));
 
             username_input = new JTextField();
             username_input.setBounds(100, 130, 150, 33);
@@ -93,7 +90,7 @@ class login extends JFrame implements ActionListener{
 
             // rightpanel
             rightPanel = new JPanel();
-            panelCustomiser(rightPanel, blackColor, 300, 100);
+            panelCustomiser(rightPanel, new Color(46, 47, 53), 300, 100);
             rightPanel.add(close);
             rightPanel.add(icon);
   //________________________________________________________

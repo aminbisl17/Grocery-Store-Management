@@ -4,6 +4,11 @@ import java.awt.*;
 class Dashboard extends JPanel{
    private JLabel text;
    private JPanel centerPanel, topBar;
+
+   static void panelCustomiser(JPanel panel, Color color){
+        panel.setLayout(null);
+        panel.setBackground(color);
+   }
     Dashboard(){
 
      text = new JLabel();
