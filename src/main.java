@@ -5,8 +5,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
-// hello
 import javax.swing.*;
 import javax.swing.Timer;
 import javax.swing.border.Border;
@@ -85,6 +83,7 @@ class main extends JFrame implements ActionListener, MouseListener {
     textarea = new JTextArea();
     textarea.setBounds(45, 25, 200, 100);
     textarea.setBorder(border2);
+    textarea.setEditable(false);
 
     topPanel = new JPanel();
     topPanel.setLayout(null);
