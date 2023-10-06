@@ -10,16 +10,18 @@ import javax.swing.Timer;
 import javax.swing.border.Border;
 
 // MAIN PANEL STARTS HERE ------------------------------------------------------
-class main extends JFrame implements ActionListener, MouseListener {
+public class main extends JFrame implements ActionListener, MouseListener {
 
   private JPanel leftPanel, centerPanel, container, topPanel, bottomPanel;
   private JLabel text, dateText, timeText;
   private JTextArea textarea;
-  private JButton[] buttons = new JButton[3];
+  public JButton[] buttons = new JButton[3];
   private JButton b1, b2, b3;
   private Color whiteColor = new Color(255, 255, 255), blackColor = new Color(0, 0, 0), bTextColor = new Color(192, 192, 192);
-  private CardLayout cl = new CardLayout();;
-  private Border border = BorderFactory.createMatteBorder(0, 0, 2, 0, blackColor), border2 = BorderFactory.createLineBorder(Color.BLACK, 2);
+  private CardLayout cl = new CardLayout();
+  private Border border = BorderFactory.createMatteBorder(0, 0, 2, 0, whiteColor),
+                 borderwhite = BorderFactory.createMatteBorder(0,0, 1,0, new Color(192,192,192)),
+                 border2 = BorderFactory.createLineBorder(Color.BLACK, 2);
   Timer timer;
 
   Dashboard dashboard = new Dashboard(); // classes
@@ -69,6 +71,7 @@ class main extends JFrame implements ActionListener, MouseListener {
 
     b1 = new JButton("Dashboard >");
     buttonCustomiser(b1, bTextColor, 60, 60, 160, 30, false, false, true, false, this, this);
+    b1.setBorder(borderwhite);
 
     b2 = new JButton("Pemet >");
     buttonCustomiser(b2, bTextColor, 60, 130, 160, 30, false, false, true, false, this, this);
@@ -80,10 +83,14 @@ class main extends JFrame implements ActionListener, MouseListener {
     buttons[1] = b2;
     buttons[2] = b3;
 
+    buttons[0].setBorder(border);
+    buttons[0].setForeground(whiteColor);
+
     textarea = new JTextArea();
     textarea.setBounds(45, 25, 200, 100);
     textarea.setBorder(border2);
     textarea.setEditable(false);
+    textarea.setFocusable(false);
 
     topPanel = new JPanel();
     topPanel.setLayout(null);
@@ -107,6 +114,7 @@ class main extends JFrame implements ActionListener, MouseListener {
     }
     for (int i = 0; i < buttons.length; i++) {
       buttons[i].addActionListener(this);
+      buttons[i].setBorder(borderwhite);
     }
 
     centerPanel = new JPanel();
@@ -125,21 +133,22 @@ class main extends JFrame implements ActionListener, MouseListener {
 
     setDefaultCloseOperation(main.EXIT_ON_CLOSE);
     setBounds(100, 50, 1400, 800);
+    setTitle("InnoviStore");
     revalidate();
     repaint();
     setLayout(new BorderLayout());
+    showDate();
+    showTime();
 
     add(centerPanel, BorderLayout.CENTER);
     add(leftPanel, BorderLayout.WEST);
     cl.show(centerPanel, "1");
     setVisible(true);
-    showDate();
-    showTime();
   }
  // -------------------------------       this below is DATE/TIME
   public void showDate() {  // date 
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
     Date date = new Date();
-    SimpleDateFormat sdf = new SimpleDateFormat("mm/dd/yyyy");
     dateText.setText(sdf.format(date));
     topPanel.add(dateText);
   }
@@ -170,8 +179,21 @@ class main extends JFrame implements ActionListener, MouseListener {
   @Override
   public void actionPerformed(ActionEvent e) {
 
+ for(int i = 0; i < buttons.length; i++){
+    if(e.getSource() == buttons[i]){ 
+            buttons[i].setBorder(border);
+            buttons[i].setForeground(whiteColor);
+            
+    } else {
+      buttons[i].setBorder(borderwhite);
+      buttons[i].setForeground(bTextColor);
+    }
+  }
     if (e.getSource() == b1) {
       cl.show(centerPanel, "1");
+       leftPanel.add(bottomPanel, BorderLayout.SOUTH);
+    } else{
+      leftPanel.remove(bottomPanel);
     }
     if (e.getSource() == b2) {
       cl.show(centerPanel, "2");
@@ -189,29 +211,21 @@ class main extends JFrame implements ActionListener, MouseListener {
 
   @Override
   public void mousePressed(MouseEvent e) {
-
-  }
+  
+}
 
   @Override
   public void mouseReleased(MouseEvent e) {
-
+    
   }
 
   @Override
   public void mouseEntered(MouseEvent e) {
-    for (int i = 0; i < buttons.length; i++) {
-      if (e.getSource() == buttons[i]) {
-        buttons[i].setBackground(new Color(230, 230, 230));
-        buttons[i].setBorder(border);
-      }
     }
-  }
+  
 
   @Override
   public void mouseExited(MouseEvent e) {
-    for (int i = 0; i < buttons.length; i++) {
-      buttons[i].setBackground(whiteColor);
-      buttons[i].setBorder(null);
-    }
+    
   }
-}
+} 
