@@ -5,7 +5,7 @@ import javax.swing.*;
 public class graphic extends JPanel {
 
     Color color;
-    int i = 50 / 2;
+    int i = 55 / 2;
 
     public Color getColor() {
         return color;
