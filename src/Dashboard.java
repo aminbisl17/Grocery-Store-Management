@@ -1,15 +1,14 @@
 import javax.swing.*;
 import javax.swing.border.Border;
-
 import java.awt.*;
 
 class Dashboard extends JPanel{
    private JLabel text;
-   private JPanel centerPanel, topBar;
+   private JPanel centerPanel, topBar, tablePanel, statisticsPanel;
   private Border borderwhite = BorderFactory.createMatteBorder(0,0, 1,0, new Color(46,47,53)),
                  border = BorderFactory.createMatteBorder(0,0, 1,0, new Color(192,192,192))  ;
-   static void panelCustomiser(JPanel panel, Color color){
-        panel.setLayout(null);
+   static void panelCustomiser(JPanel panel, Color color, BorderLayout bl){
+        panel.setLayout(bl);
         panel.setBackground(color);
    }
     Dashboard(){
@@ -25,13 +24,18 @@ class Dashboard extends JPanel{
      centerPanel.setPreferredSize(new Dimension(0, 0));
 
      topBar = new JPanel();
-     topBar.setLayout(null);
-     topBar.setBackground(new Color(255,255,255));
+     panelCustomiser(topBar, new Color(255,255,255), null);
      topBar.setPreferredSize(new Dimension(100, 80));
      topBar.add(text);
      topBar.setBorder(border);
 
-     centerPanel.add(topBar, BorderLayout.NORTH); 
+     tablePanel = new JPanel();
+     panelCustomiser(tablePanel, null, null);
+     tablePanel.setPreferredSize(new Dimension(100, 650));
+
+     centerPanel.add(topBar, BorderLayout.NORTH);
+     centerPanel.add(tablePanel, BorderLayout.CENTER);
+
 
      setBackground(new Color(255,255,255));
      setPreferredSize(new Dimension(100, 100));
