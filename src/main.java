@@ -1,8 +1,5 @@
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.swing.*;
@@ -10,7 +7,7 @@ import javax.swing.Timer;
 import javax.swing.border.Border;
 
 // MAIN PANEL STARTS HERE ------------------------------------------------------
-public class main extends JFrame implements ActionListener, MouseListener {
+public class main extends JFrame implements ActionListener{
 
   private JPanel leftPanel, centerPanel, container, topPanel, bottomPanel;
   private JLabel text, dateText, timeText;
@@ -23,6 +20,7 @@ public class main extends JFrame implements ActionListener, MouseListener {
                  borderwhite = BorderFactory.createMatteBorder(0,0, 1,0, new Color(192,192,192)),
                  border2 = BorderFactory.createLineBorder(Color.BLACK, 2);
   Timer timer;
+  MouseAdapter mouseadapter;
 
   Dashboard dashboard = new Dashboard(); // classes
   test2 test2 = new test2();
@@ -30,9 +28,8 @@ public class main extends JFrame implements ActionListener, MouseListener {
   static void buttonCustomiser // --------------- this method is for button customisation
   (JButton button, Color colorf,
       int x, int y, int width, int height,
-      boolean opaque, boolean areafilled, boolean borderpainted, boolean focusable,
-      ActionListener e,
-      MouseListener m) {
+      boolean opaque, boolean areafilled,
+      boolean borderpainted, boolean focusable) {
     button.setBackground(null);
     button.setBorder(null);
     button.setForeground(colorf);
@@ -42,8 +39,6 @@ public class main extends JFrame implements ActionListener, MouseListener {
     button.setContentAreaFilled(areafilled);
     button.setBorderPainted(borderpainted);
     button.setFocusable(focusable);
-    button.addActionListener(e);
-    button.addMouseListener(m);
   }
   // ----------------------
 
@@ -70,14 +65,14 @@ public class main extends JFrame implements ActionListener, MouseListener {
     timeText.setForeground(whiteColor);
 
     b1 = new JButton("Dashboard >");
-    buttonCustomiser(b1, bTextColor, 60, 60, 160, 30, false, false, true, false, this, this);
+    buttonCustomiser(b1, bTextColor, 60, 60, 160, 30, false, false, true, false);
     b1.setBorder(borderwhite);
 
     b2 = new JButton("Pemet >");
-    buttonCustomiser(b2, bTextColor, 60, 130, 160, 30, false, false, true, false, this, this);
+    buttonCustomiser(b2, bTextColor, 60, 130, 160, 30, false, false, true, false);
 
     b3 = new JButton("Ushqimet >");
-    buttonCustomiser(b3, bTextColor, 60, 180, 160, 30, false, false, true, false, this, this);
+    buttonCustomiser(b3, bTextColor, 60, 180, 160, 30, false, false, true, false);
 
     buttons[0] = b1;
     buttons[1] = b2;
@@ -114,6 +109,7 @@ public class main extends JFrame implements ActionListener, MouseListener {
     }
     for (int i = 0; i < buttons.length; i++) {
       buttons[i].addActionListener(this);
+      buttons[i].addMouseListener(mouseadapter);
       buttons[i].setBorder(borderwhite);
     }
 
@@ -175,8 +171,8 @@ public class main extends JFrame implements ActionListener, MouseListener {
       }
     });
   }
+
  // ----------------------------------
-  @Override
   public void actionPerformed(ActionEvent e) {
 
  for(int i = 0; i < buttons.length; i++){
@@ -199,8 +195,6 @@ public class main extends JFrame implements ActionListener, MouseListener {
       cl.show(centerPanel, "2");
     }
   }
-
-  @Override
   public void mouseClicked(MouseEvent e) {
     for (int i = 0; i < buttons.length; i++) {
       if (e.getSource() == buttons[i]) {
@@ -208,24 +202,5 @@ public class main extends JFrame implements ActionListener, MouseListener {
       }
     }
   }
-
-  @Override
-  public void mousePressed(MouseEvent e) {
   
-}
-
-  @Override
-  public void mouseReleased(MouseEvent e) {
-    
-  }
-
-  @Override
-  public void mouseEntered(MouseEvent e) {
-    }
-  
-
-  @Override
-  public void mouseExited(MouseEvent e) {
-    
-  }
 } 

@@ -1,6 +1,9 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 
@@ -64,7 +67,13 @@ class login extends JFrame implements ActionListener{
 
             submit = new JButton("Vazhdo!");
             buttonCustomiser(submit, Color2, Color1, 125, 250, 100, 33, true, true, false, false, null, this);
-
+            submit.addMouseListener(new MouseAdapter(){
+                      public void mousePressed(MouseEvent e){
+                             submit.setContentAreaFilled(false);}
+                      public void mouseReleased(MouseEvent e){
+                             submit.setContentAreaFilled(true);
+                      }});
+                    
             text1 = new JLabel("Emri");
             textCustomiser(text1, 100, 110, 80, 20, Color1, font);
 
