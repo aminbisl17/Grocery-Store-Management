@@ -22,5 +22,7 @@ public class graphic extends JPanel {
         g2d.setStroke(new BasicStroke(2));
         g2d.drawRoundRect(0, 0, 170, 110, i, i);
         g2d.fillRoundRect(0,0,170,110, i, i);
+        g2d.setColor(Color.white);
+        g2d.drawString("100", 10, 20);
     }
 }
