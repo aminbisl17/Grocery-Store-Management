@@ -5,8 +5,8 @@ import java.awt.*;
 class Dashboard extends JPanel{
    private JLabel text;
    private JPanel centerPanel, topBar, tablePanel, statisticsPanel;
-  private Border borderwhite = BorderFactory.createMatteBorder(0,0, 1,0, new Color(46,47,53)),
-                 border = BorderFactory.createMatteBorder(0,0, 1,0, new Color(192,192,192));
+   private Border borderwhite = BorderFactory.createMatteBorder(0,0, 1,0, new Color(46,47,53)),
+                  border = BorderFactory.createMatteBorder(0,0, 1,0, new Color(192,192,192));
 
                  graphic graph1, graph2, graph3;
 

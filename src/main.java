@@ -57,11 +57,13 @@ public class main extends JFrame implements ActionListener{
     text.setFont(new Font("Monospaced", Font.BOLD, 17));
 
     dateText = new JLabel();
-    dateText.setBounds(150, 10, 100, 10);
+    dateText.setBounds(180, 10, 100, 30);
+    dateText.setFont(new Font("Monospaced", Font.BOLD, 15));
     dateText.setForeground(whiteColor);
 
     timeText = new JLabel();
-    timeText.setBounds(150, 30, 100, 10);
+    timeText.setBounds(191, 40, 100, 10);
+    timeText.setFont(new Font("Monospaced", Font.BOLD, 12));
     timeText.setForeground(whiteColor);
 
     b1 = new JButton("Dashboard >");

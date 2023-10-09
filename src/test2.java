@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.awt.*;
 
 class test2 extends JPanel{
@@ -6,11 +8,13 @@ class test2 extends JPanel{
    JLabel text;
    JPanel centerPanel, topBar;
    Color whiteColor = new Color(255,255,255);
+   Border borderwhite = BorderFactory.createMatteBorder(0,0,1,0, new Color(46,47,53));
 
     test2(){
-     text = new JLabel();
+     text = new JLabel("Pemet");
      text.setBounds(20,40,100,20);
-     text.setText("hi");
+     text.setFont(new Font("Monospaced", Font.BOLD, 17));
+     text.setBorder(borderwhite);
 
      topBar = new JPanel();
      topBar.setPreferredSize(new Dimension(100, 80));
