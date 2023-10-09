@@ -8,7 +8,7 @@ class Dashboard extends JPanel{
    private Border borderwhite = BorderFactory.createMatteBorder(0,0, 1,0, new Color(46,47,53)),
                   border = BorderFactory.createMatteBorder(0,0, 1,0, new Color(192,192,192));
 
-                 graphic graph1, graph2, graph3;
+                 graphic graph1, graph2, graph3, graph4;
 
    static void panelCustomiser(JPanel panel, Color color, BorderLayout bl){
         panel.setLayout(bl);
@@ -19,14 +19,22 @@ class Dashboard extends JPanel{
      graph1 = new graphic();
      graph1.setBounds(40, 20, 170, 110);
      graph1.setColor(Color.red);
+     graph1.setTxt("Totali i shitjeve (Sot)");
 
      graph2 = new graphic();
      graph2.setBounds(260, 20, 170, 110);
      graph2.setColor(Color.blue);
+     graph2.setTxt("Totali Parave te fituara (Sot)");
 
      graph3 = new graphic();
      graph3.setBounds(480, 20, 170, 110);
      graph3.setColor(Color.green);
+     graph3.setTxt("Totali i shtijeve gjat Muajit");
+
+     graph4 = new graphic();
+     graph4.setBounds(700, 20, 170, 110);
+     graph4.setColor(Color.PINK);
+     graph4.setTxt("Shuma e parave te fituara gjat \t Muajit");
 
      text = new JLabel();
      text.setBounds(20,40,100,20);
@@ -51,6 +59,7 @@ class Dashboard extends JPanel{
      statisticsPanel.add(graph1);
      statisticsPanel.add(graph2);
      statisticsPanel.add(graph3);
+     statisticsPanel.add(graph4);
 
      tablePanel = new JPanel();
      panelCustomiser(tablePanel, null, null);
