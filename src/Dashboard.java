@@ -45,8 +45,9 @@ class Dashboard extends JPanel{
      topBar.setBorder(border);
 
      statisticsPanel = new JPanel();
-     panelCustomiser(statisticsPanel, Color.GRAY, null);
+     panelCustomiser(statisticsPanel, null, null);
      statisticsPanel.setBounds(0, 40, 1600, 150);
+     statisticsPanel.setPreferredSize(new Dimension(100, 650));
      statisticsPanel.add(graph1);
      statisticsPanel.add(graph2);
      statisticsPanel.add(graph3);
@@ -57,7 +58,7 @@ class Dashboard extends JPanel{
      tablePanel.add(statisticsPanel);
 
      centerPanel.add(topBar, BorderLayout.NORTH);
-     centerPanel.add(tablePanel, BorderLayout.CENTER);
+     centerPanel.add(statisticsPanel, BorderLayout.CENTER);
 
 
      setBackground(new Color(255,255,255));

@@ -19,6 +19,7 @@ public class main extends JFrame implements ActionListener{
   private Border border = BorderFactory.createMatteBorder(0, 0, 2, 0, whiteColor),
                  borderwhite = BorderFactory.createMatteBorder(0,0, 1,0, new Color(192,192,192)),
                  border2 = BorderFactory.createLineBorder(Color.BLACK, 2);
+                            
   Timer timer;
   MouseAdapter mouseadapter;
 
@@ -31,7 +32,6 @@ public class main extends JFrame implements ActionListener{
       boolean opaque, boolean areafilled,
       boolean borderpainted, boolean focusable) {
     button.setBackground(null);
-    button.setBorder(null);
     button.setForeground(colorf);
     button.setHorizontalTextPosition(SwingConstants.LEFT);
     button.setBounds(x, y, width, height);
@@ -65,8 +65,7 @@ public class main extends JFrame implements ActionListener{
     timeText.setForeground(whiteColor);
 
     b1 = new JButton("Dashboard >");
-    buttonCustomiser(b1, bTextColor, 60, 60, 160, 30, false, false, true, false);
-    b1.setBorder(borderwhite);
+    buttonCustomiser(b1, whiteColor, 60, 60, 160, 30, false, false, true, false);
 
     b2 = new JButton("Pemet >");
     buttonCustomiser(b2, bTextColor, 60, 130, 160, 30, false, false, true, false);
@@ -77,9 +76,6 @@ public class main extends JFrame implements ActionListener{
     buttons[0] = b1;
     buttons[1] = b2;
     buttons[2] = b3;
-
-    buttons[0].setBorder(border);
-    buttons[0].setForeground(whiteColor);
 
     textarea = new JTextArea();
     textarea.setBounds(45, 25, 200, 100);
@@ -104,14 +100,39 @@ public class main extends JFrame implements ActionListener{
     bottomPanel.setPreferredSize(new Dimension(100, 150));
     bottomPanel.add(textarea);
 
+    mouseadapter = new MouseAdapter(){
+    public void mousePressed(MouseEvent e){
+      for (int i = 0; i < buttons.length; i++) {
+        buttons[i].removeMouseListener(mouseadapter); 
+      }
+    }
+  public void mouseEntered(MouseEvent e) {
+    for (int i = 0; i < buttons.length; i++) {
+      if (e.getSource() == buttons[i]) {
+       buttons[i].setBorder(border);
+       buttons[i].setForeground(whiteColor);
+    }
+    }
+  }
+      public void mouseExited(MouseEvent e) {
+    for (int i = 0; i < buttons.length; i++) {
+      if (e.getSource() == buttons[i]) {
+       buttons[i].setBorder(borderwhite);
+       buttons[i].setForeground(bTextColor);
+    }
+    }
+  }  
+};
+
     for (int x = 0; x < buttons.length; x++) { // this adds all buttons in container panel
       container.add(buttons[x]);
     }
     for (int i = 0; i < buttons.length; i++) {
-      buttons[i].addActionListener(this);
       buttons[i].addMouseListener(mouseadapter);
+      buttons[i].addActionListener(this);
       buttons[i].setBorder(borderwhite);
     }
+      b1.setBorder(border);
 
     centerPanel = new JPanel();
     centerPanel.setLayout(cl);
@@ -161,7 +182,6 @@ public class main extends JFrame implements ActionListener{
 
     }).start();
   }
-  
 // -------------------------------------- MAIN METHOD
   public static void main(String[] args) {
     SwingUtilities.invokeLater(new Runnable() {
@@ -176,15 +196,16 @@ public class main extends JFrame implements ActionListener{
   public void actionPerformed(ActionEvent e) {
 
  for(int i = 0; i < buttons.length; i++){
-    if(e.getSource() == buttons[i]){ 
+    if(e.getSource() == buttons[i]){  
             buttons[i].setBorder(border);
             buttons[i].setForeground(whiteColor);
-            
+            buttons[i].setOpaque(false); 
     } else {
+      buttons[i].addMouseListener(mouseadapter);
       buttons[i].setBorder(borderwhite);
       buttons[i].setForeground(bTextColor);
+      buttons[i].setOpaque(true);
     }
-  }
     if (e.getSource() == b1) {
       cl.show(centerPanel, "1");
        leftPanel.add(bottomPanel, BorderLayout.SOUTH);
@@ -195,12 +216,5 @@ public class main extends JFrame implements ActionListener{
       cl.show(centerPanel, "2");
     }
   }
-  public void mouseClicked(MouseEvent e) {
-    for (int i = 0; i < buttons.length; i++) {
-      if (e.getSource() == buttons[i]) {
-        buttons[i].setOpaque(false);
-      }
-    }
   }
-  
-} 
+}
