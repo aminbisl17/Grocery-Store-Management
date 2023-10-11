@@ -7,7 +7,7 @@ import javax.swing.Timer;
 import javax.swing.border.Border;
 
 // MAIN PANEL STARTS HERE ------------------------------------------------------
-public class main extends JFrame implements ActionListener{
+public class main extends JFrame implements ActionListener, MouseListener{
 
   private JPanel leftPanel, centerPanel, container, topPanel, bottomPanel;
   private JLabel text, dateText, timeText;
@@ -67,7 +67,7 @@ public class main extends JFrame implements ActionListener{
     timeText.setForeground(whiteColor);
 
     b1 = new JButton("Dashboard >");
-    buttonCustomiser(b1, whiteColor, 60, 60, 160, 30, false, false, true, false);
+    buttonCustomiser(b1, bTextColor, 60, 60, 160, 30, false, false, true, false);
 
     b2 = new JButton("Pemet >");
     buttonCustomiser(b2, bTextColor, 60, 130, 160, 30, false, false, true, false);
@@ -101,7 +101,7 @@ public class main extends JFrame implements ActionListener{
     panelCustomiser(bottomPanel, new Color(65,68,75));
     bottomPanel.setPreferredSize(new Dimension(100, 150));
     bottomPanel.add(textarea);
-
+/* 
     mouseadapter = new MouseAdapter(){
     public void mousePressed(MouseEvent e){
       for (int i = 0; i < buttons.length; i++) {
@@ -110,7 +110,7 @@ public class main extends JFrame implements ActionListener{
     }
   public void mouseEntered(MouseEvent e) {
     for (int i = 0; i < buttons.length; i++) {
-      if (e.getSource() == buttons[i]) {
+      if (e.getSource().equals(buttons[i])) {
        buttons[i].setBorder(border);
        buttons[i].setForeground(whiteColor);
     }
@@ -124,16 +124,16 @@ public class main extends JFrame implements ActionListener{
     }
     }
   }  
-};
+};*/
 
     for (int x = 0; x < buttons.length; x++) { // this adds all buttons in container panel
       container.add(buttons[x]);
+      buttons[x].setFont(new Font("Monospaced", Font.BOLD, 14));
+      buttons[x].addActionListener(this);
+      buttons[x].setBorder(borderwhite);
+      buttons[x].addMouseListener(this);
     }
-    for (int i = 0; i < buttons.length; i++) {
-      buttons[i].addMouseListener(mouseadapter);
-      buttons[i].addActionListener(this);
-      buttons[i].setBorder(borderwhite);
-    }
+    
       b1.setBorder(border);
 
     centerPanel = new JPanel();
@@ -161,7 +161,7 @@ public class main extends JFrame implements ActionListener{
 
     add(centerPanel, BorderLayout.CENTER);
     add(leftPanel, BorderLayout.WEST);
-    cl.show(centerPanel, "1");
+   // cl.show(centerPanel, "1");
     setVisible(true);
   }
  // -------------------------------       this below is DATE/TIME
@@ -194,6 +194,27 @@ public class main extends JFrame implements ActionListener{
     });
   }
 
+  public void mousePressed(MouseEvent e){
+      for (int i = 0; i < buttons.length; i++) {
+        buttons[i].removeMouseListener(this); 
+      }
+    }
+  public void mouseEntered(MouseEvent e) {
+    for (int i = 0; i < buttons.length; i++) {
+      if (e.getSource().equals(buttons[i])) {
+       buttons[i].setBorder(border);
+       buttons[i].setForeground(whiteColor);
+    }
+    }
+  }
+      public void mouseExited(MouseEvent e) {
+    for (int i = 0; i < buttons.length; i++) {
+      if (e.getSource() == buttons[i]) {
+       buttons[i].setBorder(borderwhite);
+       buttons[i].setForeground(bTextColor);
+    }
+    }
+  }  
  // ----------------------------------
   public void actionPerformed(ActionEvent e) {
 
@@ -203,7 +224,7 @@ public class main extends JFrame implements ActionListener{
             buttons[i].setForeground(whiteColor);
             buttons[i].setOpaque(false); 
     } else {
-      buttons[i].addMouseListener(mouseadapter);
+      buttons[i].addMouseListener(this);
       buttons[i].setBorder(borderwhite);
       buttons[i].setForeground(bTextColor);
       buttons[i].setOpaque(true);
@@ -218,5 +239,17 @@ public class main extends JFrame implements ActionListener{
       cl.show(centerPanel, "2");
     }
   }
+  }
+
+  @Override
+  public void mouseClicked(MouseEvent e) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'mouseClicked'");
+  }
+
+  @Override
+  public void mouseReleased(MouseEvent e) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'mouseReleased'");
   }
 }

@@ -1,5 +1,7 @@
+import javax.swing.BorderFactory;
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 class Dashboard extends JPanel{
@@ -9,6 +11,10 @@ class Dashboard extends JPanel{
                   border = BorderFactory.createMatteBorder(0,0, 1,0, new Color(192,192,192));
 
                  graphic graph1, graph2, graph3, graph4;
+                 tableData td = new tableData();
+                 String[] name = {"Id","Produkti", "Numri i shitjes", "Qmimi"};
+                 DefaultTableModel  model = new DefaultTableModel(td.data, name);
+                 JTable table;
 
    static void panelCustomiser(JPanel panel, Color color, BorderLayout bl){
         panel.setLayout(bl);
@@ -51,6 +57,12 @@ class Dashboard extends JPanel{
      topBar.setPreferredSize(new Dimension(100, 80));
      topBar.add(text);
      topBar.setBorder(border);
+     
+     table = new JTable(model);
+     table.setBounds(40, 200, 850, 150);
+     table.setFocusable(false);
+     table.setEnabled(false);
+     validate();
 
      statisticsPanel = new JPanel();
      panelCustomiser(statisticsPanel, null, null);
@@ -60,6 +72,7 @@ class Dashboard extends JPanel{
      statisticsPanel.add(graph2);
      statisticsPanel.add(graph3);
      statisticsPanel.add(graph4);
+     statisticsPanel.add(table);
 
      tablePanel = new JPanel();
      panelCustomiser(tablePanel, null, null);
@@ -74,5 +87,37 @@ class Dashboard extends JPanel{
      setPreferredSize(new Dimension(100, 100));
      setLayout(new BorderLayout());
      add(centerPanel, BorderLayout.CENTER);
+    }
+}
+class graphic extends JPanel {
+
+    Color color;
+    int i = 55 / 2;
+    String txt;
+
+    public String getTxt() {
+        return txt;
+    }
+    public void setTxt(String text) {
+        this.txt = text;
+    }
+    public Color getColor() {
+        return color;
+    }
+    public void setColor(Color color) {
+        this.color = color;
+    }
+    graphic(){
+        this.setPreferredSize(new Dimension(100, 100));
+    }
+    public void paint(Graphics g){
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setPaint(color);
+        g2d.setStroke(new BasicStroke(2));
+        g2d.drawRoundRect(0, 0, 170, 110, i, i);
+        g2d.fillRoundRect(0,0,170,110, i, i);
+        g2d.setColor(Color.white);
+        g2d.drawString(txt, 10, 20);
+        g2d.drawString("100", 10, 40);
     }
 }

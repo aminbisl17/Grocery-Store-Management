@@ -81,7 +81,7 @@ class login extends JFrame implements ActionListener{
             textCustomiser(text2, 100, 180, 80, 20, Color1, font);
 
             text3 = new JLabel("Kyçu");
-            textCustomiser(text3, 150, 60, 80, 30, Color1, new Font("MV Boli", Font.BOLD, 22));
+            textCustomiser(text3, 150, 60, 80, 30, Color1, new Font("Monospaced", Font.BOLD, 22));
 
             softext = new JLabel("InnoviSoft.Co");
             textCustomiser(softext, 10, 370, 100, 20, Color1, font);
