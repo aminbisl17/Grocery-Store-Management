@@ -14,17 +14,19 @@ public class main extends JFrame implements ActionListener, MouseListener{
   private JTextArea textarea;
   public JButton[] buttons = new JButton[3];
   private JButton b1, b2, b3;
-  private Color whiteColor = new Color(255, 255, 255), blackColor = new Color(0, 0, 0), bTextColor = new Color(192, 192, 192);
+  private Color whiteColor = new Color(255, 255, 255), bTextColor = new Color(192, 192, 192);
   private CardLayout cl = new CardLayout();
   private Border border = BorderFactory.createMatteBorder(0, 0, 2, 0, whiteColor),
                  borderwhite = BorderFactory.createMatteBorder(0,0, 1,0, new Color(192,192,192)),
-                 border2 = BorderFactory.createLineBorder(Color.BLACK, 2);
+                 border2 = BorderFactory.createLineBorder(Color.BLACK, 2),
+                 sideBorder = BorderFactory.createMatteBorder(0,0, 0,1, new Color(192,192,192));
                             
   Timer timer;
   MouseAdapter mouseadapter;
 
   Dashboard dashboard = new Dashboard(); // classes
   test2 test2 = new test2();
+  Pijet pijet = new Pijet();
 
   static void buttonCustomiser // --------------- this method is for button customisation
   (JButton button, Color colorf,
@@ -72,7 +74,7 @@ public class main extends JFrame implements ActionListener, MouseListener{
     b2 = new JButton("Pemet >");
     buttonCustomiser(b2, bTextColor, 60, 130, 160, 30, false, false, true, false);
 
-    b3 = new JButton("Ushqimet >");
+    b3 = new JButton("Pijet >");
     buttonCustomiser(b3, bTextColor, 60, 180, 160, 30, false, false, true, false);
 
     buttons[0] = b1;
@@ -88,6 +90,7 @@ public class main extends JFrame implements ActionListener, MouseListener{
     topPanel = new JPanel();
     topPanel.setLayout(null);
     panelCustomiser(topPanel, new Color(65, 68, 75));
+    //topPanel.setBorder(borderwhite);
     topPanel.setPreferredSize(new Dimension(100, 80));
     topPanel.add(text);
 
@@ -116,12 +119,14 @@ public class main extends JFrame implements ActionListener, MouseListener{
     centerPanel.setLayout(cl);
     centerPanel.add(dashboard, "1");
     centerPanel.add(test2, "2");
+    centerPanel.add(pijet, "3");
     centerPanel.setPreferredSize(new Dimension(400, 100));
 
     leftPanel = new JPanel();
     leftPanel.setLayout(new BorderLayout());
     leftPanel.setBackground(whiteColor);
     leftPanel.setPreferredSize(new Dimension(300, 100));
+    leftPanel.setBorder(sideBorder);
     leftPanel.add(topPanel, BorderLayout.NORTH);
     leftPanel.add(container, BorderLayout.CENTER);
     leftPanel.add(bottomPanel, BorderLayout.SOUTH);
@@ -170,7 +175,6 @@ public class main extends JFrame implements ActionListener, MouseListener{
     });
   }
 
-  
     public void mousePressed(MouseEvent e)  {
     for (int i = 0; i < buttons.length; i++){
           buttons[i].removeMouseListener(this);}}
@@ -203,6 +207,8 @@ public class main extends JFrame implements ActionListener, MouseListener{
             cl.show(centerPanel, "1");
             leftPanel.add(bottomPanel, BorderLayout.SOUTH);}
     else{   leftPanel.remove(bottomPanel);}
-    if  (e.getSource() == b2) {
-            cl.show(centerPanel, "2");}}}
-public void mouseClicked(MouseEvent e){}public void mouseReleased(MouseEvent e){}}
+    if  (e.getSource() == b2) {cl.show(centerPanel, "2");}
+    if  (e.getSource() == b3) {cl.show(centerPanel, "3");}}}
+    
+
+    public void mouseClicked(MouseEvent e){}public void mouseReleased(MouseEvent e){}}
