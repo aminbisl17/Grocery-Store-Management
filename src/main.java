@@ -101,30 +101,6 @@ public class main extends JFrame implements ActionListener, MouseListener{
     panelCustomiser(bottomPanel, new Color(65,68,75));
     bottomPanel.setPreferredSize(new Dimension(100, 150));
     bottomPanel.add(textarea);
-/* 
-    mouseadapter = new MouseAdapter(){
-    public void mousePressed(MouseEvent e){
-      for (int i = 0; i < buttons.length; i++) {
-        buttons[i].removeMouseListener(mouseadapter); 
-      }
-    }
-  public void mouseEntered(MouseEvent e) {
-    for (int i = 0; i < buttons.length; i++) {
-      if (e.getSource().equals(buttons[i])) {
-       buttons[i].setBorder(border);
-       buttons[i].setForeground(whiteColor);
-    }
-    }
-  }
-      public void mouseExited(MouseEvent e) {
-    for (int i = 0; i < buttons.length; i++) {
-      if (e.getSource() == buttons[i]) {
-       buttons[i].setBorder(borderwhite);
-       buttons[i].setForeground(bTextColor);
-    }
-    }
-  }  
-};*/
 
     for (int x = 0; x < buttons.length; x++) { // this adds all buttons in container panel
       container.add(buttons[x]);
@@ -194,62 +170,39 @@ public class main extends JFrame implements ActionListener, MouseListener{
     });
   }
 
-  public void mousePressed(MouseEvent e){
-      for (int i = 0; i < buttons.length; i++) {
-        buttons[i].removeMouseListener(this); 
-      }
-    }
-  public void mouseEntered(MouseEvent e) {
-    for (int i = 0; i < buttons.length; i++) {
-      if (e.getSource().equals(buttons[i])) {
-       buttons[i].setBorder(border);
-       buttons[i].setForeground(whiteColor);
-    }
-    }
-  }
-      public void mouseExited(MouseEvent e) {
-    for (int i = 0; i < buttons.length; i++) {
-      if (e.getSource() == buttons[i]) {
-       buttons[i].setBorder(borderwhite);
-       buttons[i].setForeground(bTextColor);
-    }
-    }
-  }  
- // ----------------------------------
-  public void actionPerformed(ActionEvent e) {
+  
+    public void mousePressed(MouseEvent e)  {
+    for (int i = 0; i < buttons.length; i++){
+          buttons[i].removeMouseListener(this);}}
 
- for(int i = 0; i < buttons.length; i++){
-    if(e.getSource() == buttons[i]){  
+    public void mouseEntered(MouseEvent e) {
+    for(int i = 0; i < buttons.length; i++){
+    if (e.getSource().equals(buttons[i]))  {
+            buttons[i].setBorder(border);
+            buttons[i].setForeground(whiteColor);}}}
+
+    public void mouseExited(MouseEvent e)  {
+    for(int i = 0; i < buttons.length; i++){
+    if (e.getSource() == buttons[i])       {
+            buttons[i].setBorder(borderwhite);
+            buttons[i].setForeground(bTextColor);}}}  
+ // ----------------------------------
+    public void actionPerformed(ActionEvent e) {
+
+    for(int i = 0; i < buttons.length; i++){
+    if  (e.getSource() == buttons[i]){  
             buttons[i].setBorder(border);
             buttons[i].setForeground(whiteColor);
-            buttons[i].setOpaque(false); 
-    } else {
-      buttons[i].addMouseListener(this);
-      buttons[i].setBorder(borderwhite);
-      buttons[i].setForeground(bTextColor);
-      buttons[i].setOpaque(true);
-    }
-    if (e.getSource() == b1) {
-      cl.show(centerPanel, "1");
-       leftPanel.add(bottomPanel, BorderLayout.SOUTH);
-    } else{
-      leftPanel.remove(bottomPanel);
-    }
-    if (e.getSource() == b2) {
-      cl.show(centerPanel, "2");
-    }
-  }
-  }
-
-  @Override
-  public void mouseClicked(MouseEvent e) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'mouseClicked'");
-  }
-
-  @Override
-  public void mouseReleased(MouseEvent e) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'mouseReleased'");
-  }
-}
+            buttons[i].setOpaque(false);}
+    else{
+            buttons[i].addMouseListener(this);
+            buttons[i].setBorder(borderwhite);
+            buttons[i].setForeground(bTextColor);
+            buttons[i].setOpaque(true);}
+    if  (e.getSource() == b1){
+            cl.show(centerPanel, "1");
+            leftPanel.add(bottomPanel, BorderLayout.SOUTH);}
+    else{   leftPanel.remove(bottomPanel);}
+    if  (e.getSource() == b2) {
+            cl.show(centerPanel, "2");}}}
+public void mouseClicked(MouseEvent e){}public void mouseReleased(MouseEvent e){}}

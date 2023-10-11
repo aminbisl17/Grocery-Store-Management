@@ -17,7 +17,7 @@ class login extends JFrame implements ActionListener{
 
       Font font;    
       Border border;
-      Color Color1 = new Color(192,192,192), Color2 = new Color(46,47,53);
+      Color Color1 = new Color(192,192,192), Color2 = new Color(46,47,53), Color3 = new Color(65, 68, 75);
 
       static void buttonCustomiser  // --------------- this method is for button customisation
       (JButton button, Color colorb, Color colorf,
@@ -104,12 +104,12 @@ class login extends JFrame implements ActionListener{
 
             // rightpanel
             rightPanel = new JPanel();
-            panelCustomiser(rightPanel, new Color(46, 47, 53), 300, 100);
+            panelCustomiser(rightPanel, Color2, 300, 100);
             rightPanel.add(close);
             rightPanel.add(icon);
   //________________________________________________________
             leftPanel = new JPanel();
-            panelCustomiser(leftPanel, new Color(65,68,75), 400, 100);
+            panelCustomiser(leftPanel, Color3, 400, 100);
          // user input--
             leftPanel.add(username_input);
             leftPanel.add(password_input);
