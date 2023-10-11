@@ -129,7 +129,6 @@ public class main extends JFrame implements ActionListener, MouseListener{
     leftPanel.setBorder(sideBorder);
     leftPanel.add(topPanel, BorderLayout.NORTH);
     leftPanel.add(container, BorderLayout.CENTER);
-    leftPanel.add(bottomPanel, BorderLayout.SOUTH);
 
     setDefaultCloseOperation(main.EXIT_ON_CLOSE);
     setBounds(100, 50, 1400, 800);
@@ -204,11 +203,9 @@ public class main extends JFrame implements ActionListener, MouseListener{
             buttons[i].setForeground(bTextColor);
             buttons[i].setOpaque(true);}
     if  (e.getSource() == b1){
-            cl.show(centerPanel, "1");
-            leftPanel.add(bottomPanel, BorderLayout.SOUTH);}
-    else{   leftPanel.remove(bottomPanel);}
-    if  (e.getSource() == b2) {cl.show(centerPanel, "2");}
-    if  (e.getSource() == b3) {cl.show(centerPanel, "3");}}}
+            cl.show(centerPanel, "1");leftPanel.remove(bottomPanel);}
+    if  (e.getSource() == b2) {cl.show(centerPanel, "2");leftPanel.add(bottomPanel, BorderLayout.SOUTH);}
+    if  (e.getSource() == b3) {cl.show(centerPanel, "3");leftPanel.add(bottomPanel, BorderLayout.SOUTH);}}}
     
 
     public void mouseClicked(MouseEvent e){}public void mouseReleased(MouseEvent e){}}
