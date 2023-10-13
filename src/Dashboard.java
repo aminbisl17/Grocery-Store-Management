@@ -1,4 +1,3 @@
-import javax.swing.BorderFactory;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
@@ -7,13 +6,12 @@ import java.awt.*;
 class Dashboard extends JPanel{
    private JLabel text, text2;
    private JPanel centerPanel, topBar, tablePanel, statisticsPanel;
+   private JScrollPane pane = new JScrollPane();
    private Border borderwhite = BorderFactory.createMatteBorder(0,0, 1,0, new Color(46,47,53)),
                   border = BorderFactory.createMatteBorder(0,0, 1,0, new Color(192,192,192));
 
                  graphic graph1, graph2, graph3, graph4;
                  tableData td = new tableData();
-                 String[] name = {"Id","Produkti", "Numri i shitjes", "Qmimi"};
-                 DefaultTableModel  model = new DefaultTableModel(td.data, name);
                  JTable table;
 
    static void panelCustomiser(JPanel panel, Color color, BorderLayout bl){
@@ -65,22 +63,30 @@ class Dashboard extends JPanel{
      topBar.add(text);
      topBar.setBorder(border);
      
-     table = new JTable(model);
-     table.setBounds(40, 240, 980, 150);
+     td.model.setColumnIdentifiers(td.Column);
+     table = new JTable(td.model);
+     table.setBounds(0, 0, 980, 150);
+     table.setRowHeight(30);
+     table.setAutoCreateRowSorter(true);
      table.setFocusable(false);
-     table.setEnabled(false);
-     validate();
+     table.setEnabled(false);     
+    
+     pane.setBounds(40, 240, 980, 150);
+     pane.setLayout(null);
+     pane.add(table);
+     
 
      statisticsPanel = new JPanel();
      panelCustomiser(statisticsPanel, new Color(246,245,245), null);
      statisticsPanel.setBounds(0, 40, 1600, 150);
      statisticsPanel.setPreferredSize(new Dimension(100, 650));
+     statisticsPanel.add(pane);
      statisticsPanel.add(text2);
      statisticsPanel.add(graph1);
      statisticsPanel.add(graph2);
      statisticsPanel.add(graph3);
      statisticsPanel.add(graph4);
-     statisticsPanel.add(table);
+     statisticsPanel.validate();
 
      tablePanel = new JPanel();
      panelCustomiser(tablePanel, null, null);
