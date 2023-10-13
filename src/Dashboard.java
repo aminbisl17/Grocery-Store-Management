@@ -4,7 +4,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 class Dashboard extends JPanel{
-   private JLabel text, text2;
+   private JLabel text, text2, text3;
    private JPanel centerPanel, topBar, tablePanel, statisticsPanel;
    private JScrollPane pane = new JScrollPane();
    private Border borderwhite = BorderFactory.createMatteBorder(0,0, 1,0, new Color(46,47,53)),

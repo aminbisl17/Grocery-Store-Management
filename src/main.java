@@ -10,10 +10,10 @@ import javax.swing.border.Border;
 public class main extends JFrame implements ActionListener, MouseListener{
 
   private JPanel leftPanel, centerPanel, container, topPanel, bottomPanel;
-  private JLabel text, dateText, timeText;
+  private JLabel text, dateText, timeText, adminText, categories;
   private JTextArea textarea;
-  public JButton[] buttons = new JButton[3];
-  private JButton b1, b2, b3;
+  public JButton[] buttons = new JButton[4];
+  private JButton b1, b2, b3, price;
   private Color whiteColor = new Color(255, 255, 255), bTextColor = new Color(192, 192, 192);
   private CardLayout cl = new CardLayout();
   private Border border = BorderFactory.createMatteBorder(0, 0, 2, 0, whiteColor),
@@ -51,12 +51,22 @@ public class main extends JFrame implements ActionListener, MouseListener{
     panel.setLayout(null);
   }
 
+  static void label(JLabel label,int x, int y, int size, Color color){
+    label.setBounds(x, y, 150, 40);
+    label.setFont(new Font("Monospaced", Font.BOLD, size));
+    label.setForeground(color);
+  }
+
   main() {
 
     text = new JLabel("InnoviSoft");
-    text.setBounds(10, 10, 100, 50);
-    text.setForeground(whiteColor);
-    text.setFont(new Font("Monospaced", Font.BOLD, 17));
+    label(text, 17, 15, 20, whiteColor);
+
+    adminText = new JLabel("Admin:");
+    label(adminText, 25, 20,17, whiteColor);
+
+    categories = new JLabel("Catalogue:");
+    label(categories, 25, 180, 17, whiteColor);
 
     dateText = new JLabel();
     dateText.setBounds(180, 10, 100, 30);
@@ -68,18 +78,22 @@ public class main extends JFrame implements ActionListener, MouseListener{
     timeText.setFont(new Font("Monospaced", Font.BOLD, 12));
     timeText.setForeground(whiteColor);
 
-    b1 = new JButton("Dashboard >");
+    b1 = new JButton("Dashboard");
     buttonCustomiser(b1, bTextColor, 60, 60, 160, 30, false, false, true, false);
 
-    b2 = new JButton("Pemet >");
-    buttonCustomiser(b2, bTextColor, 60, 130, 160, 30, false, false, true, false);
+    price = new JButton("Categories");
+    buttonCustomiser(price, bTextColor, 60, 100, 160, 30, false, false, true, false);
 
-    b3 = new JButton("Pijet >");
-    buttonCustomiser(b3, bTextColor, 60, 180, 160, 30, false, false, true, false);
+    b2 = new JButton("Pemet");
+    buttonCustomiser(b2, bTextColor, 60, 230, 160, 30, false, false, true, false);
+
+    b3 = new JButton("Pijet");
+    buttonCustomiser(b3, bTextColor, 60, 270, 160, 30, false, false, true, false);
 
     buttons[0] = b1;
     buttons[1] = b2;
     buttons[2] = b3;
+    buttons[3] = price;
 
     textarea = new JTextArea();
     textarea.setBounds(45, 25, 200, 100);
@@ -90,7 +104,6 @@ public class main extends JFrame implements ActionListener, MouseListener{
     topPanel = new JPanel();
     topPanel.setLayout(null);
     panelCustomiser(topPanel, new Color(65, 68, 75));
-    //topPanel.setBorder(borderwhite);
     topPanel.setPreferredSize(new Dimension(100, 80));
     topPanel.add(text);
 
@@ -99,6 +112,8 @@ public class main extends JFrame implements ActionListener, MouseListener{
     container.setBounds(30, 50, 240, 450);
     panelCustomiser(container, new Color(46, 47, 53));
     container.add(dateText);
+    container.add(adminText);
+    container.add(categories);
 
     bottomPanel = new JPanel();
     panelCustomiser(bottomPanel, new Color(65,68,75));
