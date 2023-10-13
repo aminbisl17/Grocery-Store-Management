@@ -107,7 +107,7 @@ public class main extends JFrame implements ActionListener, MouseListener{
 
     for (int x = 0; x < buttons.length; x++) { // this adds all buttons in container panel
       container.add(buttons[x]);
-      buttons[x].setFont(new Font("Monospaced", Font.BOLD, 14));
+      buttons[x].setFont(new Font("Monospaced", Font.BOLD, 16));
       buttons[x].addActionListener(this);
       buttons[x].setBorder(borderwhite);
       buttons[x].addMouseListener(this);

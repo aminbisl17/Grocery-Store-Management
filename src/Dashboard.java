@@ -20,29 +20,29 @@ class Dashboard extends JPanel{
         panel.setLayout(bl);
         panel.setBackground(color);
    }
+   static void graphCustomiser(JPanel graph, int x){
+    graph.setBounds(x, 60, 230, 140);
+
+   }
     Dashboard(){
 
-     text2 = new JLabel("Përmbledhja");
-     text2.setBounds(40, 10, 140, 20);
-     text2.setFont(new Font("Monospaced", Font.BOLD, 17));
-
      graph1 = new graphic();
-     graph1.setBounds(40, 50, 190, 110);
+     graphCustomiser(graph1, 40);
      graph1.setColor(Color.red);
      graph1.setTxt("Totali i shitjeve (Sot)");
 
      graph2 = new graphic();
-     graph2.setBounds(260, 50, 190, 110);
+     graphCustomiser(graph2, 290);
      graph2.setColor(Color.blue);
      graph2.setTxt("Totali Parave te fituara (Sot)");
 
      graph3 = new graphic();
-     graph3.setBounds(480, 50, 190, 110);
+     graphCustomiser(graph3, 540);
      graph3.setColor(Color.green);
      graph3.setTxt("Totali i shtijeve gjat Muajit");
 
      graph4 = new graphic();
-     graph4.setBounds(700, 50, 190, 110);
+     graphCustomiser(graph4, 790);
      graph4.setColor(Color.PINK);
      graph4.setTxt("Shuma e parave te fituara gjat \t Muajit");
 
@@ -50,6 +50,10 @@ class Dashboard extends JPanel{
      text.setBounds(20,40,100,20);
      text.setFont(new Font("Monospaced", Font.BOLD, 17));
      text.setBorder(borderwhite);
+
+     text2 = new JLabel("Përmbledhje");
+     text2.setBounds(40, 15, 150, 30);
+     text2.setFont(new Font("Monospaced", Font.BOLD, 20));
 
      centerPanel = new JPanel();
      centerPanel.setLayout(new BorderLayout());
@@ -62,13 +66,13 @@ class Dashboard extends JPanel{
      topBar.setBorder(border);
      
      table = new JTable(model);
-     table.setBounds(40, 200, 850, 150);
+     table.setBounds(40, 240, 980, 150);
      table.setFocusable(false);
      table.setEnabled(false);
      validate();
 
      statisticsPanel = new JPanel();
-     panelCustomiser(statisticsPanel, null, null);
+     panelCustomiser(statisticsPanel, new Color(246,245,245), null);
      statisticsPanel.setBounds(0, 40, 1600, 150);
      statisticsPanel.setPreferredSize(new Dimension(100, 650));
      statisticsPanel.add(text2);
@@ -86,8 +90,6 @@ class Dashboard extends JPanel{
      centerPanel.add(topBar, BorderLayout.NORTH);
      centerPanel.add(statisticsPanel, BorderLayout.CENTER);
 
-
-     setBackground(new Color(255,255,255));
      setPreferredSize(new Dimension(100, 100));
      setLayout(new BorderLayout());
      add(centerPanel, BorderLayout.CENTER);
@@ -98,7 +100,6 @@ class graphic extends JPanel {
     Color color;
     int i = 55 / 2;
     String txt;
-    Font font = new Font("Monospaced", Font.BOLD, 18);
 
     public String getTxt() {
         return txt;
@@ -119,11 +120,10 @@ class graphic extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setPaint(color);
         g2d.setStroke(new BasicStroke(2));
-        g2d.drawRoundRect(0, 0, 190, 110, i, i);
-        g2d.fillRoundRect(0,0,190,110, i, i);
+        g2d.drawRoundRect(0, 0, 230, 140, i, i);
+        g2d.fillRoundRect(0,0,230,140, i, i);
         g2d.setColor(Color.white);
         g2d.drawString(txt, 10, 20);
         g2d.drawString("100", 10, 40);
-        g2d.setFont(font);
     }
 }
