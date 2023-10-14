@@ -13,7 +13,7 @@ public class main extends JFrame implements ActionListener, MouseListener{
   private JLabel text, dateText, timeText, adminText, categoriestxt;
   private JTextArea textarea;
   public JButton[] buttons = new JButton[4];
-  private JButton dashBoardButton, categoriesButton, pijetButton, pemPerimetButton;
+  private JButton dashBoardButton, categoriesButton, pijetButton, pemPerimetButton, close;
   private Color whiteColor = new Color(255, 255, 255), bTextColor = new Color(192, 192, 192);
   private CardLayout cl = new CardLayout();
   private Border border = BorderFactory.createMatteBorder(0, 0, 2, 0, whiteColor),
@@ -23,6 +23,8 @@ public class main extends JFrame implements ActionListener, MouseListener{
                             
   Timer timer;
   MouseAdapter mouseadapter;
+
+  int positionX, positionY;
 
   Dashboard dashboard = new Dashboard();
   Categories categories = new Categories(); // classes
@@ -153,8 +155,20 @@ public class main extends JFrame implements ActionListener, MouseListener{
     leftPanel.add(container, BorderLayout.CENTER);
 
     setDefaultCloseOperation(main.EXIT_ON_CLOSE);
+    setUndecorated(true);
     setBounds(100, 50, 1400, 800);
     setTitle("InnoviStore");
+    addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e){
+                   positionX = e.getX();
+                   positionY = e.getY();
+            }
+    });
+    addMouseMotionListener(new MouseMotionAdapter() {
+      public void mouseDragged(MouseEvent e) {
+             setLocation(e.getXOnScreen()-positionX, e.getYOnScreen()-positionY);
+      }
+    });
     revalidate();
     repaint();
     setLayout(new BorderLayout());
