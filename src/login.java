@@ -3,6 +3,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 
@@ -13,6 +15,8 @@ class login extends JFrame implements ActionListener{
     private JLabel icon, text1, text2, text3, softext;
     private JTextField username_input;
     private JPasswordField password_input;
+
+    private int positionX, positionY;
 
       Font font;    
       Border border;
@@ -119,6 +123,19 @@ class login extends JFrame implements ActionListener{
 
             setBounds(550, 200, 650, 400);
             setUndecorated(true);
+
+            addMouseListener(new MouseAdapter() {
+              public void mousePressed(MouseEvent e){
+                      positionX = e.getX();
+                      positionY = e.getY();
+              }
+      });
+      addMouseMotionListener(new MouseMotionAdapter() {
+        public void mouseDragged(MouseEvent e) {
+               setLocation(e.getXOnScreen()-positionX, e.getYOnScreen()-positionY);
+        }
+      });
+      
             setLayout(new BorderLayout());
 
             add(rightPanel, BorderLayout.EAST);

@@ -24,7 +24,7 @@ public class main extends JFrame implements ActionListener, MouseListener{
   Timer timer;
   MouseAdapter mouseadapter;
 
-  int positionX, positionY;
+ private int positionX, positionY;
 
   Dashboard dashboard = new Dashboard();
   Categories categories = new Categories(); // classes
