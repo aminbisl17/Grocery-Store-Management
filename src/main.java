@@ -10,10 +10,10 @@ import javax.swing.border.Border;
 public class main extends JFrame implements ActionListener, MouseListener{
 
   private JPanel leftPanel, centerPanel, container, topPanel, bottomPanel;
-  private JLabel text, dateText, timeText, adminText, categories;
+  private JLabel text, dateText, timeText, adminText, categoriestxt;
   private JTextArea textarea;
   public JButton[] buttons = new JButton[4];
-  private JButton b1, b2, b3, price;
+  private JButton dashBoardButton, categoriesButton, pijetButton, pemPerimetButton;
   private Color whiteColor = new Color(255, 255, 255), bTextColor = new Color(192, 192, 192);
   private CardLayout cl = new CardLayout();
   private Border border = BorderFactory.createMatteBorder(0, 0, 2, 0, whiteColor),
@@ -24,7 +24,8 @@ public class main extends JFrame implements ActionListener, MouseListener{
   Timer timer;
   MouseAdapter mouseadapter;
 
-  Dashboard dashboard = new Dashboard(); // classes
+  Dashboard dashboard = new Dashboard();
+  Categories categories = new Categories(); // classes
   test2 test2 = new test2();
   Pijet pijet = new Pijet();
 
@@ -46,9 +47,18 @@ public class main extends JFrame implements ActionListener, MouseListener{
 
   static void panelCustomiser( // this is a panel customiser
       JPanel panel,
-      Color color) {
+      LayoutManager layout,
+      Boolean size,
+      Color color,
+      Border border,
+      int width, int height) {
     panel.setBackground(color);
-    panel.setLayout(null);
+    panel.setLayout(layout);
+    panel.setBorder(border);
+    if(size){
+    panel.setPreferredSize(new Dimension(width, height));
+    return;
+    }
   }
 
   static void label(JLabel label,int x, int y, int size, Color color){
@@ -65,8 +75,8 @@ public class main extends JFrame implements ActionListener, MouseListener{
     adminText = new JLabel("Admin:");
     label(adminText, 25, 20,17, whiteColor);
 
-    categories = new JLabel("Catalogue:");
-    label(categories, 25, 180, 17, whiteColor);
+    categoriestxt = new JLabel("Catalogue:");
+    label(categoriestxt, 25, 180, 17, whiteColor);
 
     dateText = new JLabel();
     dateText.setBounds(180, 10, 100, 30);
@@ -78,22 +88,23 @@ public class main extends JFrame implements ActionListener, MouseListener{
     timeText.setFont(new Font("Monospaced", Font.BOLD, 12));
     timeText.setForeground(whiteColor);
 
-    b1 = new JButton("Dashboard");
-    buttonCustomiser(b1, bTextColor, 60, 60, 160, 30, false, false, true, false);
+    dashBoardButton = new JButton("Dashboard");
+    buttonCustomiser(dashBoardButton, bTextColor, 60, 60, 160, 30, false, false, true, false);
 
-    price = new JButton("Categories");
-    buttonCustomiser(price, bTextColor, 60, 100, 160, 30, false, false, true, false);
+    categoriesButton = new JButton("Categories");
+    buttonCustomiser(categoriesButton, bTextColor, 60, 100, 160, 30, false, false, true, false);
 
-    b2 = new JButton("Pemet");
-    buttonCustomiser(b2, bTextColor, 60, 230, 160, 30, false, false, true, false);
+    pijetButton = new JButton("Pijet");
+    buttonCustomiser(pijetButton, bTextColor, 60, 230, 160, 30, false, false, true, false);
 
-    b3 = new JButton("Pijet");
-    buttonCustomiser(b3, bTextColor, 60, 270, 160, 30, false, false, true, false);
+    pemPerimetButton = new JButton("Pemet");
+    buttonCustomiser(pemPerimetButton, bTextColor, 60, 270, 160, 30, false, false, true, false);
 
-    buttons[0] = b1;
-    buttons[1] = b2;
-    buttons[2] = b3;
-    buttons[3] = price;
+
+    buttons[0] = dashBoardButton;
+    buttons[1] = categoriesButton;
+    buttons[2] = pijetButton;
+    buttons[3] = pemPerimetButton;
 
     textarea = new JTextArea();
     textarea.setBounds(45, 25, 200, 100);
@@ -102,46 +113,42 @@ public class main extends JFrame implements ActionListener, MouseListener{
     textarea.setFocusable(false);
 
     topPanel = new JPanel();
-    topPanel.setLayout(null);
-    panelCustomiser(topPanel, new Color(65, 68, 75));
-    topPanel.setPreferredSize(new Dimension(100, 80));
+    panelCustomiser(topPanel,null, true, new Color(65, 68, 75), null, 100, 80);
     topPanel.add(text);
 
     container = new JPanel(); // this panel is within leftPanel and its served as an container for buttons so
                               // i can easily move them if wanted
     container.setBounds(30, 50, 240, 450);
-    panelCustomiser(container, new Color(46, 47, 53));
+    panelCustomiser(container, null,  false, new Color(46, 47, 53), null, 100, 100);
     container.add(dateText);
     container.add(adminText);
-    container.add(categories);
+    container.add(categoriestxt);
 
     bottomPanel = new JPanel();
-    panelCustomiser(bottomPanel, new Color(65,68,75));
-    bottomPanel.setPreferredSize(new Dimension(100, 150));
+    panelCustomiser(bottomPanel, null,  true, new Color(65,68,75), null, 100, 150);
     bottomPanel.add(textarea);
 
     for (int x = 0; x < buttons.length; x++) { // this adds all buttons in container panel
       container.add(buttons[x]);
-      buttons[x].setFont(new Font("Monospaced", Font.BOLD, 16));
+      buttons[x].setFont(new Font("Monospaced", Font.BOLD, 14));
       buttons[x].addActionListener(this);
       buttons[x].setBorder(borderwhite);
       buttons[x].addMouseListener(this);
     }
     
-      b1.setBorder(border);
+      dashBoardButton.setBorder(border);
 
     centerPanel = new JPanel();
-    centerPanel.setLayout(cl);
+    panelCustomiser(centerPanel, cl, true, null, null, 400, 100);
+    // ADMIN
     centerPanel.add(dashboard, "1");
-    centerPanel.add(test2, "2");
+    centerPanel.add(categories, "2");
+    // Catalogue
     centerPanel.add(pijet, "3");
-    centerPanel.setPreferredSize(new Dimension(400, 100));
+    centerPanel.add(test2, "4");
 
     leftPanel = new JPanel();
-    leftPanel.setLayout(new BorderLayout());
-    leftPanel.setBackground(whiteColor);
-    leftPanel.setPreferredSize(new Dimension(300, 100));
-    leftPanel.setBorder(sideBorder);
+    panelCustomiser(leftPanel, new BorderLayout(), true, whiteColor, sideBorder, 300, 100);
     leftPanel.add(topPanel, BorderLayout.NORTH);
     leftPanel.add(container, BorderLayout.CENTER);
 
@@ -176,11 +183,10 @@ public class main extends JFrame implements ActionListener, MouseListener{
         timeText.setText(sdf.format(date));
         topPanel.add(timeText);
       }
-
     }).start();
   }
 // -------------------------------------- MAIN METHOD
-  public static void main(String[] args) {
+   public static void main(String[] args) {
     SwingUtilities.invokeLater(new Runnable() {
       @Override
       public void run() {
@@ -217,10 +223,8 @@ public class main extends JFrame implements ActionListener, MouseListener{
             buttons[i].setBorder(borderwhite);
             buttons[i].setForeground(bTextColor);
             buttons[i].setOpaque(true);}
-    if  (e.getSource() == b1){
-            cl.show(centerPanel, "1");leftPanel.remove(bottomPanel);}
-    if  (e.getSource() == b2) {cl.show(centerPanel, "2");leftPanel.add(bottomPanel, BorderLayout.SOUTH);}
-    if  (e.getSource() == b3) {cl.show(centerPanel, "3");leftPanel.add(bottomPanel, BorderLayout.SOUTH);}}}
-    
-
+    if  (e.getSource().equals(dashBoardButton))  {cl.show(centerPanel, "1"); leftPanel.remove(bottomPanel);}
+    if  (e.getSource().equals(categoriesButton)) {cl.show(centerPanel, "2");leftPanel.remove(bottomPanel);}
+    if  (e.getSource().equals(pijetButton))      {cl.show(centerPanel, "3");leftPanel.add(bottomPanel, BorderLayout.SOUTH);}
+    if  (e.getSource().equals(pemPerimetButton)) {cl.show(centerPanel, "4");leftPanel.add(bottomPanel, BorderLayout.SOUTH);}}}
     public void mouseClicked(MouseEvent e){}public void mouseReleased(MouseEvent e){}}

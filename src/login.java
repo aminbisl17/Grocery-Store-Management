@@ -3,7 +3,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 
@@ -110,15 +109,12 @@ class login extends JFrame implements ActionListener{
   //________________________________________________________
             leftPanel = new JPanel();
             panelCustomiser(leftPanel, Color3, 400, 100);
-         // user input--
             leftPanel.add(username_input);
             leftPanel.add(password_input);
-        // texts
             leftPanel.add(text1);
             leftPanel.add(text2);
             leftPanel.add(text3);
             leftPanel.add(softext);
-        // submit button
             leftPanel.add(submit);
 
             setBounds(550, 200, 650, 400);
