@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.RoundRectangle2D;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.swing.*;
@@ -9,18 +10,19 @@ import javax.swing.border.Border;
 // MAIN PANEL STARTS HERE ------------------------------------------------------
 public class main extends JFrame implements ActionListener, MouseListener{
 
-  private JPanel leftPanel, centerPanel, container, topPanel, bottomPanel;
+  private JPanel leftPanel, centerPanel, topBar, container, topPanel, bottomPanel;
   private JLabel text, dateText, timeText, adminText, categoriestxt;
   private JTextArea textarea;
   public JButton[] buttons = new JButton[4];
-  private JButton dashBoardButton, categoriesButton, pijetButton, pemPerimetButton, close;
+  private JButton dashBoardButton, categoriesButton, pijetButton, pemPerimetButton, close, iconify;
   private Color whiteColor = new Color(255, 255, 255), bTextColor = new Color(192, 192, 192);
   private CardLayout cl = new CardLayout();
   private Border border = BorderFactory.createMatteBorder(0, 0, 2, 0, whiteColor),
                  borderwhite = BorderFactory.createMatteBorder(0,0, 1,0, new Color(192,192,192)),
                  border2 = BorderFactory.createLineBorder(Color.BLACK, 2),
                  sideBorder = BorderFactory.createMatteBorder(0,0, 0,1, new Color(192,192,192));
-                            
+                
+  int i = 55 / 2;              
   Timer timer;
   MouseAdapter mouseadapter;
 
@@ -72,7 +74,7 @@ public class main extends JFrame implements ActionListener, MouseListener{
   main() {
 
     text = new JLabel("InnoviSoft");
-    label(text, 17, 15, 20, whiteColor);
+    label(text, 17, 0, 20, whiteColor);
 
     adminText = new JLabel("Admin:");
     label(adminText, 25, 20,17, whiteColor);
@@ -139,7 +141,20 @@ public class main extends JFrame implements ActionListener, MouseListener{
     }
     
       dashBoardButton.setBorder(border);
+    
+      close = new JButton();
+      close.addActionListener(this);
+      close.setBounds(1300, 5, 50, 20);
 
+      iconify = new JButton("iconify");
+      iconify.addActionListener(this);
+      iconify.setBounds(1230, 5, 50, 20);
+      topBar = new JPanel();
+      panelCustomiser(topBar, null, true, new Color(65, 68,75), null, 50, 30);
+      topBar.add(close);
+      topBar.add(iconify);
+
+ 
     centerPanel = new JPanel();
     panelCustomiser(centerPanel, cl, true, null, null, 400, 100);
     // ADMIN
@@ -156,7 +171,9 @@ public class main extends JFrame implements ActionListener, MouseListener{
 
     setDefaultCloseOperation(main.EXIT_ON_CLOSE);
     setUndecorated(true);
-    setBounds(100, 50, 1400, 800);
+    setShape(new RoundRectangle2D.Double(0, 0, 1400, 800, i, i));
+    setSize(1400, 800);
+    setLocationRelativeTo(null);
     setTitle("InnoviStore");
     addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e){
@@ -169,12 +186,13 @@ public class main extends JFrame implements ActionListener, MouseListener{
              setLocation(e.getXOnScreen()-positionX, e.getYOnScreen()-positionY);
       }
     });
+
     revalidate();
     repaint();
     setLayout(new BorderLayout());
     showDate();
     showTime();
-
+    add(topBar, BorderLayout.NORTH);
     add(centerPanel, BorderLayout.CENTER);
     add(leftPanel, BorderLayout.WEST);
    // cl.show(centerPanel, "1");
@@ -226,6 +244,9 @@ public class main extends JFrame implements ActionListener, MouseListener{
             buttons[i].setForeground(bTextColor);}}}  
  // ----------------------------------
     public void actionPerformed(ActionEvent e) {
+
+    if(e.getSource().equals(close)){System.exit(0);}
+    if(e.getSource().equals(iconify)){this.setExtendedState(main.ICONIFIED);}
 
     for(int i = 0; i < buttons.length; i++){
     if  (e.getSource() == buttons[i]){  
