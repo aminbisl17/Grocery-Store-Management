@@ -14,7 +14,7 @@ public class main extends JFrame implements ActionListener, MouseListener{
   private JLabel text, dateText, timeText, adminText, categoriestxt;
   private JTextArea textarea;
   public JButton[] buttons = new JButton[4];
-  private JButton dashBoardButton, categoriesButton, pijetButton, pemPerimetButton, close, iconify;
+  private JButton dashBoardButton, categoriesButton, pijetButton, pemPerimetButton, close, iconify, fullsize;
   private Color whiteColor = new Color(255, 255, 255), bTextColor = new Color(192, 192, 192);
   private CardLayout cl = new CardLayout();
   private Border border = BorderFactory.createMatteBorder(0, 0, 2, 0, whiteColor),
@@ -22,9 +22,11 @@ public class main extends JFrame implements ActionListener, MouseListener{
                  border2 = BorderFactory.createLineBorder(Color.BLACK, 2),
                  sideBorder = BorderFactory.createMatteBorder(0,0, 0,1, new Color(192,192,192));
                 
+  boolean check;
   int i = 55 / 2;              
   Timer timer;
   MouseAdapter mouseadapter;
+  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
  private int positionX, positionY;
 
@@ -148,11 +150,16 @@ public class main extends JFrame implements ActionListener, MouseListener{
 
       iconify = new JButton("iconify");
       iconify.addActionListener(this);
-      iconify.setBounds(1230, 5, 50, 20);
+      iconify.setBounds(1170, 5, 50, 20);
+
+      fullsize = new JButton();
+      fullsize.addActionListener(this);
+      fullsize.setBounds(1230, 5, 50, 20);
       topBar = new JPanel();
       panelCustomiser(topBar, null, true, new Color(65, 68,75), null, 50, 30);
       topBar.add(close);
       topBar.add(iconify);
+      topBar.add(fullsize);
 
  
     centerPanel = new JPanel();
@@ -244,8 +251,11 @@ public class main extends JFrame implements ActionListener, MouseListener{
             buttons[i].setForeground(bTextColor);}}}  
  // ----------------------------------
     public void actionPerformed(ActionEvent e) {
-
+    
     if(e.getSource().equals(close)){System.exit(0);}
+    if(e.getSource().equals(fullsize)){ check = true; if(check){
+      this.setShape(null);this.setExtendedState(JFrame.MAXIMIZED_BOTH); check = false;}}
+    if(e.getSource() == fullsize){if(!check){ check = false; this.setShape(new RoundRectangle2D.Double(0, 0, 1400, 800, i, i)); check = true;}}
     if(e.getSource().equals(iconify)){this.setExtendedState(main.ICONIFIED);}
 
     for(int i = 0; i < buttons.length; i++){
