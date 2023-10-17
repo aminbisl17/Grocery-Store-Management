@@ -13,17 +13,20 @@ public class main extends JFrame implements ActionListener, MouseListener{
   private JPanel leftPanel, centerPanel, topBar, container, topPanel, bottomPanel;
   private JLabel text, dateText, timeText, adminText, categoriestxt;
   private JTextArea textarea;
-  public JButton[] buttons = new JButton[4];
+  private JButton[] buttons = new JButton[4], topBarButtons = new JButton[3];
   private JButton dashBoardButton, categoriesButton, pijetButton, pemPerimetButton, close, iconify, resize;
-  private Color whiteColor = new Color(255, 255, 255), bTextColor = new Color(192, 192, 192);
+  private Color whiteColor = new Color(255, 255, 255), bTextColor = new Color(192, 192, 192), grayTextColor = new Color(65, 68, 75), darkerGrayTextColor = new Color(46,47,53);
   private CardLayout cl = new CardLayout();
   private Border border = BorderFactory.createMatteBorder(0, 0, 2, 0, whiteColor),
                  borderwhite = BorderFactory.createMatteBorder(0,0, 1,0, new Color(192,192,192)),
                  border2 = BorderFactory.createLineBorder(Color.BLACK, 2),
                  sideBorder = BorderFactory.createMatteBorder(0,0, 0,1, new Color(192,192,192));
                 
-  boolean expanded = false, dragged = false;
-  int i = 55 / 2;              
+  boolean expanded = false;
+  int i = 55 / 2;       
+  RoundRectangle2D.Double roundrectangle = new RoundRectangle2D.Double(0,0,1400,800,i,i);       
+  BorderLayout borderlayout = new BorderLayout();
+
   Timer timer;
   MouseAdapter mouseadapter;
   Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -85,14 +88,10 @@ public class main extends JFrame implements ActionListener, MouseListener{
     label(categoriestxt, 25, 180, 17, whiteColor);
 
     dateText = new JLabel();
-    dateText.setBounds(180, 10, 100, 30);
-    dateText.setFont(new Font("Monospaced", Font.BOLD, 15));
-    dateText.setForeground(whiteColor);
+    label(dateText, 180, 10, 15, whiteColor);
 
     timeText = new JLabel();
-    timeText.setBounds(191, 40, 100, 10);
-    timeText.setFont(new Font("Monospaced", Font.BOLD, 12));
-    timeText.setForeground(whiteColor);
+    label(timeText, 191, 40, 12, whiteColor);
 
     dashBoardButton = new JButton("Dashboard");
     buttonCustomiser(dashBoardButton, bTextColor, 60, 60, 160, 30, false, false, true, false);
@@ -105,12 +104,24 @@ public class main extends JFrame implements ActionListener, MouseListener{
 
     pemPerimetButton = new JButton("Pemet");
     buttonCustomiser(pemPerimetButton, bTextColor, 60, 270, 160, 30, false, false, true, false);
+    // top bar buttons ............
+    close = new JButton();
+    buttonCustomiser(close, null, 1300, 5, 50, 20, false, false, true, false);
 
+    iconify = new JButton("iconify");
+    buttonCustomiser(iconify, null, 1170, 5, 50, 20, false, false, true, false);
 
+    resize = new JButton();
+    buttonCustomiser(resize, null, 1230, 5, 50, 20, false, false, true, false);
+ //-------------------------
     buttons[0] = dashBoardButton;
     buttons[1] = categoriesButton;
     buttons[2] = pijetButton;
     buttons[3] = pemPerimetButton;
+    // ----------
+    topBarButtons[0] = close;
+    topBarButtons[1] = iconify;
+    topBarButtons[2] = resize;
 
     textarea = new JTextArea();
     textarea.setBounds(45, 25, 200, 100);
@@ -119,47 +130,38 @@ public class main extends JFrame implements ActionListener, MouseListener{
     textarea.setFocusable(false);
 
     topPanel = new JPanel();
-    panelCustomiser(topPanel,null, true, new Color(65, 68, 75), null, 100, 80);
+    panelCustomiser(topPanel,null, true, grayTextColor, null, 100, 80);
     topPanel.add(text);
 
     container = new JPanel(); // this panel is within leftPanel and its served as an container for buttons so
                               // i can easily move them if wanted
     container.setBounds(30, 50, 240, 450);
-    panelCustomiser(container, null,  false, new Color(46, 47, 53), null, 100, 100);
+    panelCustomiser(container, null,  false, darkerGrayTextColor, null, 100, 100);
     container.add(dateText);
     container.add(adminText);
     container.add(categoriestxt);
 
     bottomPanel = new JPanel();
-    panelCustomiser(bottomPanel, null,  true, new Color(65,68,75), null, 100, 150);
+    panelCustomiser(bottomPanel, null,  true, grayTextColor, null, 100, 150);
     bottomPanel.add(textarea);
 
+    topBar = new JPanel();
+      panelCustomiser(topBar, null, true, grayTextColor, null, 50, 30);
+
+      for(int i = 0; i < topBarButtons.length; i++){
+         topBarButtons[i].addActionListener(this);
+         topBar.add(topBarButtons[i]);
+      }
+  
     for (int x = 0; x < buttons.length; x++) { // this adds all buttons in container panel
-      container.add(buttons[x]);
       buttons[x].setFont(new Font("Monospaced", Font.BOLD, 14));
       buttons[x].addActionListener(this);
       buttons[x].setBorder(borderwhite);
       buttons[x].addMouseListener(this);
+      container.add(buttons[x]);
     }
     
       dashBoardButton.setBorder(border);
-    
-      close = new JButton();
-      close.addActionListener(this);
-      close.setBounds(1300, 5, 50, 20);
-
-      iconify = new JButton("iconify");
-      iconify.addActionListener(this);
-      iconify.setBounds(1170, 5, 50, 20);
-
-      resize = new JButton();
-      resize.addActionListener(this);
-      resize.setBounds(1230, 5, 50, 20);
-      topBar = new JPanel();
-      panelCustomiser(topBar, null, true, new Color(65, 68,75), null, 50, 30);
-      topBar.add(close);
-      topBar.add(iconify);
-      topBar.add(resize);
 
  
     centerPanel = new JPanel();
@@ -172,13 +174,13 @@ public class main extends JFrame implements ActionListener, MouseListener{
     centerPanel.add(test2, "4");
 
     leftPanel = new JPanel();
-    panelCustomiser(leftPanel, new BorderLayout(), true, whiteColor, sideBorder, 300, 100);
+    panelCustomiser(leftPanel, borderlayout, true, null, sideBorder, 300, 100);
     leftPanel.add(topPanel, BorderLayout.NORTH);
     leftPanel.add(container, BorderLayout.CENTER);
 
     setDefaultCloseOperation(main.EXIT_ON_CLOSE);
     setUndecorated(true);
-    setShape(new RoundRectangle2D.Double(0, 0, 1400, 800, i, i));
+    setShape(roundrectangle);
     setSize(1400, 800);
     setLocation(100, 200);
     addMouseListener(new MouseAdapter() {
@@ -191,9 +193,8 @@ public class main extends JFrame implements ActionListener, MouseListener{
       public void mouseDragged(MouseEvent e) {
              expanded = false;
              setSize(1400, 800);
-             setShape(new RoundRectangle2D.Double(0,0, 1400, 800, i, i));   
+             setShape(roundrectangle);   
              setLocation(e.getXOnScreen()-positionX, e.getYOnScreen()-positionY);
-             
       }
     });
     revalidate();
@@ -263,11 +264,11 @@ public class main extends JFrame implements ActionListener, MouseListener{
     }
       expanded = false;
       setSize(1400, 800); 
-      setShape(new RoundRectangle2D.Double(0, 0, 1400, 800, i, i));
+      setShape(roundrectangle);
       setLocation(100, 200);
     } 
     if(e.getSource().equals(iconify)){this.setExtendedState(main.ICONIFIED);}
-    // ends here
+    // ends here ---...............
     for(int i = 0; i < buttons.length; i++){
     if  (e.getSource() == buttons[i]){  
             buttons[i].setBorder(border);
