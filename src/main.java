@@ -14,7 +14,7 @@ public class main extends JFrame implements ActionListener, MouseListener{
   private JLabel text, dateText, timeText, adminText, categoriestxt;
   private JTextArea textarea;
   public JButton[] buttons = new JButton[4];
-  private JButton dashBoardButton, categoriesButton, pijetButton, pemPerimetButton, close, iconify, fullsize;
+  private JButton dashBoardButton, categoriesButton, pijetButton, pemPerimetButton, close, iconify, resize;
   private Color whiteColor = new Color(255, 255, 255), bTextColor = new Color(192, 192, 192);
   private CardLayout cl = new CardLayout();
   private Border border = BorderFactory.createMatteBorder(0, 0, 2, 0, whiteColor),
@@ -22,7 +22,7 @@ public class main extends JFrame implements ActionListener, MouseListener{
                  border2 = BorderFactory.createLineBorder(Color.BLACK, 2),
                  sideBorder = BorderFactory.createMatteBorder(0,0, 0,1, new Color(192,192,192));
                 
-  boolean check;
+  boolean expanded = false, dragged = false;
   int i = 55 / 2;              
   Timer timer;
   MouseAdapter mouseadapter;
@@ -152,14 +152,14 @@ public class main extends JFrame implements ActionListener, MouseListener{
       iconify.addActionListener(this);
       iconify.setBounds(1170, 5, 50, 20);
 
-      fullsize = new JButton();
-      fullsize.addActionListener(this);
-      fullsize.setBounds(1230, 5, 50, 20);
+      resize = new JButton();
+      resize.addActionListener(this);
+      resize.setBounds(1230, 5, 50, 20);
       topBar = new JPanel();
       panelCustomiser(topBar, null, true, new Color(65, 68,75), null, 50, 30);
       topBar.add(close);
       topBar.add(iconify);
-      topBar.add(fullsize);
+      topBar.add(resize);
 
  
     centerPanel = new JPanel();
@@ -180,8 +180,7 @@ public class main extends JFrame implements ActionListener, MouseListener{
     setUndecorated(true);
     setShape(new RoundRectangle2D.Double(0, 0, 1400, 800, i, i));
     setSize(1400, 800);
-    setLocationRelativeTo(null);
-    setTitle("InnoviStore");
+    setLocation(100, 200);
     addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e){
                    positionX = e.getX();
@@ -190,10 +189,13 @@ public class main extends JFrame implements ActionListener, MouseListener{
     });
     addMouseMotionListener(new MouseMotionAdapter() {
       public void mouseDragged(MouseEvent e) {
+             expanded = false;
+             setSize(1400, 800);
+             setShape(new RoundRectangle2D.Double(0,0, 1400, 800, i, i));   
              setLocation(e.getXOnScreen()-positionX, e.getYOnScreen()-positionY);
+             
       }
     });
-
     revalidate();
     repaint();
     setLayout(new BorderLayout());
@@ -202,7 +204,6 @@ public class main extends JFrame implements ActionListener, MouseListener{
     add(topBar, BorderLayout.NORTH);
     add(centerPanel, BorderLayout.CENTER);
     add(leftPanel, BorderLayout.WEST);
-   // cl.show(centerPanel, "1");
     setVisible(true);
   }
  // -------------------------------       this below is DATE/TIME
@@ -251,13 +252,22 @@ public class main extends JFrame implements ActionListener, MouseListener{
             buttons[i].setForeground(bTextColor);}}}  
  // ----------------------------------
     public void actionPerformed(ActionEvent e) {
-    
-    if(e.getSource().equals(close)){System.exit(0);}
-    if(e.getSource().equals(fullsize)){ check = true; if(check){
-      this.setShape(null);this.setExtendedState(JFrame.MAXIMIZED_BOTH); check = false;}}
-    if(e.getSource() == fullsize){if(!check){ check = false; this.setShape(new RoundRectangle2D.Double(0, 0, 1400, 800, i, i)); check = true;}}
+    // this are the buttons to resize, iconify and close the program... -- it starts here  
+   if(e.getSource().equals(close)){System.exit(0);}
+   if(e.getSource().equals(resize)){ if(!expanded){  
+      setShape(null);
+      setExtendedState(JFrame.MAXIMIZED_BOTH); 
+      setLocation(0,0);
+      expanded = true;
+      return;
+    }
+      expanded = false;
+      setSize(1400, 800); 
+      setShape(new RoundRectangle2D.Double(0, 0, 1400, 800, i, i));
+      setLocation(100, 200);
+    } 
     if(e.getSource().equals(iconify)){this.setExtendedState(main.ICONIFIED);}
-
+    // ends here
     for(int i = 0; i < buttons.length; i++){
     if  (e.getSource() == buttons[i]){  
             buttons[i].setBorder(border);
@@ -268,6 +278,7 @@ public class main extends JFrame implements ActionListener, MouseListener{
             buttons[i].setBorder(borderwhite);
             buttons[i].setForeground(bTextColor);
             buttons[i].setOpaque(true);}
+
     if  (e.getSource().equals(dashBoardButton))  {cl.show(centerPanel, "1"); leftPanel.remove(bottomPanel);}
     if  (e.getSource().equals(categoriesButton)) {cl.show(centerPanel, "2");leftPanel.remove(bottomPanel);}
     if  (e.getSource().equals(pijetButton))      {cl.show(centerPanel, "3");leftPanel.add(bottomPanel, BorderLayout.SOUTH);}
