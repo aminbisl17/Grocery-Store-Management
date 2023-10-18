@@ -15,7 +15,7 @@ public class main extends JFrame implements ActionListener, MouseListener{
   private JTextArea textarea;
   private JButton[] buttons = new JButton[4], topBarButtons = new JButton[3];
   private JButton dashBoardButton, categoriesButton, pijetButton, pemPerimetButton, close, iconify, resize;
-  private Color whiteColor = new Color(255, 255, 255), bTextColor = new Color(192, 192, 192), grayTextColor = new Color(65, 68, 75), darkerGrayTextColor = new Color(46,47,53);
+  private Color whiteColor = new Color(255, 255, 255), bTextColor = new Color(192, 192, 192), grayTextColor = new Color(55, 58, 65), darkerGrayTextColor = new Color(36,37,43);
   private CardLayout cl = new CardLayout();
   private Border border = BorderFactory.createMatteBorder(0, 0, 2, 0, whiteColor),
                  borderwhite = BorderFactory.createMatteBorder(0,0, 1,0, new Color(192,192,192)),
@@ -78,6 +78,12 @@ public class main extends JFrame implements ActionListener, MouseListener{
 
   main() {
 
+    setDefaultCloseOperation(main.EXIT_ON_CLOSE);
+    setUndecorated(true);
+    setShape(roundrectangle);
+    setSize(1400, 800);
+    setLocation(100, 200);
+
     text = new JLabel("InnoviSoft");
     label(text, 17, 0, 20, whiteColor);
 
@@ -88,10 +94,10 @@ public class main extends JFrame implements ActionListener, MouseListener{
     label(categoriestxt, 25, 180, 17, whiteColor);
 
     dateText = new JLabel();
-    label(dateText, 180, 10, 15, whiteColor);
+    label(dateText, 180, 0, 15, whiteColor);
 
     timeText = new JLabel();
-    label(timeText, 191, 40, 12, whiteColor);
+    label(timeText, 191, 30, 12, whiteColor);
 
     dashBoardButton = new JButton("Dashboard");
     buttonCustomiser(dashBoardButton, bTextColor, 60, 60, 160, 30, false, false, true, false);
@@ -178,11 +184,7 @@ public class main extends JFrame implements ActionListener, MouseListener{
     leftPanel.add(topPanel, BorderLayout.NORTH);
     leftPanel.add(container, BorderLayout.CENTER);
 
-    setDefaultCloseOperation(main.EXIT_ON_CLOSE);
-    setUndecorated(true);
-    setShape(roundrectangle);
-    setSize(1400, 800);
-    setLocation(100, 200);
+    
     addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e){
                    positionX = e.getX();
@@ -257,7 +259,7 @@ public class main extends JFrame implements ActionListener, MouseListener{
    if(e.getSource().equals(close)){System.exit(0);}
    if(e.getSource().equals(resize)){ if(!expanded){  
       setShape(null);
-      setExtendedState(JFrame.MAXIMIZED_BOTH); 
+      setExtendedState(main.MAXIMIZED_BOTH); 
       setLocation(0,0);
       expanded = true;
       return;

@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -16,7 +17,7 @@ class login extends JFrame implements ActionListener{
     private JTextField username_input;
     private JPasswordField password_input;
 
-    private int positionX, positionY;
+    private int positionX, positionY, i = 55 /2;
 
       Font font;    
       Border border;
@@ -120,10 +121,11 @@ class login extends JFrame implements ActionListener{
             leftPanel.add(text3);
             leftPanel.add(softext);
             leftPanel.add(submit);
-
-            setBounds(550, 200, 650, 400);
+            setLocationRelativeTo(null);
+            setSize(650, 400);
             setUndecorated(true);
-
+            setShape(new RoundRectangle2D.Double(0,0,650,400,i,i));
+       
             addMouseListener(new MouseAdapter() {
               public void mousePressed(MouseEvent e){
                       positionX = e.getX();

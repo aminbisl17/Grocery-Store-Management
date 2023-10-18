@@ -8,11 +8,7 @@ class tableData {
         {3, "CocaCola", 4, 0.70f},
         {4, "dsjfjd", 2, 3.0f}};
 
-     public String[] Column = {
-            "Id",
-            "Produkti",
-            "Numri i shitjes",
-            "Qmimi"};
-
-      public  DefaultTableModel model = new DefaultTableModel(data, Column);
+        public String[] columns = {
+          "ID", "Produkti", "Shitjet", "Qmimi"
+        };
 }
