@@ -53,7 +53,6 @@ import javax.swing.border.Border;
   BorderLayout borderlayout = new BorderLayout();
 
   Timer timer;
-  MouseAdapter mouseadapter;
   Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
  private int positionX, positionY;
