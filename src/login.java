@@ -57,6 +57,10 @@ class login extends JFrame implements ActionListener{
       }
 
     login() {
+            setLocationRelativeTo(null);
+            setSize(650, 400);
+            setUndecorated(true);
+            setShape(new RoundRectangle2D.Double(0,0,650,400,i,i));
             
             font = new Font("Serif", Font.BOLD, 14);
             // this is a comment
@@ -121,10 +125,6 @@ class login extends JFrame implements ActionListener{
             leftPanel.add(text3);
             leftPanel.add(softext);
             leftPanel.add(submit);
-            setLocationRelativeTo(null);
-            setSize(650, 400);
-            setUndecorated(true);
-            setShape(new RoundRectangle2D.Double(0,0,650,400,i,i));
        
             addMouseListener(new MouseAdapter() {
               public void mousePressed(MouseEvent e){

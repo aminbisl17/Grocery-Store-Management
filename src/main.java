@@ -82,7 +82,7 @@ public class main extends JFrame implements ActionListener, MouseListener{
     setUndecorated(true);
     setShape(roundrectangle);
     setSize(1400, 800);
-    setLocation(100, 200);
+    setLocationRelativeTo(null);
 
     text = new JLabel("InnoviSoft");
     label(text, 17, 0, 20, whiteColor);
@@ -171,6 +171,7 @@ public class main extends JFrame implements ActionListener, MouseListener{
 
  
     centerPanel = new JPanel();
+  
     panelCustomiser(centerPanel, cl, true, null, null, 400, 100);
     // ADMIN
     centerPanel.add(dashboard, "1");

@@ -3,7 +3,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 
 class Dashboard extends JPanel{
-   private JLabel text, text2;
+   private JLabel text, text2, text3;
    private JPanel centerPanel, topBar, tablePanel, statisticsPanel;
    private JScrollPane pane;
    private Border borderwhite = BorderFactory.createMatteBorder(0,0, 1,0, new Color(46,47,53)),
@@ -19,7 +19,12 @@ class Dashboard extends JPanel{
    }
    static void graphCustomiser(JPanel graph, int x){
     graph.setBounds(x, 60, 230, 140);
-
+   }
+   static void textCustomiser(JLabel label, int x, int y, int width, int height, int size, Border border){
+   Font font = new Font("Monospaced", Font.PLAIN, size);
+    label.setBounds(x, y, width, height);
+    label.setFont(font);
+    label.setBorder(border);
    }
     Dashboard(){
 
@@ -44,13 +49,14 @@ class Dashboard extends JPanel{
      graph4.setTxt("Shuma e parave te fituara gjat \t Muajit");
 
      text = new JLabel("DashBoard");
-     text.setBounds(20,40,100,20);
+     textCustomiser(text, 20, 40, 100, 20, 17, borderwhite);
      text.setFont(new Font("Monospaced", Font.BOLD, 17));
-     text.setBorder(borderwhite);
 
      text2 = new JLabel("Përmbledhje");
-     text2.setBounds(40, 15, 150, 30);
-     text2.setFont(new Font("Monospaced", Font.BOLD, 20));
+     textCustomiser(text2, 40, 15, 150, 30, 18, borderwhite);
+
+     text3 = new JLabel("Tabela");
+     textCustomiser(text3, 40, 220, 150, 30, 18, borderwhite);
 
      centerPanel = new JPanel();
      centerPanel.setLayout(new BorderLayout());
@@ -63,22 +69,22 @@ class Dashboard extends JPanel{
      topBar.setBorder(border);
      
      table = new JTable(td.data, td.columns);
-     table.setBounds(40, 240, 950, 330);
+     table.setBounds(0, 0, 950, 330);
      table.setRowHeight(30);
      table.setAutoCreateRowSorter(true);
      table.setFocusable(false);
      table.setEnabled(false);     
     
      pane = new JScrollPane(table);
-     pane.setBounds(40, 240, 980, 350);
+     pane.setBounds(40, 270, 980, 350);
      
      statisticsPanel = new JPanel();
      panelCustomiser(statisticsPanel, new Color(246,245,245), null);
      statisticsPanel.setBounds(0, 40, 1600, 150);
      statisticsPanel.setPreferredSize(new Dimension(100, 650));
      statisticsPanel.add(pane);
-     
      statisticsPanel.add(text2);
+     statisticsPanel.add(text3);
      statisticsPanel.add(graph1);
      statisticsPanel.add(graph2);
      statisticsPanel.add(graph3);
