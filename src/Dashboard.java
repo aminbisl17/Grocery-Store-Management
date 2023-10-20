@@ -94,7 +94,7 @@ class Dashboard extends JPanel{
      statisticsPanel.add(graph2);
      statisticsPanel.add(graph3);
      statisticsPanel.add(graph4);
-     statisticsPanel.validate();
+    // statisticsPanel.validate();
 
      panelCustomiser(tablePanel, null, true, null, null,100,650);
      tablePanel.add(statisticsPanel);

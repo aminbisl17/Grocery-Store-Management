@@ -46,7 +46,12 @@ import javax.swing.border.Border;
                  borderwhite = BorderFactory.createMatteBorder(0,0, 1,0, new Color(192,192,192)),
                  border2 = BorderFactory.createLineBorder(Color.BLACK, 2),
                  sideBorder = BorderFactory.createMatteBorder(0,0, 0,1, new Color(192,192,192));
-                
+
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
+    Date date = new Date();
+    SimpleDateFormat sdf1 = new SimpleDateFormat("hh:mm:ss a");
+    
+
   boolean expanded = false;
   int i = 55 / 2;       
   RoundRectangle2D.Double roundrectangle = new RoundRectangle2D.Double(0,0,1400,800,i,i);       
@@ -191,10 +196,10 @@ import javax.swing.border.Border;
       }
     });
     revalidate();
-    repaint();
+ //   repaint();
     setLayout(new BorderLayout());
     showDate();
-    showTime();
+ //    showTime();
     add(topBar, BorderLayout.NORTH);
     add(centerPanel, BorderLayout.CENTER);
     add(leftPanel, BorderLayout.WEST);
@@ -202,8 +207,6 @@ import javax.swing.border.Border;
   }
  // -------------------------------       this below is DATE/TIME
   public void showDate() {  // date 
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
-    Date date = new Date();
     dateText.setText(sdf.format(date));
     topPanel.add(dateText);
   }
@@ -212,9 +215,8 @@ import javax.swing.border.Border;
     new Timer(0, new ActionListener(){
       @Override
       public void actionPerformed(ActionEvent e) {
-        Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
-        timeText.setText(sdf.format(date));
+        Date date1 = new Date();
+        timeText.setText(sdf1.format(date1));
         topPanel.add(timeText);
       }
     }).start();
