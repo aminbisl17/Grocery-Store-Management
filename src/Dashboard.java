@@ -4,19 +4,34 @@ import java.awt.*;
 
 class Dashboard extends JPanel{
    private JLabel text, text2, text3;
-   private JPanel centerPanel, topBar, tablePanel, statisticsPanel;
-   private JScrollPane pane;
+   private JPanel centerPanel = new JPanel(),
+                  topBar = new JPanel(),
+                  tablePanel = new JPanel(),
+                  statisticsPanel = new JPanel();
    private Border borderwhite = BorderFactory.createMatteBorder(0,0, 1,0, new Color(46,47,53)),
                   border = BorderFactory.createMatteBorder(0,0, 1,0, new Color(192,192,192));
 
+                 BorderLayout borderLayout = new BorderLayout();
                  graphic graph1, graph2, graph3, graph4;
                  tableData td = new tableData();
-                 JTable table;
-
-   static void panelCustomiser(JPanel panel, Color color, BorderLayout bl){
-        panel.setLayout(bl);
-        panel.setBackground(color);
-   }
+                 JTable table = new JTable(td.data, td.columns);;
+                 JScrollPane pane = new JScrollPane(table);
+                 
+  static void panelCustomiser( // this is a panel customiser
+      JPanel panel,
+      LayoutManager layout,
+      Boolean size,
+      Color color,
+      Border border,
+      int width, int height) {
+    panel.setBackground(color);
+    panel.setLayout(layout);
+    panel.setBorder(border);
+    if(size){
+    panel.setPreferredSize(new Dimension(width, height));
+    return;
+    }
+  }
    static void graphCustomiser(JPanel graph, int x){
     graph.setBounds(x, 60, 230, 140);
    }
@@ -29,23 +44,23 @@ class Dashboard extends JPanel{
     Dashboard(){
 
      graph1 = new graphic();
-     graphCustomiser(graph1, 40);
+     graphCustomiser(graph1, 60);
      graph1.setColor(new Color(255, 100, 100));
      graph1.setTxt("Totali i shitjeve (Sot)");
 
      graph2 = new graphic();
-     graphCustomiser(graph2, 290);
-     graph2.setColor(new Color(89, 136, 229));
+     graphCustomiser(graph2, 310);
+     graph2.setColor(new Color(80, 130, 220));
      graph2.setTxt("Totali Parave te fituara (Sot)");
 
      graph3 = new graphic();
-     graphCustomiser(graph3, 540);
-     graph3.setColor(new Color(77, 144, 106));
+     graphCustomiser(graph3, 560);
+     graph3.setColor(new Color(70, 135, 95));
      graph3.setTxt("Totali i shtijeve gjat Muajit");
 
      graph4 = new graphic();
-     graphCustomiser(graph4, 790);
-     graph4.setColor(new Color(155, 100, 179));
+     graphCustomiser(graph4, 810);
+     graph4.setColor(new Color(155, 100, 170));
      graph4.setTxt("Shuma e parave te fituara gjat \t Muajit");
 
      text = new JLabel("DashBoard");
@@ -58,30 +73,20 @@ class Dashboard extends JPanel{
      text3 = new JLabel("Tabela");
      textCustomiser(text3, 40, 220, 150, 30, 18, borderwhite);
 
-     centerPanel = new JPanel();
-     centerPanel.setLayout(new BorderLayout());
-     centerPanel.setPreferredSize(new Dimension(0, 0));
+     panelCustomiser(centerPanel, borderLayout, true, null, null, 0,0);
 
-     topBar = new JPanel();
-     panelCustomiser(topBar, new Color(255,255,255), null);
-     topBar.setPreferredSize(new Dimension(100, 80));
+     panelCustomiser(topBar, null, true, new Color(255,255,255), border, 100, 80);
      topBar.add(text);
-     topBar.setBorder(border);
      
-     table = new JTable(td.data, td.columns);
      table.setBounds(0, 0, 950, 330);
      table.setRowHeight(30);
      table.setAutoCreateRowSorter(true);
      table.setFocusable(false);
      table.setEnabled(false);     
     
-     pane = new JScrollPane(table);
-     pane.setBounds(40, 270, 980, 350);
+     pane.setBounds(60, 270, 980, 350);
      
-     statisticsPanel = new JPanel();
-     panelCustomiser(statisticsPanel, new Color(246,245,245), null);
-     statisticsPanel.setBounds(0, 40, 1600, 150);
-     statisticsPanel.setPreferredSize(new Dimension(100, 650));
+     panelCustomiser(statisticsPanel, null, true, new Color(245,245,245), null, 100, 650);
      statisticsPanel.add(pane);
      statisticsPanel.add(text2);
      statisticsPanel.add(text3);
@@ -91,9 +96,7 @@ class Dashboard extends JPanel{
      statisticsPanel.add(graph4);
      statisticsPanel.validate();
 
-     tablePanel = new JPanel();
-     panelCustomiser(tablePanel, null, null);
-     tablePanel.setPreferredSize(new Dimension(100, 650));
+     panelCustomiser(tablePanel, null, true, null, null,100,650);
      tablePanel.add(statisticsPanel);
 
      centerPanel.add(topBar, BorderLayout.NORTH);

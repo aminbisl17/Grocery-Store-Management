@@ -10,7 +10,7 @@ import javax.swing.border.Border;
 // MAIN PANEL STARTS HERE ------------------------------------------------------
 public class main extends JFrame implements ActionListener, MouseListener{
 
-  private JPanel leftPanel, centerPanel, topBar, container, topPanel, bottomPanel;
+  private JPanel leftPanel, centerPanel, topBar, container, topPanel;
   private JLabel text, dateText, timeText, adminText, categoriestxt;
   private JTextArea textarea;
   private JButton[] buttons = new JButton[4], topBarButtons = new JButton[3];
@@ -147,10 +147,6 @@ public class main extends JFrame implements ActionListener, MouseListener{
     container.add(adminText);
     container.add(categoriestxt);
 
-    bottomPanel = new JPanel();
-    panelCustomiser(bottomPanel, null,  true, grayTextColor, null, 100, 150);
-    bottomPanel.add(textarea);
-
     topBar = new JPanel();
       panelCustomiser(topBar, null, true, grayTextColor, null, 50, 30);
 
@@ -238,7 +234,6 @@ public class main extends JFrame implements ActionListener, MouseListener{
       }
     });
   }
-
     public void mousePressed(MouseEvent e)  {
     for (int i = 0; i < buttons.length; i++){
           buttons[i].removeMouseListener(this);}}
@@ -283,8 +278,8 @@ public class main extends JFrame implements ActionListener, MouseListener{
             buttons[i].setForeground(bTextColor);
             buttons[i].setOpaque(true);}
 
-    if  (e.getSource().equals(dashBoardButton))  {cl.show(centerPanel, "1"); leftPanel.remove(bottomPanel);}
-    if  (e.getSource().equals(categoriesButton)) {cl.show(centerPanel, "2");leftPanel.remove(bottomPanel);}
-    if  (e.getSource().equals(pijetButton))      {cl.show(centerPanel, "3");leftPanel.add(bottomPanel, BorderLayout.SOUTH);}
-    if  (e.getSource().equals(pemPerimetButton)) {cl.show(centerPanel, "4");leftPanel.add(bottomPanel, BorderLayout.SOUTH);}}}
+    if  (e.getSource().equals(dashBoardButton))  {cl.show(centerPanel, "1");} 
+    if  (e.getSource().equals(categoriesButton)) {cl.show(centerPanel, "2");}
+    if  (e.getSource().equals(pijetButton))      {cl.show(centerPanel, "3");}
+    if  (e.getSource().equals(pemPerimetButton)) {cl.show(centerPanel, "4");}}}
     public void mouseClicked(MouseEvent e){}public void mouseReleased(MouseEvent e){}}
