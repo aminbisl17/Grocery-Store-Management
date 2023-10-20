@@ -210,7 +210,7 @@ import javax.swing.border.Border;
     dateText.setText(sdf.format(date));
     topPanel.add(dateText);
   }
-
+ /* 
   public void showTime(){  // time
     new Timer(0, new ActionListener(){
       @Override
@@ -221,7 +221,8 @@ import javax.swing.border.Border;
       }
     }).start();
   }
-// -------------------------------------- MAIN METHOD
+// -------------------------------------- MAIN METHOD 
+
    public static void main(String[] args) {
     SwingUtilities.invokeLater(new Runnable() {
       @Override
@@ -230,6 +231,7 @@ import javax.swing.border.Border;
       }
     });
   }
+  */
     public void mousePressed(MouseEvent e)  {
     for (int i = 0; i < buttons.length; i++){
           buttons[i].removeMouseListener(this);}}

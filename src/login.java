@@ -167,6 +167,7 @@ class login extends JFrame implements ActionListener{
                 password_input.setText("");
                 return;}
                 new main();
+                this.dispose();
                 return;}
     }
 }
