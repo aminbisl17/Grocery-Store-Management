@@ -8,15 +8,40 @@ import javax.swing.Timer;
 import javax.swing.border.Border;
 
 // MAIN PANEL STARTS HERE ------------------------------------------------------
-public class main extends JFrame implements ActionListener, MouseListener{
+ class main extends JFrame implements ActionListener, MouseListener{
 
-  private JPanel leftPanel, centerPanel, topBar, container, topPanel;
-  private JLabel text, dateText, timeText, adminText, categoriestxt;
-  private JTextArea textarea;
-  private JButton[] buttons = new JButton[4], topBarButtons = new JButton[3];
-  private JButton dashBoardButton, categoriesButton, pijetButton, pemPerimetButton, close, iconify, resize;
-  private Color whiteColor = new Color(255, 255, 255), bTextColor = new Color(192, 192, 192), grayTextColor = new Color(55, 58, 65), darkerGrayTextColor = new Color(36,37,43);
+  private JPanel leftPanel = new JPanel(),
+                 centerPanel = new JPanel(),
+                 topBar = new JPanel(),
+                 container = new JPanel(),
+                 topPanel = new JPanel();
+
+  private JLabel text = new JLabel("InnoviSoft"),
+                 dateText = new JLabel(),
+                 timeText = new JLabel(),
+                 adminText = new JLabel("Admin:"),
+                 categoriestxt = new JLabel("Catalogue:");
+
+  private JTextArea textarea = new JTextArea();
+
+  private JButton[] buttons = new JButton[4],
+                    topBarButtons = new JButton[3];
+
+  private JButton dashBoardButton = new JButton("Dashboard"),
+                  categoriesButton = new JButton("Categories"),
+                  pijetButton = new JButton("Pijet"),
+                  pemPerimetButton = new JButton("Pemet"),
+                  close = new JButton(),
+                  iconify = new JButton(),
+                  resize = new JButton();
+
+  private Color whiteColor = new Color(255, 255, 255),
+                bTextColor = new Color(192, 192, 192),
+                grayTextColor = new Color(55, 58, 65),
+                darkerGrayTextColor = new Color(36,37,43);
+
   private CardLayout cl = new CardLayout();
+
   private Border border = BorderFactory.createMatteBorder(0, 0, 2, 0, whiteColor),
                  borderwhite = BorderFactory.createMatteBorder(0,0, 1,0, new Color(192,192,192)),
                  border2 = BorderFactory.createLineBorder(Color.BLACK, 2),
@@ -84,42 +109,21 @@ public class main extends JFrame implements ActionListener, MouseListener{
     setSize(1400, 800);
     setLocationRelativeTo(null);
 
-    text = new JLabel("InnoviSoft");
     label(text, 17, 0, 20, whiteColor);
-
-    adminText = new JLabel("Admin:");
     label(adminText, 25, 20,17, whiteColor);
-
-    categoriestxt = new JLabel("Catalogue:");
     label(categoriestxt, 25, 180, 17, whiteColor);
-
-    dateText = new JLabel();
     label(dateText, 180, 0, 15, whiteColor);
-
-    timeText = new JLabel();
     label(timeText, 191, 30, 12, whiteColor);
-
-    dashBoardButton = new JButton("Dashboard");
+    // Leftpanel buttons.....................
     buttonCustomiser(dashBoardButton, bTextColor, 60, 60, 160, 30, false, false, true, false);
-
-    categoriesButton = new JButton("Categories");
     buttonCustomiser(categoriesButton, bTextColor, 60, 100, 160, 30, false, false, true, false);
-
-    pijetButton = new JButton("Pijet");
     buttonCustomiser(pijetButton, bTextColor, 60, 230, 160, 30, false, false, true, false);
-
-    pemPerimetButton = new JButton("Pemet");
     buttonCustomiser(pemPerimetButton, bTextColor, 60, 270, 160, 30, false, false, true, false);
     // top bar buttons ............
-    close = new JButton();
     buttonCustomiser(close, null, 1300, 5, 50, 20, false, false, true, false);
-
-    iconify = new JButton("iconify");
     buttonCustomiser(iconify, null, 1170, 5, 50, 20, false, false, true, false);
-
-    resize = new JButton();
     buttonCustomiser(resize, null, 1230, 5, 50, 20, false, false, true, false);
- //-------------------------
+    //-------------------------
     buttons[0] = dashBoardButton;
     buttons[1] = categoriesButton;
     buttons[2] = pijetButton;
@@ -129,25 +133,20 @@ public class main extends JFrame implements ActionListener, MouseListener{
     topBarButtons[1] = iconify;
     topBarButtons[2] = resize;
 
-    textarea = new JTextArea();
     textarea.setBounds(45, 25, 200, 100);
     textarea.setBorder(border2);
     textarea.setEditable(false);
     textarea.setFocusable(false);
 
-    topPanel = new JPanel();
     panelCustomiser(topPanel,null, true, grayTextColor, null, 100, 80);
     topPanel.add(text);
-
-    container = new JPanel(); // this panel is within leftPanel and its served as an container for buttons so
-                              // i can easily move them if wanted
+    // this panel is within leftPanel and its served as an container for buttons so                              // i can easily move them if wanted
     container.setBounds(30, 50, 240, 450);
     panelCustomiser(container, null,  false, darkerGrayTextColor, null, 100, 100);
     container.add(dateText);
     container.add(adminText);
     container.add(categoriestxt);
 
-    topBar = new JPanel();
       panelCustomiser(topBar, null, true, grayTextColor, null, 50, 30);
 
       for(int i = 0; i < topBarButtons.length; i++){
@@ -164,9 +163,6 @@ public class main extends JFrame implements ActionListener, MouseListener{
     }
     
       dashBoardButton.setBorder(border);
-
- 
-    centerPanel = new JPanel();
   
     panelCustomiser(centerPanel, cl, true, null, null, 400, 100);
     // ADMIN
@@ -176,7 +172,6 @@ public class main extends JFrame implements ActionListener, MouseListener{
     centerPanel.add(pijet, "3");
     centerPanel.add(test2, "4");
 
-    leftPanel = new JPanel();
     panelCustomiser(leftPanel, borderlayout, true, null, sideBorder, 300, 100);
     leftPanel.add(topPanel, BorderLayout.NORTH);
     leftPanel.add(container, BorderLayout.CENTER);
