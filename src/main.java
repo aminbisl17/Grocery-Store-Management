@@ -10,6 +10,8 @@ import javax.swing.border.Border;
 // MAIN PANEL STARTS HERE ------------------------------------------------------
  class main extends JFrame implements ActionListener, MouseListener{
 
+  dataType datatype = new dataType();
+
   private JPanel leftPanel = new JPanel(),
                  centerPanel = new JPanel(),
                  topBar = new JPanel(),
@@ -35,26 +37,11 @@ import javax.swing.border.Border;
                   iconify = new JButton(),
                   resize = new JButton();
 
-  private Color whiteColor = new Color(255, 255, 255),
-                bTextColor = new Color(192, 192, 192),
-                grayTextColor = new Color(55, 58, 65),
-                darkerGrayTextColor = new Color(36,37,43);
-
   private CardLayout cl = new CardLayout();
 
-  private Border border = BorderFactory.createMatteBorder(0, 0, 2, 0, whiteColor),
-                 borderwhite = BorderFactory.createMatteBorder(0,0, 1,0, new Color(192,192,192)),
-                 border2 = BorderFactory.createLineBorder(Color.BLACK, 2),
-                 sideBorder = BorderFactory.createMatteBorder(0,0, 0,1, new Color(192,192,192));
-
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
-    Date date = new Date();
-    SimpleDateFormat sdf1 = new SimpleDateFormat("hh:mm:ss a");
-    
-
   boolean expanded = false;
-  int i = 55 / 2;       
-  RoundRectangle2D.Double roundrectangle = new RoundRectangle2D.Double(0,0,1400,800,i,i);       
+        
+  RoundRectangle2D.Double roundrectangle = new RoundRectangle2D.Double(0,0,1400,800,datatype.corner,datatype.corner);       
   BorderLayout borderlayout = new BorderLayout();
 
   Timer timer;
@@ -113,16 +100,16 @@ import javax.swing.border.Border;
     setSize(1400, 800);
     setLocationRelativeTo(null);
 
-    label(text, 17, 0, 20, whiteColor);
-    label(adminText, 25, 20,17, whiteColor);
-    label(categoriestxt, 25, 180, 17, whiteColor);
-    label(dateText, 180, 0, 15, whiteColor);
-    label(timeText, 191, 30, 12, whiteColor);
+    label(text, 17, 0, 20, datatype.whiteColor);
+    label(adminText, 25, 20,17, datatype.whiteColor);
+    label(categoriestxt, 25, 180, 17, datatype.whiteColor);
+    label(dateText, 180, 0, 15, datatype.whiteColor);
+    label(timeText, 191, 30, 12, datatype.whiteColor);
     // Leftpanel buttons.....................
-    buttonCustomiser(dashBoardButton, bTextColor, 60, 60, 160, 30, false, false, true, false);
-    buttonCustomiser(categoriesButton, bTextColor, 60, 100, 160, 30, false, false, true, false);
-    buttonCustomiser(pijetButton, bTextColor, 60, 230, 160, 30, false, false, true, false);
-    buttonCustomiser(pemPerimetButton, bTextColor, 60, 270, 160, 30, false, false, true, false);
+    buttonCustomiser(dashBoardButton, datatype.bTextColor, 60, 60, 160, 30, false, false, true, false);
+    buttonCustomiser(categoriesButton, datatype.bTextColor, 60, 100, 160, 30, false, false, true, false);
+    buttonCustomiser(pijetButton, datatype.bTextColor, 60, 230, 160, 30, false, false, true, false);
+    buttonCustomiser(pemPerimetButton, datatype.bTextColor, 60, 270, 160, 30, false, false, true, false);
     // top bar buttons ............
     buttonCustomiser(close, null, 1300, 5, 50, 20, false, false, true, false);
     buttonCustomiser(iconify, null, 1170, 5, 50, 20, false, false, true, false);
@@ -138,35 +125,35 @@ import javax.swing.border.Border;
     topBarButtons[2] = resize;
 
     textarea.setBounds(45, 25, 200, 100);
-    textarea.setBorder(border2);
+    textarea.setBorder(datatype.border2);
     textarea.setEditable(false);
     textarea.setFocusable(false);
 
-    panelCustomiser(topPanel,null, true, grayTextColor, null, 100, 80);
+    panelCustomiser(topPanel,null, true, datatype.grayTextColor, null, 100, 80);
     topPanel.add(text);
     // this panel is within leftPanel and its served as an container for buttons so                              // i can easily move them if wanted
     container.setBounds(30, 50, 240, 450);
-    panelCustomiser(container, null,  false, darkerGrayTextColor, null, 100, 100);
+    panelCustomiser(container, null,  false, datatype.darkerGrayTextColor, null, 100, 100);
     container.add(dateText);
     container.add(adminText);
     container.add(categoriestxt);
 
-      panelCustomiser(topBar, null, true, grayTextColor, null, 50, 30);
+    panelCustomiser(topBar, null, true, datatype.grayTextColor, null, 50, 30);
 
-      for(int i = 0; i < topBarButtons.length; i++){
-         topBarButtons[i].addActionListener(this);
-         topBar.add(topBarButtons[i]);
+    for(int i = 0; i < topBarButtons.length; i++){
+     topBarButtons[i].addActionListener(this);
+     topBar.add(topBarButtons[i]);
       }
   
     for (int x = 0; x < buttons.length; x++) { // this adds all buttons in container panel
       buttons[x].setFont(new Font("Monospaced", Font.BOLD, 14));
       buttons[x].addActionListener(this);
-      buttons[x].setBorder(borderwhite);
+      buttons[x].setBorder(datatype.borderwhite);
       buttons[x].addMouseListener(this);
       container.add(buttons[x]);
     }
     
-      dashBoardButton.setBorder(border);
+    dashBoardButton.setBorder(datatype.border);
   
     panelCustomiser(centerPanel, cl, true, null, null, 400, 100);
     // ADMIN
@@ -176,7 +163,7 @@ import javax.swing.border.Border;
     centerPanel.add(pijet, "3");
     centerPanel.add(test2, "4");
 
-    panelCustomiser(leftPanel, borderlayout, true, null, sideBorder, 300, 100);
+    panelCustomiser(leftPanel, borderlayout, true, null, datatype.sideBorder, 300, 100);
     leftPanel.add(topPanel, BorderLayout.NORTH);
     leftPanel.add(container, BorderLayout.CENTER);
 
@@ -196,10 +183,10 @@ import javax.swing.border.Border;
       }
     });
     revalidate();
- //   repaint();
+    repaint();
     setLayout(new BorderLayout());
     showDate();
- //    showTime();
+   // showTime();
     add(topBar, BorderLayout.NORTH);
     add(centerPanel, BorderLayout.CENTER);
     add(leftPanel, BorderLayout.WEST);
@@ -207,22 +194,23 @@ import javax.swing.border.Border;
   }
  // -------------------------------       this below is DATE/TIME
   public void showDate() {  // date 
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
+    Date date = new Date();
     dateText.setText(sdf.format(date));
     topPanel.add(dateText);
   }
- /* 
   public void showTime(){  // time
     new Timer(0, new ActionListener(){
       @Override
       public void actionPerformed(ActionEvent e) {
-        Date date1 = new Date();
-        timeText.setText(sdf1.format(date1));
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
+        timeText.setText(sdf.format(date));
         topPanel.add(timeText);
       }
     }).start();
   }
-// -------------------------------------- MAIN METHOD 
-
+// -------------------------------------- MAIN METHOD
    public static void main(String[] args) {
     SwingUtilities.invokeLater(new Runnable() {
       @Override
@@ -231,7 +219,6 @@ import javax.swing.border.Border;
       }
     });
   }
-  */
     public void mousePressed(MouseEvent e)  {
     for (int i = 0; i < buttons.length; i++){
           buttons[i].removeMouseListener(this);}}
@@ -239,14 +226,14 @@ import javax.swing.border.Border;
     public void mouseEntered(MouseEvent e) {
     for(int i = 0; i < buttons.length; i++){
     if (e.getSource().equals(buttons[i]))  {
-            buttons[i].setBorder(border);
-            buttons[i].setForeground(whiteColor);}}}
+            buttons[i].setBorder(datatype.border);
+            buttons[i].setForeground(datatype.whiteColor);}}}
 
     public void mouseExited(MouseEvent e)  {
     for(int i = 0; i < buttons.length; i++){
     if (e.getSource() == buttons[i])       {
-            buttons[i].setBorder(borderwhite);
-            buttons[i].setForeground(bTextColor);}}}  
+            buttons[i].setBorder(datatype.borderwhite);
+            buttons[i].setForeground(datatype.bTextColor);}}}  
  // ----------------------------------
     public void actionPerformed(ActionEvent e) {
     // this are the buttons to resize, iconify and close the program... -- it starts here  
@@ -267,17 +254,17 @@ import javax.swing.border.Border;
     // ends here ---...............
     for(int i = 0; i < buttons.length; i++){
     if  (e.getSource() == buttons[i]){  
-            buttons[i].setBorder(border);
-            buttons[i].setForeground(whiteColor);
+            buttons[i].setBorder(datatype.border);
+            buttons[i].setForeground(datatype.whiteColor);
             buttons[i].setOpaque(false);}
     else{
             buttons[i].addMouseListener(this);
-            buttons[i].setBorder(borderwhite);
-            buttons[i].setForeground(bTextColor);
+            buttons[i].setBorder(datatype.borderwhite);
+            buttons[i].setForeground(datatype.bTextColor);
             buttons[i].setOpaque(true);}
 
     if  (e.getSource().equals(dashBoardButton))  {cl.show(centerPanel, "1");} 
     if  (e.getSource().equals(categoriesButton)) {cl.show(centerPanel, "2");}
     if  (e.getSource().equals(pijetButton))      {cl.show(centerPanel, "3");}
     if  (e.getSource().equals(pemPerimetButton)) {cl.show(centerPanel, "4");}}}
-    public void mouseClicked(MouseEvent e){}public void mouseReleased(MouseEvent e){}}
+    public void mouseClicked(MouseEvent e){}public void mouseReleased(MouseEvent e){}}    
