@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.Timer;
-import javax.swing.border.Border;
 
 // MAIN PANEL STARTS HERE ------------------------------------------------------
  class main extends JFrame implements ActionListener, MouseListener{
@@ -42,78 +41,38 @@ import javax.swing.border.Border;
   boolean expanded = false;
         
   RoundRectangle2D.Double roundrectangle = new RoundRectangle2D.Double(0,0,1400,800,datatype.corner,datatype.corner);       
-  BorderLayout borderlayout = new BorderLayout();
+ 
 
   Timer timer;
-  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
- private int positionX, positionY;
-
+//  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    int positionX, positionY;
   Dashboard dashboard = new Dashboard();
   Categories categories = new Categories(); // classes
   test2 test2 = new test2();
   Pijet pijet = new Pijet();
-
-  static void buttonCustomiser // --------------- this method is for button customisation
-  (JButton button, Color colorf,
-      int x, int y, int width, int height,
-      boolean opaque, boolean areafilled,
-      boolean borderpainted, boolean focusable) {
-    button.setBackground(null);
-    button.setForeground(colorf);
-    button.setHorizontalTextPosition(SwingConstants.LEFT);
-    button.setBounds(x, y, width, height);
-    button.setOpaque(opaque);
-    button.setContentAreaFilled(areafilled);
-    button.setBorderPainted(borderpainted);
-    button.setFocusable(focusable);
-  }
   // ----------------------
 
-  static void panelCustomiser( // this is a panel customiser
-      JPanel panel,
-      LayoutManager layout,
-      Boolean size,
-      Color color,
-      Border border,
-      int width, int height) {
-    panel.setBackground(color);
-    panel.setLayout(layout);
-    panel.setBorder(border);
-    if(size){
-    panel.setPreferredSize(new Dimension(width, height));
-    return;
-    }
-  }
-
-  static void label(JLabel label,int x, int y, int size, Color color){
-    label.setBounds(x, y, 150, 40);
-    label.setFont(new Font("Monospaced", Font.BOLD, size));
-    label.setForeground(color);
-  }
-
   main() {
-
     setDefaultCloseOperation(main.EXIT_ON_CLOSE);
     setUndecorated(true);
     setShape(roundrectangle);
     setSize(1400, 800);
     setLocationRelativeTo(null);
 
-    label(text, 17, 0, 20, datatype.whiteColor);
-    label(adminText, 25, 20,17, datatype.whiteColor);
-    label(categoriestxt, 25, 180, 17, datatype.whiteColor);
-    label(dateText, 180, 0, 15, datatype.whiteColor);
-    label(timeText, 191, 30, 12, datatype.whiteColor);
+    datatype.textCustomiser(text, 17, 0, 150, 40, datatype.whiteColor, new Font("Monospaced", Font.BOLD, 20));
+    datatype.textCustomiser(adminText, 25, 20, 150, 40, datatype.whiteColor, new Font("Monospaced", Font.BOLD, 17));
+    datatype.textCustomiser(categoriestxt, 25, 180, 150, 40, datatype.whiteColor, new Font("Monospaced", Font.BOLD, 17));
+    datatype.textCustomiser(dateText, 180, 0, 150, 40, datatype.whiteColor, new Font("Monospaced", Font.BOLD, 15));
+    datatype.textCustomiser(timeText, 191, 30, 150, 40, datatype.whiteColor, new Font("Monospaced", Font.BOLD, 12));
     // Leftpanel buttons.....................
-    buttonCustomiser(dashBoardButton, datatype.bTextColor, 60, 60, 160, 30, false, false, true, false);
-    buttonCustomiser(categoriesButton, datatype.bTextColor, 60, 100, 160, 30, false, false, true, false);
-    buttonCustomiser(pijetButton, datatype.bTextColor, 60, 230, 160, 30, false, false, true, false);
-    buttonCustomiser(pemPerimetButton, datatype.bTextColor, 60, 270, 160, 30, false, false, true, false);
+    datatype.buttonCustomiser(dashBoardButton, null, datatype.bTextColor, 60, 60, 160, 30, false, false, true, false, this);
+    datatype.buttonCustomiser(categoriesButton, null, datatype.bTextColor, 60, 100, 160, 30, false, false, true, false, this);
+    datatype.buttonCustomiser(pijetButton, null, datatype.bTextColor, 60, 230, 160, 30, false, false, true, false, this);
+    datatype.buttonCustomiser(pemPerimetButton, null, datatype.bTextColor, 60, 270, 160, 30, false, false, true, false, this);
     // top bar buttons ............
-    buttonCustomiser(close, null, 1300, 5, 50, 20, false, false, true, false);
-    buttonCustomiser(iconify, null, 1170, 5, 50, 20, false, false, true, false);
-    buttonCustomiser(resize, null, 1230, 5, 50, 20, false, false, true, false);
+    datatype.buttonCustomiser(close, null, null, 1300, 5, 50, 20, false, false, true, false, this);
+    datatype.buttonCustomiser(iconify, null, null, 1170, 5, 50, 20, false, false, true, false, this);
+    datatype.buttonCustomiser(resize, null, null, 1230, 5, 50, 20, false, false, true, false, this);
     //-------------------------
     buttons[0] = dashBoardButton;
     buttons[1] = categoriesButton;
@@ -129,25 +88,23 @@ import javax.swing.border.Border;
     textarea.setEditable(false);
     textarea.setFocusable(false);
 
-    panelCustomiser(topPanel,null, true, datatype.grayTextColor, null, 100, 80);
+    datatype.panelCustomiser(topPanel,null, true, datatype.grayTextColor, null, 100, 80);
     topPanel.add(text);
     // this panel is within leftPanel and its served as an container for buttons so                              // i can easily move them if wanted
     container.setBounds(30, 50, 240, 450);
-    panelCustomiser(container, null,  false, datatype.darkerGrayTextColor, null, 100, 100);
+    datatype.panelCustomiser(container, null,  false, datatype.darkerGrayTextColor, null, 100, 100);
     container.add(dateText);
     container.add(adminText);
     container.add(categoriestxt);
 
-    panelCustomiser(topBar, null, true, datatype.grayTextColor, null, 50, 30);
+    datatype.panelCustomiser(topBar, null, true, datatype.grayTextColor, null, 50, 30);
 
     for(int i = 0; i < topBarButtons.length; i++){
-     topBarButtons[i].addActionListener(this);
      topBar.add(topBarButtons[i]);
       }
   
     for (int x = 0; x < buttons.length; x++) { // this adds all buttons in container panel
       buttons[x].setFont(new Font("Monospaced", Font.BOLD, 14));
-      buttons[x].addActionListener(this);
       buttons[x].setBorder(datatype.borderwhite);
       buttons[x].addMouseListener(this);
       container.add(buttons[x]);
@@ -155,7 +112,7 @@ import javax.swing.border.Border;
     
     dashBoardButton.setBorder(datatype.border);
   
-    panelCustomiser(centerPanel, cl, true, null, null, 400, 100);
+    datatype.panelCustomiser(centerPanel, cl, true, null, null, 400, 100);
     // ADMIN
     centerPanel.add(dashboard, "1");
     centerPanel.add(categories, "2");
@@ -163,15 +120,15 @@ import javax.swing.border.Border;
     centerPanel.add(pijet, "3");
     centerPanel.add(test2, "4");
 
-    panelCustomiser(leftPanel, borderlayout, true, null, datatype.sideBorder, 300, 100);
+    datatype.panelCustomiser(leftPanel, datatype.borderlayout, true, null, datatype.sideBorder, 300, 100);
     leftPanel.add(topPanel, BorderLayout.NORTH);
     leftPanel.add(container, BorderLayout.CENTER);
 
     
     addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e){
-                   positionX = e.getX();
-                   positionY = e.getY();
+                   datatype.positionX = e.getX();
+                   datatype.positionY = e.getY();
             }
     });
     addMouseMotionListener(new MouseMotionAdapter() {
@@ -179,13 +136,13 @@ import javax.swing.border.Border;
              expanded = false;
              setSize(1400, 800);
              setShape(roundrectangle);   
-             setLocation(e.getXOnScreen()-positionX, e.getYOnScreen()-positionY);
+             setLocation(e.getXOnScreen()-datatype.positionX, e.getYOnScreen()-datatype.positionY);
       }
     });
     revalidate();
     repaint();
-    setLayout(new BorderLayout());
     showDate();
+     setLayout(new BorderLayout());
    // showTime();
     add(topBar, BorderLayout.NORTH);
     add(centerPanel, BorderLayout.CENTER);
@@ -249,6 +206,7 @@ import javax.swing.border.Border;
       setSize(1400, 800); 
       setShape(roundrectangle);
       setLocation(100, 200);
+      return;
     } 
     if(e.getSource().equals(iconify)){this.setExtendedState(main.ICONIFIED);}
     // ends here ---...............

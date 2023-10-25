@@ -15,44 +15,16 @@ class login extends JFrame implements ActionListener{
 
     private JPanel rightPanel, leftPanel;
     private JButton close, submit;
-    private JLabel icon, text1, text2, text3, softext;
+    private JLabel icon, text1 = new JLabel("Emri"),
+                         text2 = new JLabel("Password"),
+                         text3 = new JLabel("Kyçu"),
+                         softext = new JLabel("InnoviSoft.Co");
+
     private JTextField username_input;
     private JPasswordField password_input;
 
       Border border;
 
-      static void buttonCustomiser  // --------------- this method is for button customisation
-      (JButton button, Color colorb, Color colorf,
-      int x, int y, int width, int height,
-      boolean opaque, boolean areafilled, boolean borderpainted, boolean focusable,
-      Border border,
-      ActionListener e){
-          button.setBackground(colorb);
-          button.setForeground(colorf);
-          button.setBounds(x, y, width, height);
-          button.setOpaque(opaque);
-          button.setContentAreaFilled(areafilled);
-          button.setBorderPainted(borderpainted);
-          button.setFocusable(focusable);
-          button.setBorder(border);
-          button.addActionListener(e);
-      }
-
-      static void textCustomiser  //this method is to customise text
-      (JLabel label,
-       int x, int y, int width, int height,
-       Color color,
-       Font font){
-             label.setBounds(x, y, width, height);
-             label.setForeground(color);
-             label.setFont(font);
-      }
-
-      static void panelCustomiser(JPanel panel, Color color, int width, int height){ // this is for panel customisation
-            panel.setPreferredSize(new Dimension(width, height));
-            panel.setBackground(color);
-            panel.setLayout(null);
-      }
 
     login() {
             setLocation(500, 200);
@@ -67,10 +39,10 @@ class login extends JFrame implements ActionListener{
             icon.setBounds(25, 70, 250, 250); 
            
             close = new JButton(new ImageIcon("close.png"));
-            buttonCustomiser(close, null, null, 255, 5, 40, 40, false, false, false, false, null, this);
+            datatype.buttonCustomiser(close, null, null, 255, 5, 40, 40, false, false, false, false, this);
 
             submit = new JButton("Vazhdo!");
-            buttonCustomiser(submit, datatype.darkerGrayTextColor, datatype.bTextColor, 125, 250, 100, 33, true, true, false, false, null, this);
+            datatype.buttonCustomiser(submit, datatype.darkerGrayTextColor, datatype.bTextColor, 125, 250, 100, 33, true, true, false, false, this);
             submit.addMouseListener(new MouseAdapter(){
                       public void mousePressed(MouseEvent e){
                              submit.setContentAreaFilled(false);}
@@ -78,17 +50,10 @@ class login extends JFrame implements ActionListener{
                              submit.setContentAreaFilled(true);
                       }});
                     
-            text1 = new JLabel("Emri");
-            textCustomiser(text1, 100, 110, 80, 20, datatype.bTextColor, datatype.font);
-
-            text2 = new JLabel("Password");
-            textCustomiser(text2, 100, 180, 80, 20, datatype.bTextColor, datatype.font);
-
-            text3 = new JLabel("Kyçu");
-            textCustomiser(text3, 150, 60, 80, 30, datatype.bTextColor, new Font("Monospaced", Font.BOLD, 22));
-
-            softext = new JLabel("InnoviSoft.Co");
-            textCustomiser(softext, 10, 370, 100, 20, datatype.bTextColor, datatype.font);
+            datatype.textCustomiser(text1, 100, 110, 80, 20, datatype.bTextColor, datatype.font);
+            datatype.textCustomiser(text2, 100, 180, 80, 20, datatype.bTextColor, datatype.font);    
+            datatype.textCustomiser(text3, 150, 60, 80, 30, datatype.bTextColor, new Font("Monospaced", Font.BOLD, 22));
+            datatype.textCustomiser(softext, 10, 370, 100, 20, datatype.bTextColor, datatype.font);
 
             username_input = new JTextField();
             username_input.setBounds(100, 130, 150, 33);
@@ -108,12 +73,12 @@ class login extends JFrame implements ActionListener{
 
             // rightpanel
             rightPanel = new JPanel();
-            panelCustomiser(rightPanel, datatype.darkerGrayTextColor, 300, 100);
+            datatype.panelCustomiser(rightPanel, null, true, datatype.darkerGrayTextColor, null, 300, 100);
             rightPanel.add(close);
             rightPanel.add(icon);
   //________________________________________________________
             leftPanel = new JPanel();
-            panelCustomiser(leftPanel, datatype.grayTextColor, 400, 100);
+            datatype.panelCustomiser(leftPanel, null, true, datatype.grayTextColor, null, 400, 100);
             leftPanel.add(username_input);
             leftPanel.add(password_input);
             leftPanel.add(text1);
