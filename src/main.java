@@ -11,30 +11,30 @@ import javax.swing.Timer;
 
   dataType datatype = new dataType();
 
-  private JPanel leftPanel = new JPanel(),
-                 centerPanel = new JPanel(),
-                 topBar = new JPanel(),
-                 container = new JPanel(),
-                 topPanel = new JPanel();
+  private JPanel    leftPanel = new JPanel(),
+                    centerPanel = new JPanel(),
+                    topBar = new JPanel(),
+                    container = new JPanel(),
+                    topPanel = new JPanel();
 
-  private JLabel text = new JLabel("InnoviSoft"),
-                 dateText = new JLabel(),
-                 timeText = new JLabel(),
-                 adminText = new JLabel("Admin:"),
-                 categoriestxt = new JLabel("Catalogue:");
+  private JLabel    text = new JLabel("InnoviSoft"),
+                    dateText = new JLabel(),
+                    timeText = new JLabel(),
+                    adminText = new JLabel("Admin:"),
+                    categoriestxt = new JLabel("Catalogue:");
 
   private JTextArea textarea = new JTextArea();
 
   private JButton[] buttons = new JButton[4],
                     topBarButtons = new JButton[3];
 
-  private JButton dashBoardButton = new JButton("Dashboard"),
-                  categoriesButton = new JButton("Categories"),
-                  pijetButton = new JButton("Pijet"),
-                  pemPerimetButton = new JButton("Pemet"),
-                  close = new JButton(),
-                  iconify = new JButton(),
-                  resize = new JButton();
+  private JButton   dashBoardButton = new JButton("Dashboard"),
+                    categoriesButton = new JButton("Categories"),
+                    pijetButton = new JButton("Pijet"),
+                    pemPerimetButton = new JButton("Pemet"),
+                    close = new JButton(),
+                    iconify = new JButton(),
+                    resize = new JButton();
 
   private CardLayout cl = new CardLayout();
 
@@ -142,7 +142,7 @@ import javax.swing.Timer;
     revalidate();
     repaint();
     showDate();
-     setLayout(new BorderLayout());
+    setLayout(new BorderLayout());
    // showTime();
     add(topBar, BorderLayout.NORTH);
     add(centerPanel, BorderLayout.CENTER);
@@ -156,6 +156,7 @@ import javax.swing.Timer;
     dateText.setText(sdf.format(date));
     topPanel.add(dateText);
   }
+  /* 
   public void showTime(){  // time
     new Timer(0, new ActionListener(){
       @Override
@@ -167,6 +168,7 @@ import javax.swing.Timer;
       }
     }).start();
   }
+  */
 // -------------------------------------- MAIN METHOD
    public static void main(String[] args) {
     SwingUtilities.invokeLater(new Runnable() {
