@@ -50,17 +50,17 @@ class login extends JFrame implements ActionListener{
                              submit.setContentAreaFilled(true);
                       }});
                     
-            datatype.textCustomiser(text1, 100, 110, 80, 20, datatype.bTextColor, datatype.font);
-            datatype.textCustomiser(text2, 100, 180, 80, 20, datatype.bTextColor, datatype.font);    
+            datatype.textCustomiser(text1, 100, 110, 80, 20, datatype.bTextColor, datatype.fontS14);
+            datatype.textCustomiser(text2, 100, 180, 80, 20, datatype.bTextColor, datatype.fontS14);    
             datatype.textCustomiser(text3, 150, 60, 80, 30, datatype.bTextColor, new Font("Monospaced", Font.BOLD, 22));
-            datatype.textCustomiser(softext, 10, 370, 100, 20, datatype.bTextColor, datatype.font);
+            datatype.textCustomiser(softext, 10, 370, 100, 20, datatype.bTextColor, datatype.fontS14);
 
             username_input = new JTextField();
             username_input.setBounds(100, 130, 150, 33);
             username_input.setBorder(null);
             username_input.setBackground(datatype.darkerGrayTextColor);
             username_input.setBorder(border);
-            username_input.setFont(datatype.font);
+            username_input.setFont(datatype.fontS14);
             username_input.setForeground(datatype.bTextColor);
 
             password_input = new JPasswordField();
@@ -68,7 +68,7 @@ class login extends JFrame implements ActionListener{
             password_input.setBackground(datatype.darkerGrayTextColor);
       //      password_input.setBorder(null);
             password_input.setBorder(border);
-            password_input.setFont(datatype.font);
+            password_input.setFont(datatype.fontS14);
             password_input.setForeground(datatype.bTextColor);
 
             // rightpanel

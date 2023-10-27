@@ -17,9 +17,15 @@ import javax.swing.border.Border;
     final        int corner = 55 / 2;
                  int positionX, positionY;
 
-    final Font   font = new Font("Serif", Font.BOLD, 14);
+    final Font   fontS12 =  new Font("Monospaced", Font.BOLD, 12),
+                 fontS14 = new Font("Serif", Font.BOLD, 14),
+                 fontS15 = new Font("Monospaced" , Font.BOLD, 15),
+                 fontS17 = new Font("Monospaced", Font.BOLD, 17),
+                 fontS20 = new Font("Monospaced", Font.BOLD, 20),
+                 fontS22 = new Font("Monospaced", Font.BOLD, 22);
 
     final Color  whiteColor = new Color(255, 255, 255),
+                 Col245 = new Color(245,245,245),
                  bTextColor = new Color(192, 192, 192),
                  grayTextColor = new Color(55, 58, 65),
                  darkerGrayTextColor = new Color(36,37,43),
@@ -27,9 +33,10 @@ import javax.swing.border.Border;
 
 
     final Border border = BorderFactory.createMatteBorder(0, 0, 2, 0, whiteColor),
-                 borderwhite = BorderFactory.createMatteBorder(0,0, 1,0, new Color(192,192,192)),
+                 Blackborder = BorderFactory.createMatteBorder(0, 0, 1, 0, noCol),
+                 borderwhite = BorderFactory.createMatteBorder(0,0, 1,0, bTextColor),
                  border2 = BorderFactory.createLineBorder(Color.BLACK, 2),
-                 sideBorder = BorderFactory.createMatteBorder(0,0, 0,1, new Color(192,192,192));
+                 sideBorder = BorderFactory.createMatteBorder(0,0, 0,1, bTextColor);
 
     public void buttonCustomiser(JButton button, Color Colorb, Color Colorf,
                  int x, int y, int width, int height,

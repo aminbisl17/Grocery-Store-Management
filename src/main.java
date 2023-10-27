@@ -30,11 +30,11 @@ import javax.swing.Timer;
 
   private JButton   dashBoardButton = new JButton("Dashboard"),
                     categoriesButton = new JButton("Categories"),
-                    pijetButton = new JButton("Pijet"),
-                    pemPerimetButton = new JButton("Pemet"),
-                    close = new JButton(),
-                    iconify = new JButton(),
-                    resize = new JButton();
+                    pijetButton = new JButton("sector 1"),
+                    pemPerimetButton = new JButton("sector 2"),
+                    close = new JButton("Cl"),
+                    iconify = new JButton("Ic"),
+                    resize = new JButton("Rs");
 
   private CardLayout cl = new CardLayout();
 
@@ -45,7 +45,6 @@ import javax.swing.Timer;
 
   Timer timer;
 //  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    int positionX, positionY;
   Dashboard dashboard = new Dashboard();
   Categories categories = new Categories(); // classes
   test2 test2 = new test2();
@@ -59,29 +58,29 @@ import javax.swing.Timer;
     setSize(1400, 800);
     setLocationRelativeTo(null);
 
-    datatype.textCustomiser(text, 17, 0, 150, 40, datatype.whiteColor, new Font("Monospaced", Font.BOLD, 20));
-    datatype.textCustomiser(adminText, 25, 20, 150, 40, datatype.whiteColor, new Font("Monospaced", Font.BOLD, 17));
-    datatype.textCustomiser(categoriestxt, 25, 180, 150, 40, datatype.whiteColor, new Font("Monospaced", Font.BOLD, 17));
-    datatype.textCustomiser(dateText, 180, 0, 150, 40, datatype.whiteColor, new Font("Monospaced", Font.BOLD, 15));
-    datatype.textCustomiser(timeText, 191, 30, 150, 40, datatype.whiteColor, new Font("Monospaced", Font.BOLD, 12));
+    datatype.textCustomiser(text, 17, 0, 150, 40, datatype.whiteColor, datatype.fontS20);
+    datatype.textCustomiser(adminText, 25, 20, 150, 40, datatype.whiteColor, datatype.fontS17);
+    datatype.textCustomiser(categoriestxt, 25, 180, 150, 40, datatype.whiteColor, datatype.fontS17);
+    datatype.textCustomiser(dateText, 180, 0, 150, 40, datatype.whiteColor, datatype.fontS15);
+    datatype.textCustomiser(timeText, 191, 30, 150, 40, datatype.whiteColor, datatype.fontS12);
     // Leftpanel buttons.....................
     datatype.buttonCustomiser(dashBoardButton, null, datatype.bTextColor, 60, 60, 160, 30, false, false, true, false, this);
     datatype.buttonCustomiser(categoriesButton, null, datatype.bTextColor, 60, 100, 160, 30, false, false, true, false, this);
     datatype.buttonCustomiser(pijetButton, null, datatype.bTextColor, 60, 230, 160, 30, false, false, true, false, this);
     datatype.buttonCustomiser(pemPerimetButton, null, datatype.bTextColor, 60, 270, 160, 30, false, false, true, false, this);
     // top bar buttons ............
-    datatype.buttonCustomiser(close, null, null, 1300, 5, 50, 20, false, false, true, false, this);
-    datatype.buttonCustomiser(iconify, null, null, 1170, 5, 50, 20, false, false, true, false, this);
-    datatype.buttonCustomiser(resize, null, null, 1230, 5, 50, 20, false, false, true, false, this);
+    datatype.buttonCustomiser(close, null, null, 0, 0, 0, 0, false, false, true, false, this);
+    datatype.buttonCustomiser(iconify, null, null, 0, 5, 0, 0, false, false, true, false, this);
+    datatype.buttonCustomiser(resize, null, null, 0, 5, 0, 0, false, false, true, false, this);
     //-------------------------
     buttons[0] = dashBoardButton;
     buttons[1] = categoriesButton;
     buttons[2] = pijetButton;
     buttons[3] = pemPerimetButton;
     // ----------
-    topBarButtons[0] = close;
-    topBarButtons[1] = iconify;
-    topBarButtons[2] = resize;
+    topBarButtons[2] = close;
+    topBarButtons[0] = iconify;
+    topBarButtons[1] = resize;
 
     textarea.setBounds(45, 25, 200, 100);
     textarea.setBorder(datatype.border2);
@@ -97,14 +96,14 @@ import javax.swing.Timer;
     container.add(adminText);
     container.add(categoriestxt);
 
-    datatype.panelCustomiser(topBar, null, true, datatype.grayTextColor, null, 50, 30);
+    datatype.panelCustomiser(topBar, new FlowLayout(FlowLayout.RIGHT, 10, 3), true, datatype.grayTextColor, null, 50, 30);
 
     for(int i = 0; i < topBarButtons.length; i++){
      topBar.add(topBarButtons[i]);
       }
   
     for (int x = 0; x < buttons.length; x++) { // this adds all buttons in container panel
-      buttons[x].setFont(new Font("Monospaced", Font.BOLD, 14));
+      buttons[x].setFont(datatype.fontS14);
       buttons[x].setBorder(datatype.borderwhite);
       buttons[x].addMouseListener(this);
       container.add(buttons[x]);
