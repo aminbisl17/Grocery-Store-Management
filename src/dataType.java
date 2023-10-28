@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.LayoutManager;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -21,14 +23,15 @@ import javax.swing.border.Border;
                  fontS14 = new Font("Serif", Font.BOLD, 14),
                  fontS15 = new Font("Monospaced" , Font.BOLD, 15),
                  fontS17 = new Font("Monospaced", Font.BOLD, 17),
+                 fontS17p = new Font("Monospaced", Font.PLAIN, 17),
                  fontS20 = new Font("Monospaced", Font.BOLD, 20),
                  fontS22 = new Font("Monospaced", Font.BOLD, 22);
 
     final Color  whiteColor = new Color(255, 255, 255),
-                 Col245 = new Color(245,245,245),
+                 Col245 = new Color(235,235,235),
                  bTextColor = new Color(192, 192, 192),
                  grayTextColor = new Color(55, 58, 65),
-                 darkerGrayTextColor = new Color(36,37,43),
+                 darkerGrayTextColor = new Color(43,44,50),
                  noCol = new Color(0,0,0);
 
 
@@ -74,5 +77,12 @@ import javax.swing.border.Border;
                 label.setBounds(x, y, width, height);
                 label.setForeground(color);
                 label.setFont(font);}
+
+                MouseAdapter mouseadapter = new MouseAdapter() {
+                  public void mousePressed(MouseEvent e){
+                         positionX = e.getX();
+                         positionY = e.getY();
+                  }
+          };
 
 }

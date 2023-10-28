@@ -1,4 +1,5 @@
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -87,12 +88,7 @@ class login extends JFrame implements ActionListener{
             leftPanel.add(softext);
             leftPanel.add(submit);
        
-            addMouseListener(new MouseAdapter() {
-              public void mousePressed(MouseEvent e){
-                      datatype.positionX = e.getX();
-                      datatype.positionY = e.getY();
-              }
-      });
+            addMouseListener(datatype.mouseadapter);
       addMouseMotionListener(new MouseMotionAdapter() {
         public void mouseDragged(MouseEvent e) {
                setLocation(e.getXOnScreen()-datatype.positionX, e.getYOnScreen()-datatype.positionY);
@@ -100,7 +96,6 @@ class login extends JFrame implements ActionListener{
       });
       
             setLayout(new BorderLayout());
-
             add(rightPanel, BorderLayout.EAST);
             add(leftPanel, BorderLayout.CENTER);
             setVisible(true);
@@ -128,6 +123,7 @@ class login extends JFrame implements ActionListener{
                 password_input.setText("");
                 return;}
                 new main();
+                this.dispose();
                 return;}
     }
 }

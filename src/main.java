@@ -1,8 +1,14 @@
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionAdapter;
 import java.awt.geom.RoundRectangle2D;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
 import javax.swing.*;
 import javax.swing.Timer;
 
@@ -59,8 +65,8 @@ import javax.swing.Timer;
     setLocationRelativeTo(null);
 
     datatype.textCustomiser(text, 17, 0, 150, 40, datatype.whiteColor, datatype.fontS20);
-    datatype.textCustomiser(adminText, 25, 20, 150, 40, datatype.whiteColor, datatype.fontS17);
-    datatype.textCustomiser(categoriestxt, 25, 180, 150, 40, datatype.whiteColor, datatype.fontS17);
+    datatype.textCustomiser(adminText, 25, 20, 150, 40, datatype.Col245, datatype.fontS17p);
+    datatype.textCustomiser(categoriestxt, 25, 180, 150, 40, datatype.Col245, datatype.fontS17p);
     datatype.textCustomiser(dateText, 180, 0, 150, 40, datatype.whiteColor, datatype.fontS15);
     datatype.textCustomiser(timeText, 191, 30, 150, 40, datatype.whiteColor, datatype.fontS12);
     // Leftpanel buttons.....................
@@ -124,12 +130,7 @@ import javax.swing.Timer;
     leftPanel.add(container, BorderLayout.CENTER);
 
     
-    addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent e){
-                   datatype.positionX = e.getX();
-                   datatype.positionY = e.getY();
-            }
-    });
+    addMouseListener(datatype.mouseadapter);
     addMouseMotionListener(new MouseMotionAdapter() {
       public void mouseDragged(MouseEvent e) {
              expanded = false;

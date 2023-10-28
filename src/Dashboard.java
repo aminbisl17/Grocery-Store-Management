@@ -2,7 +2,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import java.awt.*;
+import java.awt.BasicStroke;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 class Dashboard extends JPanel{
 
@@ -50,15 +55,15 @@ class Dashboard extends JPanel{
      graph4.setTxt("Shuma e parave te fituara gjat \t Muajit");
 
      datatype.textCustomiser(text, 20, 40, 100, 20, datatype.grayTextColor, datatype.fontS17);
-     datatype.textCustomiser(text2, 40, 15, 150, 30, datatype.grayTextColor, datatype.fontS17);
-     datatype.textCustomiser(text3, 40, 220, 150, 30, datatype.grayTextColor, datatype.fontS17);
+     datatype.textCustomiser(text2, 40, 15, 150, 30, datatype.grayTextColor, datatype.fontS17p);
+     datatype.textCustomiser(text3, 40, 220, 150, 30, datatype.grayTextColor, datatype.fontS17p);
      text.setBorder(datatype.Blackborder);
      text2.setBorder(datatype.Blackborder);
      text3.setBorder(datatype.Blackborder);
 
      datatype.panelCustomiser(centerPanel, borderLayout, true, null, null, 0,0);
 
-     datatype.panelCustomiser(topBar, null, true, datatype.whiteColor, datatype.border, 100, 80);
+     datatype.panelCustomiser(topBar, null, true, datatype.whiteColor, datatype.borderwhite, 100, 80);
      topBar.add(text);
      
      table.setBounds(0, 0, 950, 330);
