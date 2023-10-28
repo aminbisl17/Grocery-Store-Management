@@ -6,8 +6,16 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.geom.RoundRectangle2D;
-
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
 class login extends JFrame implements ActionListener{
@@ -23,7 +31,6 @@ class login extends JFrame implements ActionListener{
 
     private JTextField username_input;
     private JPasswordField password_input;
-
       Border border;
 
 
@@ -36,10 +43,10 @@ class login extends JFrame implements ActionListener{
 
             border = BorderFactory.createMatteBorder(0, 0, 2, 0, datatype.noCol);
  
-            icon = new JLabel(new ImageIcon("lIcon (1).png"));
+            icon = new JLabel(new ImageIcon(getClass().getResource("/Images/lIcon (1).png")));
             icon.setBounds(25, 70, 250, 250); 
            
-            close = new JButton(new ImageIcon("close.png"));
+            close = new JButton(new ImageIcon(getClass().getResource("/Images/close.png")));
             datatype.buttonCustomiser(close, null, null, 255, 5, 40, 40, false, false, false, false, this);
 
             submit = new JButton("Vazhdo!");
