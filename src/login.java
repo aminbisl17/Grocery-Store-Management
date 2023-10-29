@@ -22,15 +22,15 @@ class login extends JFrame implements ActionListener{
 
        dataType datatype = new dataType();
 
-    private JPanel rightPanel, leftPanel;
+    private JPanel rightPanel = new JPanel(), leftPanel = new JPanel();
     private JButton close, submit;
     private JLabel icon, text1 = new JLabel("Emri"),
                          text2 = new JLabel("Password"),
                          text3 = new JLabel("Kyçu"),
                          softext = new JLabel("InnoviSoft.Co");
 
-    private JTextField username_input;
-    private JPasswordField password_input;
+    private JTextField username_input = new JTextField();;
+    private JPasswordField password_input = new JPasswordField();
       Border border;
 
 
@@ -63,7 +63,6 @@ class login extends JFrame implements ActionListener{
             datatype.textCustomiser(text3, 150, 60, 80, 30, datatype.bTextColor, new Font("Monospaced", Font.BOLD, 22));
             datatype.textCustomiser(softext, 10, 370, 100, 20, datatype.bTextColor, datatype.fontS14);
 
-            username_input = new JTextField();
             username_input.setBounds(100, 130, 150, 33);
             username_input.setBorder(null);
             username_input.setBackground(datatype.darkerGrayTextColor);
@@ -71,7 +70,6 @@ class login extends JFrame implements ActionListener{
             username_input.setFont(datatype.fontS14);
             username_input.setForeground(datatype.bTextColor);
 
-            password_input = new JPasswordField();
             password_input.setBounds(100, 200, 150, 33);
             password_input.setBackground(datatype.darkerGrayTextColor);
       //      password_input.setBorder(null);
@@ -80,12 +78,10 @@ class login extends JFrame implements ActionListener{
             password_input.setForeground(datatype.bTextColor);
 
             // rightpanel
-            rightPanel = new JPanel();
             datatype.panelCustomiser(rightPanel, null, true, datatype.darkerGrayTextColor, null, 300, 100);
             rightPanel.add(close);
             rightPanel.add(icon);
   //________________________________________________________
-            leftPanel = new JPanel();
             datatype.panelCustomiser(leftPanel, null, true, datatype.grayTextColor, null, 400, 100);
             leftPanel.add(username_input);
             leftPanel.add(password_input);
