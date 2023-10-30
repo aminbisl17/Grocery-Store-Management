@@ -50,7 +50,7 @@ import javax.swing.SwingUtilities;
 
   private CardLayout cl = new CardLayout();
 
-  boolean expanded = false;
+  protected boolean expanded = false;
         
   RoundRectangle2D.Double roundrectangle = new RoundRectangle2D.Double(0,0,1400,800,datatype.corner,datatype.corner);       
  
