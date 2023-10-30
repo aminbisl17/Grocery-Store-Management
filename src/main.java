@@ -10,7 +10,6 @@ import java.awt.geom.RoundRectangle2D;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.*;
-import javax.swing.Timer;
 
 // MAIN PANEL STARTS HERE ------------------------------------------------------
  class main extends JFrame implements ActionListener, MouseListener{
@@ -38,9 +37,9 @@ import javax.swing.Timer;
                     categoriesButton = new JButton("Categories"),
                     pijetButton = new JButton("sector 1"),
                     pemPerimetButton = new JButton("sector 2"),
-                    close = new JButton("Cl"),
-                    iconify = new JButton("Ic"),
-                    resize = new JButton("Rs");
+                    close = new JButton(datatype.closeIcon),
+                    iconify = new JButton(new ImageIcon(getClass().getResource("/Images/t12.png"))),
+                    resize = new JButton(new ImageIcon(getClass().getResource("/Images/t4.png")));
 
   private CardLayout cl = new CardLayout();
 
@@ -75,9 +74,9 @@ import javax.swing.Timer;
     datatype.buttonCustomiser(pijetButton, null, datatype.bTextColor, 60, 230, 160, 30, false, false, true, false, this);
     datatype.buttonCustomiser(pemPerimetButton, null, datatype.bTextColor, 60, 270, 160, 30, false, false, true, false, this);
     // top bar buttons ............
-    datatype.buttonCustomiser(close, null, null, 0, 0, 0, 0, false, false, true, false, this);
+    datatype.buttonCustomiser(close, null, null, 0, 0, 0, 0, false, false, false, false, this);
     datatype.buttonCustomiser(iconify, null, null, 0, 5, 0, 0, false, false, true, false, this);
-    datatype.buttonCustomiser(resize, null, null, 0, 5, 0, 0, false, false, true, false, this);
+    datatype.buttonCustomiser(resize, null, null, 0, 5, 0, 0, false, false, false, false, this);
     //-------------------------
     buttons[0] = dashBoardButton;
     buttons[1] = categoriesButton;
@@ -102,7 +101,7 @@ import javax.swing.Timer;
     container.add(adminText);
     container.add(categoriestxt);
 
-    datatype.panelCustomiser(topBar, new FlowLayout(FlowLayout.RIGHT, 10, 3), true, datatype.grayTextColor, null, 50, 30);
+    datatype.panelCustomiser(topBar, new FlowLayout(FlowLayout.RIGHT, 3, 0), true, datatype.grayTextColor, null, 0, 30);
 
     for(int i = 0; i < topBarButtons.length; i++){
      topBar.add(topBarButtons[i]);

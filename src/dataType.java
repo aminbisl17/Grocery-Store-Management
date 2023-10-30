@@ -7,12 +7,21 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
  class dataType {
+ 
+            JLabel icon = new JLabel(new ImageIcon(getClass().getResource("/Images/lIcon (1).png")));
+                   
+             ImageIcon closeIcon = new ImageIcon(getClass().getResource("/Images/close.png"));
+
+                    dataType(){
+                         icon.setBounds(25,70,22,22);
+                    }
 
     final BorderLayout borderlayout = new BorderLayout();
 

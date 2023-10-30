@@ -1,5 +1,4 @@
 import java.awt.BorderLayout;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -25,9 +24,9 @@ class login extends JFrame implements ActionListener{
     private JPanel rightPanel = new JPanel(), leftPanel = new JPanel();
     private JButton close, submit;
     private JLabel icon, text1 = new JLabel("Emri"),
-                         text2 = new JLabel("Password"),
-                         text3 = new JLabel("Kyçu"),
-                         softext = new JLabel("InnoviSoft.Co");
+                   text2 = new JLabel("Password"),
+                   text3 = new JLabel("Kyçu"),
+                   softext = new JLabel("InnoviSoft.Co");
 
     private JTextField username_input = new JTextField();;
     private JPasswordField password_input = new JPasswordField();
@@ -46,7 +45,7 @@ class login extends JFrame implements ActionListener{
             icon = new JLabel(new ImageIcon(getClass().getResource("/Images/lIcon (1).png")));
             icon.setBounds(25, 70, 250, 250); 
            
-            close = new JButton(new ImageIcon(getClass().getResource("/Images/close.png")));
+            close = new JButton(datatype.closeIcon);
             datatype.buttonCustomiser(close, null, null, 255, 5, 40, 40, false, false, false, false, this);
 
             submit = new JButton("Vazhdo!");
@@ -60,7 +59,7 @@ class login extends JFrame implements ActionListener{
                     
             datatype.textCustomiser(text1, 100, 110, 80, 20, datatype.bTextColor, datatype.fontS14);
             datatype.textCustomiser(text2, 100, 180, 80, 20, datatype.bTextColor, datatype.fontS14);    
-            datatype.textCustomiser(text3, 150, 60, 80, 30, datatype.bTextColor, new Font("Monospaced", Font.BOLD, 22));
+            datatype.textCustomiser(text3, 150, 60, 80, 30, datatype.bTextColor, datatype.fontS22);
             datatype.textCustomiser(softext, 10, 370, 100, 20, datatype.bTextColor, datatype.fontS14);
 
             username_input.setBounds(100, 130, 150, 33);
