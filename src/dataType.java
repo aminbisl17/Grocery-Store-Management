@@ -17,7 +17,7 @@ import javax.swing.border.Border;
  
             JLabel icon = new JLabel(new ImageIcon(getClass().getResource("/Images/lIcon (1).png")));
                    
-             ImageIcon closeIcon = new ImageIcon(getClass().getResource("/Images/close.png"));
+             ImageIcon closeIcon = new ImageIcon(getClass().getResource("/Images/close2.png"));
 
                     dataType(){
                          icon.setBounds(25,70,22,22);

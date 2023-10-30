@@ -9,7 +9,14 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.geom.RoundRectangle2D;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.swing.*;
+import javax.management.timer.Timer;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
 
 // MAIN PANEL STARTS HERE ------------------------------------------------------
  class main extends JFrame implements ActionListener, MouseListener{
@@ -75,7 +82,7 @@ import javax.swing.*;
     datatype.buttonCustomiser(pemPerimetButton, null, datatype.bTextColor, 60, 270, 160, 30, false, false, true, false, this);
     // top bar buttons ............
     datatype.buttonCustomiser(close, null, null, 0, 0, 0, 0, false, false, false, false, this);
-    datatype.buttonCustomiser(iconify, null, null, 0, 5, 0, 0, false, false, true, false, this);
+    datatype.buttonCustomiser(iconify, null, null, 0, 5, 0, 0, false, false, false, false, this);
     datatype.buttonCustomiser(resize, null, null, 0, 5, 0, 0, false, false, false, false, this);
     //-------------------------
     buttons[0] = dashBoardButton;
