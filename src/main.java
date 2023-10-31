@@ -54,7 +54,6 @@ import javax.swing.SwingUtilities;
         
   RoundRectangle2D.Double roundrectangle = new RoundRectangle2D.Double(0,0,1400,800,datatype.corner,datatype.corner);       
  
-
   Timer timer;
 //  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
   Dashboard dashboard = new Dashboard();
