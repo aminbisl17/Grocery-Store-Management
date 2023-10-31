@@ -45,8 +45,8 @@ import javax.swing.SwingUtilities;
                     pijetButton = new JButton("sector 1"),
                     pemPerimetButton = new JButton("sector 2"),
                     close = new JButton(datatype.closeIcon),
-                    iconify = new JButton(new ImageIcon(getClass().getResource("/Images/t12.png"))),
-                    resize = new JButton(new ImageIcon(getClass().getResource("/Images/t4.png")));
+                    iconify = new JButton(new ImageIcon(getClass().getResource("/Images/minimize.png"))),
+                    resize = new JButton(new ImageIcon(getClass().getResource("/Images/restore-down.png")));
 
   private CardLayout cl = new CardLayout();
 
