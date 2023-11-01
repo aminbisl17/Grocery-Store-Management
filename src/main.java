@@ -32,7 +32,9 @@ import javax.swing.SwingUtilities;
                     dateText = new JLabel(),
                     timeText = new JLabel(),
                     adminText = new JLabel("Admin:"),
-                    categoriestxt = new JLabel("Catalogue:");
+                    categoriestxt = new JLabel("Catalogue:"),
+                    adminI = new JLabel(datatype.imgi("/Images/admin.png")),
+                    categoryI = new JLabel(datatype.imgi("/Images/category.png"));
 
   private JTextArea textarea = new JTextArea();
 
@@ -69,8 +71,8 @@ import javax.swing.SwingUtilities;
     setLocationRelativeTo(null);
 
     datatype.textCustomiser(text, 17, 0, 150, 40, datatype.whiteColor, datatype.fontS20);
-    datatype.textCustomiser(adminText, 25, 20, 150, 40, datatype.Col245, datatype.fontS17p);
-    datatype.textCustomiser(categoriestxt, 25, 180, 150, 40, datatype.Col245, datatype.fontS17p);
+    datatype.textCustomiser(adminText, 55, 20, 150, 40, datatype.Col245, datatype.fontS17p);
+    datatype.textCustomiser(categoriestxt, 55, 180, 150, 40, datatype.Col245, datatype.fontS17p);
     datatype.textCustomiser(dateText, 180, 0, 150, 40, datatype.whiteColor, datatype.fontS15);
     datatype.textCustomiser(timeText, 191, 30, 150, 40, datatype.whiteColor, datatype.fontS12);
     // Leftpanel buttons.....................
@@ -105,6 +107,12 @@ import javax.swing.SwingUtilities;
     container.add(dateText);
     container.add(adminText);
     container.add(categoriestxt);
+
+    adminI.setBounds(20, 20,26,26);
+    container.add(adminI);
+
+    categoryI.setBounds(20, 180, 26,26);
+    container.add(categoryI);
 
     datatype.panelCustomiser(topBar, new FlowLayout(FlowLayout.RIGHT, 3, 0), true, datatype.grayTextColor, null, 0, 30);
 
