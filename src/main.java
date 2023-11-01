@@ -10,7 +10,6 @@ import java.awt.geom.RoundRectangle2D;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.management.timer.Timer;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -44,9 +43,9 @@ import javax.swing.SwingUtilities;
                     categoriesButton = new JButton("Categories"),
                     pijetButton = new JButton("sector 1"),
                     pemPerimetButton = new JButton("sector 2"),
-                    close = new JButton(datatype.closeIcon),
-                    iconify = new JButton(new ImageIcon(getClass().getResource("/Images/minimize.png"))),
-                    resize = new JButton(new ImageIcon(getClass().getResource("/Images/restore-down.png")));
+                    close = new JButton(datatype.imgi("/Images/close.png")),
+                    iconify = new JButton(datatype.imgi("/Images/minimize.png")),
+                    resize = new JButton(datatype.imgi("/Images/restore-down.png"));
 
   private CardLayout cl = new CardLayout();
 

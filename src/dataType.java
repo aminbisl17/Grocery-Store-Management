@@ -15,9 +15,9 @@ import javax.swing.border.Border;
 
  class dataType {
  
-            JLabel icon = new JLabel(new ImageIcon(getClass().getResource("/Images/lIcon (1).png")));
+ //           JLabel icon = new JLabel(new ImageIcon(getClass().getResource("/Images/lIcon (1).png")));
                    
-             ImageIcon closeIcon = new ImageIcon(getClass().getResource("/Images/close.png"));
+   //          ImageIcon closeIcon = new ImageIcon(getClass().getResource("/Images/close.png"));
 
              public ImageIcon imgi(String path){
               java.net.URL imgURL = getClass().getResource(path);
@@ -31,7 +31,7 @@ import javax.swing.border.Border;
              }
 
                     dataType(){
-                         icon.setBounds(25,70,22,22);
+                //         icon.setBounds(25,70,22,22);
                     }
 
     final BorderLayout borderlayout = new BorderLayout();
