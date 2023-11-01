@@ -1,4 +1,3 @@
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -43,25 +42,25 @@ class Dashboard extends JPanel{
      graphCustomiser(graph1, 60);
      graph1.setColor(new Color(255, 100, 100));
      graph1.setTxt("Totali i shitjeve (Sot)");
-     graph1.setImage(new ImageIcon(getClass().getResource("/Images/Cart.png")).getImage());
+     graph1.setImage(datatype.imgi("/Images/Cart.png").getImage());
 
      graph2 = new graphic();
      graphCustomiser(graph2, 310);
      graph2.setColor(new Color(80, 130, 220));
      graph2.setTxt("Totali Parave te fituara (Sot)");
-     graph2.setImage(new ImageIcon(getClass().getResource("/Images/Money.png")).getImage());
+     graph2.setImage(datatype.imgi("/Images/Money.png").getImage());
 
      graph3 = new graphic();
      graphCustomiser(graph3, 560);
      graph3.setColor(new Color(70, 135, 95));
      graph3.setTxt("Totali i shtijeve gjat Muajit");
-     graph3.setImage(new ImageIcon(getClass().getResource("/Images/Monthly.png")).getImage());
+     graph3.setImage(datatype.imgi("/Images/Monthly.png").getImage());
 
      graph4 = new graphic();
      graphCustomiser(graph4, 810);
      graph4.setColor(new Color(155, 100, 170));
      graph4.setTxt("Shuma e parave te fituara gjat \t Muajit");
-     graph4.setImage(new ImageIcon(getClass().getResource("/Images/sMoney.png")).getImage());
+     graph4.setImage(datatype.imgi("/Images/sMoney.png").getImage());
 
      datatype.textCustomiser(text, 20, 40, 100, 20, datatype.grayTextColor, datatype.fontS17);
      datatype.textCustomiser(text2, 40, 15, 150, 30, datatype.grayTextColor, datatype.fontS17p);

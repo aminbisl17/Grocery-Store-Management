@@ -19,6 +19,17 @@ import javax.swing.border.Border;
                    
              ImageIcon closeIcon = new ImageIcon(getClass().getResource("/Images/close.png"));
 
+             public ImageIcon imgi(String path){
+              java.net.URL imgURL = getClass().getResource(path);
+                 if(imgURL != null){
+                     return new ImageIcon(imgURL);
+                 }
+                 else {
+                     System.err.println("Couldn't find image");
+                     return null;
+                 }
+             }
+
                     dataType(){
                          icon.setBounds(25,70,22,22);
                     }
