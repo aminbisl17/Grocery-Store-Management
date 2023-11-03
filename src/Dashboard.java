@@ -20,7 +20,8 @@ class Dashboard extends JPanel{
 
    private JLabel  text = new JLabel("DashBoard"),
                    text2 = new JLabel("Përmbledhje"),
-                   text3 = new JLabel("Tabela");
+                   text3 = new JLabel("Tabela"),
+                   Aicon = new JLabel(datatype.imgi("/Images/adminIcon.png"));
 
    private JPanel centerPanel = new JPanel(),
                   topBar = new JPanel(),
@@ -47,7 +48,7 @@ class Dashboard extends JPanel{
      graphCustomiser(graph1, 60);
      graph1.setColor1(new Color(255, 101, 101));
      graph1.setColor2(new Color(255, 51, 51));
-     graph1.setTxt("Totali i shitjeve (Sot)");
+     graph1.setTxt("Totali i shitjeve\n(Sot)");
      graph1.setImage(datatype.imgi("/Images/Cart.png").getImage());
 
      graphCustomiser(graph2, 310);
@@ -79,6 +80,11 @@ class Dashboard extends JPanel{
 
      datatype.panelCustomiser(topBar, null, true, datatype.whiteColor, datatype.borderwhite, 100, 80);
      topBar.add(text);
+     Aicon.setBounds(950, 10, 100,50);
+     Aicon.setText("Admin");
+     Aicon.setFont(datatype.fontS15);
+     Aicon.setBorder(datatype.Blackborder);
+     topBar.add(Aicon);
      
      table.setBounds(0, 0, 950, 330);
      table.setRowHeight(30);
@@ -129,6 +135,17 @@ class graphic extends JPanel {
 
     Image image;
 
+    private void drawstring(Graphics g, String text, int x, int y){
+        if(text.length() > 20){
+             for(String line : text.split("\n")){
+                  g.drawString(line, x, y += g.getFontMetrics().getHeight());
+             }
+             return;
+            } else{
+         g.drawString(text, x, y);
+            }
+    }
+
 
     public Image getImage() {
         return image;
@@ -156,8 +173,9 @@ class graphic extends JPanel {
         g2d.drawRoundRect(0, 0, 230, 140, datatype.corner, datatype.corner);
         g2d.fillRoundRect(0,0,230,140, datatype.corner, datatype.corner);
         g2d.setColor(datatype.whiteColor);
-        g2d.setFont(datatype.fontS12);
-        g2d.drawString(txt, 10, 20);
+        g2d.setFont(datatype.fontS14);
+        drawstring(g2d, txt, 10, 10);
+      //  g2d.drawString(txt, 10, 30);
         g2d.drawString("100", 40, 80);
         g2d.drawImage(image, 120,45, null);
     }
