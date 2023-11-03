@@ -151,6 +151,7 @@ import javax.swing.SwingUtilities;
              setLocation(e.getXOnScreen()-datatype.positionX, e.getYOnScreen()-datatype.positionY);
       }
     });
+   setIconImage(datatype.imgi("/Images/icons8-cart-48.png").getImage());
     revalidate();
     repaint();
     showDate();

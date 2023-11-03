@@ -105,4 +105,8 @@ import javax.swing.border.Border;
                   }
           };
 
+          public void graphCustomiser(JPanel graph, int x){
+            graph.setBounds(x, 60, 230, 140);
+           }
+
 }

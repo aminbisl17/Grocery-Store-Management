@@ -2,6 +2,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.TableCellRenderer;
+
 import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -36,36 +38,33 @@ class Dashboard extends JPanel{
                  tableData td = new tableData();
                  JTable table = new JTable(td.data, td.columns);;
                  JScrollPane pane = new JScrollPane(table);
-                 
-   static void graphCustomiser(JPanel graph, int x){
-    graph.setBounds(x, 60, 230, 140);
-   }
+            
 
     Dashboard(){
      
      datatype.panelCustomiser(tablePanel, null, true, null, null,100,650);
 
-     graphCustomiser(graph1, 60);
-     graph1.setColor1(new Color(255, 101, 101));
+     datatype.graphCustomiser(graph1, 60);
+     graph1.setColor1(new Color(240, 138, 138));
      graph1.setColor2(new Color(255, 51, 51));
      graph1.setTxt("Totali i shitjeve\n(Sot)");
      graph1.setImage(datatype.imgi("/Images/Cart.png").getImage());
 
-     graphCustomiser(graph2, 310);
-     graph2.setColor1(new Color(80, 130, 220));
-     graph2.setColor2(new Color(37, 79, 151));
+     datatype.graphCustomiser(graph2, 310);
+     graph2.setColor1(new Color(132, 177, 255));
+     graph2.setColor2(new Color(80, 130, 220));
      graph2.setTxt("Totali Parave te fituara (Sot)");
      graph2.setImage(datatype.imgi("/Images/Money.png").getImage());
 
-     graphCustomiser(graph3, 560);
-     graph3.setColor1(new Color(70, 135, 95));
-     graph3.setColor2(new Color(17, 88, 45));
+     datatype.graphCustomiser(graph3, 560);
+     graph3.setColor1(new Color(122, 202, 154));
+     graph3.setColor2(new Color(70, 135, 95));
      graph3.setTxt("Totali i shtijeve gjat Muajit");
      graph3.setImage(datatype.imgi("/Images/Monthly.png").getImage());
 
-     graphCustomiser(graph4, 810);
-     graph4.setColor1(new Color(155, 100, 170));
-     graph4.setColor2(new Color(102, 41, 117));
+     datatype.graphCustomiser(graph4, 810);
+     graph4.setColor1(new Color(214, 155, 229));
+     graph4.setColor2(new Color(155, 100, 170));
      graph4.setTxt("Shuma e parave te fituara gjat \t Muajit");
      graph4.setImage(datatype.imgi("/Images/sMoney.png").getImage());
 
@@ -91,6 +90,11 @@ class Dashboard extends JPanel{
      table.setAutoCreateRowSorter(true);
      table.setFocusable(false);
      table.setEnabled(false);     
+     table.setForeground(datatype.grayTextColor);
+     table.getTableHeader().setPreferredSize(new Dimension(0,35));
+     table.getTableHeader().setBackground(datatype.Col245);
+     table.getTableHeader().setFont(datatype.fontS12);
+
     
      pane.setBounds(60, 270, 980, 350);
      
