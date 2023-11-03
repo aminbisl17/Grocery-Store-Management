@@ -10,6 +10,7 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Stroke;
 import java.awt.geom.Point2D;
 
 
@@ -39,11 +40,14 @@ class Dashboard extends JPanel{
    static void graphCustomiser(JPanel graph, int x){
     graph.setBounds(x, 60, 230, 140);
    }
+
     Dashboard(){
-        datatype.panelCustomiser(tablePanel, null, true, null, null,100,650);
+     
+     datatype.panelCustomiser(tablePanel, null, true, null, null,100,650);
+
      graphCustomiser(graph1, 60);
-     graph1.setColor1(new Color(255, 100, 100));
-     graph1.setColor2(new Color(174, 44, 44));
+     graph1.setColor1(new Color(255, 101, 101));
+     graph1.setColor2(new Color(255, 51, 51));
      graph1.setTxt("Totali i shitjeve (Sot)");
      graph1.setImage(datatype.imgi("/Images/Cart.png").getImage());
 
@@ -143,12 +147,13 @@ class graphic extends JPanel {
     graphic(){
         this.setPreferredSize(new Dimension(100, 100));
     }
-    Point2D.Double p1 = new Point2D.Double(30, 20);
-    Point2D.Double p2 = new Point2D.Double(140, 80);
+    Point2D.Double p1 = new Point2D.Double(120, 20);
+    Point2D.Double p2 = new Point2D.Double(90, 115);
+
     public void paint(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
         g2d.setPaint(new GradientPaint(p1, color1, p2, color2));
-        g2d.setStroke(new BasicStroke(2));
+        g2d.setStroke(new BasicStroke(3));
         g2d.drawRoundRect(0, 0, 230, 140, datatype.corner, datatype.corner);
         g2d.fillRoundRect(0,0,230,140, datatype.corner, datatype.corner);
         g2d.setColor(datatype.whiteColor);
