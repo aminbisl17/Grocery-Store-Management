@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
-import java.awt.geom.RoundRectangle2D;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.management.timer.Timer;
@@ -33,8 +32,8 @@ import javax.swing.SwingUtilities;
                     timeText = new JLabel(),
                     adminText = new JLabel("Admin:"),
                     categoriestxt = new JLabel("Catalogue:"),
-                    adminI = new JLabel(datatype.imgi("/Images/admin.png")),
-                    categoryI = new JLabel(datatype.imgi("/Images/category.png"));
+                    adminI = new JLabel(datatype.adminIcon),
+                    categoryI = new JLabel(datatype.categoryIcon);
 
   private JTextArea textarea = new JTextArea();
 
@@ -45,16 +44,14 @@ import javax.swing.SwingUtilities;
                     categoriesButton = new JButton("Categories"),
                     pijetButton = new JButton("sector 1"),
                     pemPerimetButton = new JButton("sector 2"),
-                    close = new JButton(datatype.imgi("/Images/close.png")),
-                    iconify = new JButton(datatype.imgi("/Images/minimize.png")),
-                    resize = new JButton(datatype.imgi("/Images/restore-down.png"));
+                    close = new JButton(datatype.closeIcon),
+                    iconify = new JButton(datatype.minimizeIcon),
+                    resize = new JButton(datatype.restore_down);
 
   private CardLayout cl = new CardLayout();
 
   protected boolean expanded = false;
-        
-  RoundRectangle2D.Double roundrectangle = new RoundRectangle2D.Double(0,0,1400,800,datatype.corner,datatype.corner);       
- 
+              
   Timer timer;
 //  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
   Dashboard dashboard = new Dashboard();
@@ -66,7 +63,7 @@ import javax.swing.SwingUtilities;
   main() {
     setDefaultCloseOperation(main.EXIT_ON_CLOSE);
     setUndecorated(true);
-    setShape(roundrectangle);
+    setShape(datatype.roundrectangle(1400,800,datatype.corner));
     setSize(1400, 800);
     setLocationRelativeTo(null);
 
@@ -147,7 +144,7 @@ import javax.swing.SwingUtilities;
       public void mouseDragged(MouseEvent e) {
              expanded = false;
              setSize(1400, 800);
-             setShape(roundrectangle);   
+             setShape(datatype.roundrectangle(1400,800,datatype.corner));   
              setLocation(e.getXOnScreen()-datatype.positionX, e.getYOnScreen()-datatype.positionY);
       }
     });
@@ -219,7 +216,7 @@ import javax.swing.SwingUtilities;
     }
       expanded = false;
       setSize(1400, 800); 
-      setShape(roundrectangle);
+      setShape(datatype.roundrectangle(1400,800,datatype.corner));
       setLocation(100, 200);
       return;
     } 

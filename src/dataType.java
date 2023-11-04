@@ -6,6 +6,8 @@ import java.awt.LayoutManager;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.RoundRectangle2D;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -29,6 +31,13 @@ import javax.swing.border.Border;
                      return null;
                  }
              }
+
+            final ImageIcon AIcon = imgi("/Images/adminIcon.png"), 
+                       adminIcon = imgi("/Images/admin.png"),
+                       categoryIcon = imgi("/Images/category.png"),
+                       closeIcon = imgi("/Images/close.png"),
+                       minimizeIcon = imgi("/Images/minimize.png"),
+                       restore_down = imgi("/Images/restore-down.png"); 
 
                     dataType(){
                 //         icon.setBounds(25,70,22,22);
@@ -108,5 +117,10 @@ import javax.swing.border.Border;
           public void graphCustomiser(JPanel graph, int x){
             graph.setBounds(x, 60, 230, 140);
            }
-
+          public Dimension dimension(int width, int height){
+            return new Dimension(width, height);
+          }
+          public RoundRectangle2D.Double roundrectangle(int width, int height, int corner){
+                   return new RoundRectangle2D.Double(0,0,width,height,corner,corner);
+          }
 }

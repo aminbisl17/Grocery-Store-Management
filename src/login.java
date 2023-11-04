@@ -4,7 +4,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-import java.awt.geom.RoundRectangle2D;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -34,9 +33,9 @@ class login extends JFrame implements ActionListener{
 
     login() {
             setLocation(500, 200);
-            setSize(650, 400);
+            setSize(650, 400); //650, 400
             setUndecorated(true);
-            setShape(new RoundRectangle2D.Double(0,0,650,400,datatype.corner,datatype.corner));
+            setShape(datatype.roundrectangle(650, 400, datatype.corner));
             // this is a comment
 
             border = BorderFactory.createMatteBorder(0, 0, 2, 0, datatype.noCol);
@@ -44,7 +43,7 @@ class login extends JFrame implements ActionListener{
             icon = new JLabel(datatype.imgi("/Images/lIcon (1).png"));
             icon.setBounds(25, 70, 250, 250); 
            
-            close = new JButton(datatype.imgi("/Images/close.png"));
+            close = new JButton(datatype.closeIcon);
             datatype.buttonCustomiser(close, null, null, 255, 5, 40, 40, false, false, false, false, this);
 
             submit = new JButton("Vazhdo!");

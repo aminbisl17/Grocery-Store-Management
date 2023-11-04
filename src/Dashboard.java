@@ -21,10 +21,9 @@ class Dashboard extends JPanel{
    private JLabel  text = new JLabel("DashBoard"),
                    text2 = new JLabel("Përmbledhje"),
                    text3 = new JLabel("Tabela"),
-                   Aicon = new JLabel(datatype.imgi("/Images/adminIcon.png"));
+                   Aicon = new JLabel(datatype.AIcon);
 
-   private JPanel centerPanel = new JPanel(),
-                  topBar = new JPanel(),
+   private JPanel topBar = new JPanel(),
                   tablePanel = new JPanel(),
                   statisticsPanel = new JPanel();
 
@@ -73,8 +72,6 @@ class Dashboard extends JPanel{
      text2.setBorder(datatype.Blackborder);
      text3.setBorder(datatype.Blackborder);
 
-     datatype.panelCustomiser(centerPanel, borderLayout, true, null, null, 0,0);
-
      datatype.panelCustomiser(topBar, null, true, datatype.whiteColor, datatype.borderwhite, 100, 80);
      topBar.add(text);
      Aicon.setBounds(950, 10, 100,50);
@@ -108,12 +105,10 @@ class Dashboard extends JPanel{
 
      tablePanel.add(statisticsPanel);
 
-     centerPanel.add(topBar, BorderLayout.NORTH);
-     centerPanel.add(statisticsPanel, BorderLayout.CENTER);
-
-     setPreferredSize(new Dimension(100, 100));
-     setLayout(new BorderLayout());
-     add(centerPanel, BorderLayout.CENTER);
+     setPreferredSize(datatype.dimension(100,100));
+     setLayout(datatype.borderlayout);
+     add(topBar, BorderLayout.NORTH);
+     add(statisticsPanel, BorderLayout.CENTER);
     }
 }
 class graphic extends JPanel {
@@ -161,16 +156,18 @@ class graphic extends JPanel {
     public void setTxt(String text) {
         this.txt = text;
     }
+
+    static Point2D.Double p2d(int x, int y){
+     return new Point2D.Double(x, y);
+    }
  
     graphic(){
         this.setPreferredSize(new Dimension(100, 100));
     }
-    Point2D.Double p1 = new Point2D.Double(120, 20);
-    Point2D.Double p2 = new Point2D.Double(90, 115);
 
     public void paint(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
-        g2d.setPaint(new GradientPaint(p1, color1, p2, color2));
+        g2d.setPaint(new GradientPaint(p2d(120, 20), color1, p2d(90,115), color2));
         g2d.setStroke(new BasicStroke(3));
         g2d.drawRoundRect(0, 0, 230, 140, datatype.corner, datatype.corner);
         g2d.fillRoundRect(0,0,230,140, datatype.corner, datatype.corner);
