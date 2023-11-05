@@ -142,10 +142,14 @@ import javax.swing.SwingUtilities;
     addMouseListener(datatype.mouseadapter);
     addMouseMotionListener(new MouseMotionAdapter() {
       public void mouseDragged(MouseEvent e) {
-             expanded = false;
-             setSize(1400, 800);
-             setShape(datatype.roundrectangle(1400,800,datatype.corner));   
+             expanded = false; 
              setLocation(e.getXOnScreen()-datatype.positionX, e.getYOnScreen()-datatype.positionY);
+               if(!expanded){
+             setSize(1400, 800);
+             setShape(datatype.roundrectangle(1400,800,datatype.corner));  
+             return;
+               }
+           //  setLocation(e.getXOnScreen()-datatype.positionX, e.getYOnScreen()-datatype.positionY);
       }
     });
    setIconImage(datatype.imgi("/Images/icons8-cart-48.png").getImage());
@@ -217,7 +221,7 @@ import javax.swing.SwingUtilities;
       expanded = false;
       setSize(1400, 800); 
       setShape(datatype.roundrectangle(1400,800,datatype.corner));
-      setLocation(100, 200);
+      setLocationRelativeTo(null);
       return;
     } 
     if(e.getSource().equals(iconify)){this.setExtendedState(main.ICONIFIED);}
