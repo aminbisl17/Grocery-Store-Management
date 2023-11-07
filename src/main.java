@@ -1,8 +1,11 @@
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
@@ -57,12 +60,34 @@ import javax.swing.SwingUtilities;
   test2 test2 = new test2();
   Pijet pijet = new Pijet();
   // ----------------------
+int posX, posY;
+
+  private void initialiseGUI(Component component){
+    //<editor-fold defaultstate="collapsed" desc="code">
+    component.addMouseListener(new MouseAdapter() {
+        public void mousePressed(MouseEvent e) {
+            posX = e.getX();
+            posY = e.getY();
+        }
+    });
+
+    component.addMouseMotionListener(new MouseAdapter() {
+        public void mouseDragged(MouseEvent evt) {
+            //sets frame position when mouse dragged            
+            Rectangle rectangle = getBounds();
+            setBounds(evt.getXOnScreen() - posX, evt.getYOnScreen() - posY, rectangle.width, rectangle.height);
+        }
+    });
+    //</editor-fold>
+}
+
+
 
   main() {
     setDefaultCloseOperation(main.EXIT_ON_CLOSE);
     setUndecorated(true);
+  //  setLocationByPlatform(true);
     setShape(datatype.roundrectangle(1400,800,datatype.corner));
-    setSize(1400, 800);
     setLocationRelativeTo(null);
 
     datatype.textCustomiser(text, 17, 0, 150, 30, datatype.whiteColor, datatype.fontS20, null);
@@ -134,7 +159,7 @@ import javax.swing.SwingUtilities;
 
     
     addMouseListener(datatype.mouseadapter);
-    addMouseMotionListener(new MouseMotionAdapter() {
+  /*   addMouseMotionListener(new MouseMotionAdapter() {
       public void mouseDragged(MouseEvent e) { 
               SwingUtilities.invokeLater(()-> {
                 expanded = false; 
@@ -147,6 +172,9 @@ import javax.swing.SwingUtilities;
               });
       }
     });
+    */
+    initialiseGUI(this);
+
    setIconImage(datatype.imgi("/Images/icons8-cart-48.png").getImage());
     revalidate();
     repaint();
@@ -156,7 +184,9 @@ import javax.swing.SwingUtilities;
     add(topBar, BorderLayout.NORTH);
     add(centerPanel, BorderLayout.CENTER);
     add(leftPanel, BorderLayout.WEST);
+    setSize(1400, 800);
     setVisible(true);
+
   }
  // -------------------------------       this below is DATE/TIME
   public void showDate() {  // date 
@@ -184,7 +214,7 @@ import javax.swing.SwingUtilities;
       @Override
       public void run() {
         new main();
-      }
+            }
     });
   }
 
