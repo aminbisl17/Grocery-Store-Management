@@ -44,13 +44,13 @@ class Dashboard extends JPanel{
      datatype.graphCustomiser(graph1, 60);
      graph1.setColor1(new Color(240, 138, 138));
      graph1.setColor2(new Color(255, 51, 51));
-     graph1.setTxt("Totali i shitjeve\n(Sot)");
+     graph1.setTxt("Totali i shitjeve (sot)");
      graph1.setImage(datatype.imgi("/Images/Cart.png").getImage());
 
      datatype.graphCustomiser(graph2, 310);
      graph2.setColor1(new Color(132, 177, 255));
      graph2.setColor2(new Color(80, 130, 220));
-     graph2.setTxt("Totali Parave te fituara (Sot)");
+     graph2.setTxt("Të Hyrat nga shitja (Sot)");
      graph2.setImage(datatype.imgi("/Images/Money.png").getImage());
 
      datatype.graphCustomiser(graph3, 560);
@@ -62,7 +62,7 @@ class Dashboard extends JPanel{
      datatype.graphCustomiser(graph4, 810);
      graph4.setColor1(new Color(214, 155, 229));
      graph4.setColor2(new Color(155, 100, 170));
-     graph4.setTxt("Shuma e parave te fituara gjat \t Muajit");
+     graph4.setTxt("Të hyrat gjat muajit");
      graph4.setImage(datatype.imgi("/Images/sMoney.png").getImage());
 
      datatype.textCustomiser(text, 20, 40, 100, 20, datatype.grayTextColor, datatype.fontS17, null);
@@ -139,8 +139,8 @@ class graphic extends JPanel {
 
     Image image;
 
-    private void drawstring(Graphics g, String text, int x, int y){
-        if(text.length() > 20){
+   /*  private void drawstring(Graphics g, String text, int x, int y){
+        if(text.length() > 25){
              for(String line : text.split("\n")){
                   g.drawString(line, x, y += g.getFontMetrics().getHeight());
              }
@@ -150,7 +150,7 @@ class graphic extends JPanel {
             }
     }
 
-
+ */
     public Image getImage() {
         return image;
     }
@@ -180,8 +180,7 @@ class graphic extends JPanel {
         g2d.fillRoundRect(0,0,230,140, datatype.corner, datatype.corner);
         g2d.setColor(datatype.whiteColor);
         g2d.setFont(datatype.fontS14);
-        drawstring(g2d, txt, 10, 10);
-      //  g2d.drawString(txt, 10, 30);
+        g2d.drawString(txt, 10, 30);
         g2d.drawString("100", 40, 80);
         g2d.drawImage(image, 120,45, null);
     }
