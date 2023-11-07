@@ -135,15 +135,16 @@ import javax.swing.SwingUtilities;
     
     addMouseListener(datatype.mouseadapter);
     addMouseMotionListener(new MouseMotionAdapter() {
-      public void mouseDragged(MouseEvent e) {
-             expanded = false; 
-             setLocation(e.getXOnScreen()-datatype.positionX, e.getYOnScreen()-datatype.positionY);
-               if(!expanded){
+      public void mouseDragged(MouseEvent e) { 
+              SwingUtilities.invokeLater(()-> {
+                expanded = false; 
+                 setLocation(e.getXOnScreen()-datatype.positionX, e.getYOnScreen()-datatype.positionY);
+              if(!expanded){
              setSize(1400, 800);
              setShape(datatype.roundrectangle(1400,800,datatype.corner));  
              return;
-               }
-           //  setLocation(e.getXOnScreen()-datatype.positionX, e.getYOnScreen()-datatype.positionY);
+              }
+              });
       }
     });
    setIconImage(datatype.imgi("/Images/icons8-cart-48.png").getImage());
@@ -186,6 +187,7 @@ import javax.swing.SwingUtilities;
       }
     });
   }
+
     public void mousePressed(MouseEvent e)  {
     for (int i = 0; i < buttons.length; i++){
           buttons[i].removeMouseListener(this);}}
@@ -204,6 +206,7 @@ import javax.swing.SwingUtilities;
  // ----------------------------------
     public void actionPerformed(ActionEvent e) {
     // this are the buttons to resize, iconify and close the program... -- it starts here  
+
    if(e.getSource().equals(close)){System.exit(0);}
    if(e.getSource().equals(resize)){ if(!expanded){  
       setShape(null);
@@ -234,5 +237,6 @@ import javax.swing.SwingUtilities;
     if  (e.getSource().equals(dashBoardButton))  {cl.show(centerPanel, "1");} 
     if  (e.getSource().equals(categoriesButton)) {cl.show(centerPanel, "2");}
     if  (e.getSource().equals(pijetButton))      {cl.show(centerPanel, "3");}
-    if  (e.getSource().equals(pemPerimetButton)) {cl.show(centerPanel, "4");}}}
+    if  (e.getSource().equals(pemPerimetButton)) {cl.show(centerPanel, "4");}}
+    }
     public void mouseClicked(MouseEvent e){}public void mouseReleased(MouseEvent e){}}    
