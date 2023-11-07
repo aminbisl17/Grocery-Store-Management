@@ -30,10 +30,8 @@ import javax.swing.SwingUtilities;
   private JLabel    text = new JLabel("InnoviSoft"),
                     dateText = new JLabel(),
                     timeText = new JLabel(),
-                    adminText = new JLabel("Admin:"),
-                    categoriestxt = new JLabel("Catalogue:"),
-                    adminI = new JLabel(datatype.adminIcon),
-                    categoryI = new JLabel(datatype.categoryIcon);
+                    adminText = new JLabel("Admin"),
+                    categoriestxt = new JLabel("Categories");
 
   private JTextArea textarea = new JTextArea();
 
@@ -67,20 +65,22 @@ import javax.swing.SwingUtilities;
     setSize(1400, 800);
     setLocationRelativeTo(null);
 
-    datatype.textCustomiser(text, 17, 0, 150, 40, datatype.whiteColor, datatype.fontS20);
-    datatype.textCustomiser(adminText, 55, 20, 150, 40, datatype.Col245, datatype.fontS17p);
-    datatype.textCustomiser(categoriestxt, 55, 180, 150, 40, datatype.Col245, datatype.fontS17p);
-    datatype.textCustomiser(dateText, 180, 0, 150, 40, datatype.whiteColor, datatype.fontS15);
-    datatype.textCustomiser(timeText, 191, 30, 150, 40, datatype.whiteColor, datatype.fontS12);
+    datatype.textCustomiser(text, 17, 0, 150, 30, datatype.whiteColor, datatype.fontS20, null);
+    adminText.setIcon(datatype.adminIcon);
+    datatype.textCustomiser(adminText, 25, 30, 245, 35, datatype.Col245, datatype.fontS17p, datatype.borderwhite);
+    categoriestxt.setIcon(datatype.categoryIcon);
+    datatype.textCustomiser(categoriestxt, 25, 200, 245, 30, datatype.Col245, datatype.fontS17p, datatype.borderwhite);
+    datatype.textCustomiser(dateText, 180, 0, 150, 40, datatype.whiteColor, datatype.fontS15, null);
+    datatype.textCustomiser(timeText, 191, 30, 150, 40, datatype.whiteColor, datatype.fontS12, null);
     // Leftpanel buttons.....................
-    datatype.buttonCustomiser(dashBoardButton, null, datatype.bTextColor, 60, 60, 160, 30, false, false, true, false, this);
-    datatype.buttonCustomiser(categoriesButton, null, datatype.bTextColor, 60, 100, 160, 30, false, false, true, false, this);
-    datatype.buttonCustomiser(pijetButton, null, datatype.bTextColor, 60, 230, 160, 30, false, false, true, false, this);
-    datatype.buttonCustomiser(pemPerimetButton, null, datatype.bTextColor, 60, 270, 160, 30, false, false, true, false, this);
+    datatype.buttonCustomiser(dashBoardButton, null, datatype.bTextColor, 60, 80, 160, 30, false, false, true, false, this);
+    datatype.buttonCustomiser(categoriesButton, null, datatype.bTextColor, 60, 120, 160, 30, false, false, true, false, this);
+    datatype.buttonCustomiser(pijetButton, null, datatype.bTextColor, 60, 250, 160, 30, false, false, true, false, this);
+    datatype.buttonCustomiser(pemPerimetButton, null, datatype.bTextColor, 60, 290, 160, 30, false, false, true, false, this);
     // top bar buttons ............
     datatype.buttonCustomiser(close, null, null, 0, 0, 0, 0, false, false, false, false, this);
-    datatype.buttonCustomiser(iconify, null, null, 0, 5, 0, 0, false, false, false, false, this);
-    datatype.buttonCustomiser(resize, null, null, 0, 5, 0, 0, false, false, false, false, this);
+    datatype.buttonCustomiser(iconify, null, null, 0, 0, 0, 0, false, false, false, false, this);
+    datatype.buttonCustomiser(resize, null, null, 0, 0, 0, 0, false, false, false, false, this);
     //-------------------------
     buttons[0] = dashBoardButton;
     buttons[1] = categoriesButton;
@@ -104,12 +104,6 @@ import javax.swing.SwingUtilities;
     container.add(dateText);
     container.add(adminText);
     container.add(categoriestxt);
-
-    adminI.setBounds(20, 20,26,26);
-    container.add(adminI);
-
-    categoryI.setBounds(20, 180, 26,26);
-    container.add(categoryI);
 
     datatype.panelCustomiser(topBar, new FlowLayout(FlowLayout.RIGHT, 3, 0), true, datatype.grayTextColor, null, 0, 30);
 

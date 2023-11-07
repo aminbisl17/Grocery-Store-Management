@@ -55,10 +55,10 @@ class login extends JFrame implements ActionListener{
                              submit.setContentAreaFilled(true);
                       }});
                     
-            datatype.textCustomiser(text1, 100, 110, 80, 20, datatype.bTextColor, datatype.fontS14);
-            datatype.textCustomiser(text2, 100, 180, 80, 20, datatype.bTextColor, datatype.fontS14);    
-            datatype.textCustomiser(text3, 150, 60, 80, 30, datatype.bTextColor, datatype.fontS22);
-            datatype.textCustomiser(softext, 10, 370, 100, 20, datatype.bTextColor, datatype.fontS14);
+            datatype.textCustomiser(text1, 100, 110, 80, 20, datatype.bTextColor, datatype.fontS14, null);
+            datatype.textCustomiser(text2, 100, 180, 80, 20, datatype.bTextColor, datatype.fontS14, null);    
+            datatype.textCustomiser(text3, 150, 60, 80, 30, datatype.bTextColor, datatype.fontS22, null);
+            datatype.textCustomiser(softext, 10, 370, 100, 20, datatype.bTextColor, datatype.fontS14, null);
 
             username_input.setBounds(100, 130, 150, 33);
             username_input.setBorder(null);

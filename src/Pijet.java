@@ -4,6 +4,8 @@ import javax.swing.border.Border;
 
 public class Pijet extends JPanel {
 
+  dataType datatype = new dataType();
+
    JPanel topBar, centerPanel;
    JLabel text;
    Color whiteColor = new Color(255,255,255);
@@ -22,6 +24,7 @@ public class Pijet extends JPanel {
         topBar.setLayout(null);
         topBar.setBackground(whiteColor);
         topBar.setBorder(border);
+        datatype.topBar.add(text);
         topBar.add(text);
 
         centerPanel = new JPanel();
@@ -30,7 +33,7 @@ public class Pijet extends JPanel {
 
       setLayout(new BorderLayout());
       setPreferredSize(new Dimension(100, 100));
-      add(topBar, BorderLayout.NORTH);
+      add(datatype.topBar, BorderLayout.NORTH);
       add(centerPanel, BorderLayout.CENTER);
     }
 }

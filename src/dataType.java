@@ -39,9 +39,8 @@ import javax.swing.border.Border;
                        minimizeIcon = imgi("/Images/minimize.png"),
                        restore_down = imgi("/Images/restore-down.png"); 
 
-                    dataType(){
-                //         icon.setBounds(25,70,22,22);
-                    }
+
+                       JPanel topBar = new JPanel();
 
     final BorderLayout borderlayout = new BorderLayout();
 
@@ -102,10 +101,11 @@ import javax.swing.border.Border;
                 (JLabel label,
                 int x, int y, int width, int height,
                 Color color,
-                Font font){
+                Font font, Border border){
                 label.setBounds(x, y, width, height);
                 label.setForeground(color);
-                label.setFont(font);}
+                label.setFont(font);
+                label.setBorder(border);}
 
                 MouseAdapter mouseadapter = new MouseAdapter() {
                   public void mousePressed(MouseEvent e){
@@ -123,4 +123,11 @@ import javax.swing.border.Border;
           public RoundRectangle2D.Double roundrectangle(int width, int height, int corner){
                    return new RoundRectangle2D.Double(0,0,width,height,corner,corner);
           }
+          dataType(){
+                //         icon.setBounds(25,70,22,22);
+                topBar.setPreferredSize(dimension(100, 80));
+                topBar.setLayout(null);
+                topBar.setBorder(borderwhite);
+                topBar.setBackground(whiteColor);
+                    }
 }

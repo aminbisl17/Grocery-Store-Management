@@ -10,6 +10,8 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
 
@@ -23,11 +25,9 @@ class Dashboard extends JPanel{
                    text3 = new JLabel("Tabela"),
                    Aicon = new JLabel(datatype.AIcon);
 
-   private JPanel topBar = new JPanel(),
-                  tablePanel = new JPanel(),
+   private JPanel tablePanel = new JPanel(),
                   statisticsPanel = new JPanel();
 
-                 BorderLayout borderLayout = new BorderLayout();
                  graphic graph1 = new graphic(),
                          graph2 = new graphic(),
                          graph3 = new graphic(),
@@ -65,21 +65,28 @@ class Dashboard extends JPanel{
      graph4.setTxt("Shuma e parave te fituara gjat \t Muajit");
      graph4.setImage(datatype.imgi("/Images/sMoney.png").getImage());
 
-     datatype.textCustomiser(text, 20, 40, 100, 20, datatype.grayTextColor, datatype.fontS17);
-     datatype.textCustomiser(text2, 40, 15, 150, 30, datatype.grayTextColor, datatype.fontS17p);
-     datatype.textCustomiser(text3, 40, 220, 150, 30, datatype.grayTextColor, datatype.fontS17p);
+     datatype.textCustomiser(text, 20, 40, 100, 20, datatype.grayTextColor, datatype.fontS17, null);
+     datatype.textCustomiser(text2, 40, 15, 150, 30, datatype.grayTextColor, datatype.fontS17p, null);
+     datatype.textCustomiser(text3, 40, 220, 150, 30, datatype.grayTextColor, datatype.fontS17p, null);
      text.setBorder(datatype.Blackborder);
      text2.setBorder(datatype.Blackborder);
      text3.setBorder(datatype.Blackborder);
 
-     datatype.panelCustomiser(topBar, null, true, datatype.whiteColor, datatype.borderwhite, 100, 80);
-     topBar.add(text);
      Aicon.setBounds(950, 10, 100,50);
      Aicon.setText("Admin");
      Aicon.setFont(datatype.fontS15);
-     Aicon.setBorder(datatype.Blackborder);
-     topBar.add(Aicon);
-     
+     Aicon.addMouseListener(new MouseAdapter(){
+              public void mouseEntered(MouseEvent e){
+                 Aicon.setBorder(datatype.Blackborder);   
+              }
+              public void mouseExited(MouseEvent e){
+                 Aicon.setBorder(null);
+              }
+     });
+
+     datatype.topBar.add(text);
+     datatype.topBar.add(Aicon);
+
      table.setBounds(0, 0, 950, 330);
      table.setRowHeight(30);
      table.setAutoCreateRowSorter(true);
@@ -107,7 +114,7 @@ class Dashboard extends JPanel{
 
      setPreferredSize(datatype.dimension(100,100));
      setLayout(datatype.borderlayout);
-     add(topBar, BorderLayout.NORTH);
+     add(datatype.topBar, BorderLayout.NORTH);
      add(statisticsPanel, BorderLayout.CENTER);
     }
 }
