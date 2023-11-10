@@ -1,6 +1,5 @@
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Rectangle;
@@ -18,7 +17,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
-import javax.swing.border.Border;
 
 // MAIN PANEL STARTS HERE ------------------------------------------------------
  class Main extends JFrame implements ActionListener, MouseListener{
@@ -87,9 +85,8 @@ int posX, posY;
   Main() {
     setDefaultCloseOperation(Main.EXIT_ON_CLOSE);
     setUndecorated(true);
-  //  setLocationByPlatform(true);
+     setLocationRelativeTo(null);
     setShape(datatype.roundrectangle(1400,800,datatype.corner));
-    setLocationRelativeTo(null);
 
     datatype.textCustomiser(text, 17, 0, 150, 30, datatype.whiteColor, datatype.fontS20, null);
     adminText.setIcon(datatype.adminIcon);
@@ -174,7 +171,6 @@ int posX, posY;
       }
     });
     */
-    initialiseGUI(this);
 
    setIconImage(datatype.imgi("/Images/icons8-cart-48.png").getImage());
     revalidate();
@@ -186,6 +182,7 @@ int posX, posY;
     add(centerPanel, BorderLayout.CENTER);
     add(leftPanel, BorderLayout.WEST);
     setSize(1400, 800);
+    initialiseGUI(this);
     setVisible(true);
 
   }
