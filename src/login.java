@@ -89,11 +89,12 @@ class login extends JFrame implements ActionListener{
             leftPanel.add(submit);
        
             addMouseListener(datatype.mouseadapter);
-      addMouseMotionListener(new MouseMotionAdapter() {
+        addMouseMotionListener(new MouseMotionAdapter() {
         public void mouseDragged(MouseEvent e) {
                setLocation(e.getXOnScreen()-datatype.positionX, e.getYOnScreen()-datatype.positionY);
         }
       });
+      
       
             setLayout(new BorderLayout());
             add(rightPanel, BorderLayout.EAST);
@@ -105,6 +106,11 @@ class login extends JFrame implements ActionListener{
             @Override
             public void run(){new login();}});
     }
+
+    public String password(JPasswordField password){
+         char[] passwordLetters = password.getPassword();
+         return new String(passwordLetters);
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -112,9 +118,9 @@ class login extends JFrame implements ActionListener{
 
       if(e.getSource() == submit){
              if(username_input.getText().isEmpty()
-             || password_input.getText().isEmpty()
+             || password(password_input).isEmpty()
              ||!username_input.getText().equals("admin")
-             ||!password_input.getText().equals("123")){
+             ||!password(password_input).equals("123")){
                 JOptionPane.showMessageDialog(  
                 null, 
                 "Emri ose password nuk është korrekt!","Vërejtje",
@@ -122,7 +128,7 @@ class login extends JFrame implements ActionListener{
                 username_input.setText("");  
                 password_input.setText("");
                 return;}
-                new main();
+                new Main();
                 this.dispose();
                 return;}
     }

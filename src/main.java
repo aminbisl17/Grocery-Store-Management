@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Rectangle;
@@ -8,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionAdapter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.management.timer.Timer;
@@ -18,9 +18,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
 
 // MAIN PANEL STARTS HERE ------------------------------------------------------
- class main extends JFrame implements ActionListener, MouseListener{
+ class Main extends JFrame implements ActionListener, MouseListener{
 
   dataType datatype = new dataType();
 
@@ -83,8 +84,8 @@ int posX, posY;
 
 
 
-  main() {
-    setDefaultCloseOperation(main.EXIT_ON_CLOSE);
+  Main() {
+    setDefaultCloseOperation(Main.EXIT_ON_CLOSE);
     setUndecorated(true);
   //  setLocationByPlatform(true);
     setShape(datatype.roundrectangle(1400,800,datatype.corner));
@@ -132,15 +133,15 @@ int posX, posY;
 
     datatype.panelCustomiser(topBar, new FlowLayout(FlowLayout.RIGHT, 3, 0), true, datatype.grayTextColor, null, 0, 30);
 
-    for(int i = 0; i < topBarButtons.length; i++){
-     topBar.add(topBarButtons[i]);
+    for(JButton button : topBarButtons){
+     topBar.add(button);
       }
-  
-    for (int x = 0; x < buttons.length; x++) { // this adds all buttons in container panel
-      buttons[x].setFont(datatype.fontS14);
-      buttons[x].setBorder(datatype.borderwhite);
-      buttons[x].addMouseListener(this);
-      container.add(buttons[x]);
+
+    for(JButton button : buttons){
+       button.setFont(datatype.fontS14);
+      button.setBorder(datatype.borderwhite);
+      button.addMouseListener(this);
+      container.add(button);
     }
     
     dashBoardButton.setBorder(datatype.border);
@@ -213,26 +214,38 @@ int posX, posY;
     SwingUtilities.invokeLater(new Runnable() {
       @Override
       public void run() {
-        new main();
+        new Main();
             }
     });
   }
-
     public void mousePressed(MouseEvent e)  {
     for (int i = 0; i < buttons.length; i++){
           buttons[i].removeMouseListener(this);}}
 
     public void mouseEntered(MouseEvent e) {
-    for(int i = 0; i < buttons.length; i++){
-    if (e.getSource().equals(buttons[i]))  {
-            buttons[i].setBorder(datatype.border);
-            buttons[i].setForeground(datatype.whiteColor);}}}
+    //  for(JButton button : buttons){
+      for(JButton button : buttons) {
+        if(e.getSource() == button){
+      datatype.setButton(buttons, datatype.whiteColor, datatype.border);
+      }
+    }
+   //   }
+  //  for(int i = 0; i < buttons.length; i++){
+   // if (e.getSource().equals(buttons[i]))  {
+     //       buttons[i].setBorder(datatype.border);
+            }
 
     public void mouseExited(MouseEvent e)  {
-    for(int i = 0; i < buttons.length; i++){
-    if (e.getSource() == buttons[i])       {
-            buttons[i].setBorder(datatype.borderwhite);
-            buttons[i].setForeground(datatype.bTextColor);}}}  
+      for(JButton button : buttons) {
+        if(e.getSource() == button){
+      datatype.setButton(buttons, datatype.bTextColor, datatype.borderwhite);
+    //for(int i = 0; i < buttons.length; i++){
+    //if (e.getSource() == buttons[i])       {
+      //      buttons[i].setBorder(datatype.borderwhite);
+        //    buttons[i].setForeground(datatype.bTextColor);}}
+          }  
+        }
+      }
  // ----------------------------------
     public void actionPerformed(ActionEvent e) {
     // this are the buttons to resize, iconify and close the program... -- it starts here  
@@ -240,7 +253,7 @@ int posX, posY;
    if(e.getSource().equals(close)){System.exit(0);}
    if(e.getSource().equals(resize)){ if(!expanded){  
       setShape(null);
-      setExtendedState(main.MAXIMIZED_BOTH); 
+      setExtendedState(Main.MAXIMIZED_BOTH); 
       setLocation(0,0);
       expanded = true;
       return;
@@ -251,18 +264,18 @@ int posX, posY;
       setLocationRelativeTo(null);
       return;
     } 
-    if(e.getSource().equals(iconify)){this.setExtendedState(main.ICONIFIED);}
+    if(e.getSource().equals(iconify)){this.setExtendedState(Main.ICONIFIED);}
     // ends here ---...............
-    for(int i = 0; i < buttons.length; i++){
-    if  (e.getSource() == buttons[i]){  
-            buttons[i].setBorder(datatype.border);
-            buttons[i].setForeground(datatype.whiteColor);
-            buttons[i].setOpaque(false);}
+    for(JButton button : buttons){
+    if  (e.getSource() == button){  
+            button.setBorder(datatype.border);
+            button.setForeground(datatype.whiteColor);
+            button.setOpaque(false);}
     else{
-            buttons[i].addMouseListener(this);
-            buttons[i].setBorder(datatype.borderwhite);
-            buttons[i].setForeground(datatype.bTextColor);
-            buttons[i].setOpaque(true);}
+            button.addMouseListener(this);
+            button.setBorder(datatype.borderwhite);
+            button.setForeground(datatype.bTextColor);
+            button.setOpaque(true);}
 
     if  (e.getSource().equals(dashBoardButton))  {cl.show(centerPanel, "1");} 
     if  (e.getSource().equals(categoriesButton)) {cl.show(centerPanel, "2");}
