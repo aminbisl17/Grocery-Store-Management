@@ -221,21 +221,22 @@ int posX, posY;
 
     public void mouseEntered(MouseEvent e) {
     //  for(JButton button : buttons){
-      for(JButton button : buttons) {
-        if(e.getSource() == button){
-      datatype.setButton(buttons, datatype.whiteColor, datatype.border);
+      for(int i = 0 ; i < buttons.length; i++){
+        if(e.getSource() == buttons[i]){
+      datatype.setButton(buttons[i], datatype.whiteColor, datatype.border);
       }
+    }
     }
    //   }
   //  for(int i = 0; i < buttons.length; i++){
    // if (e.getSource().equals(buttons[i]))  {
      //       buttons[i].setBorder(datatype.border);
-            }
+            
 
     public void mouseExited(MouseEvent e)  {
-      for(JButton button : buttons) {
-        if(e.getSource() == button){
-      datatype.setButton(buttons, datatype.bTextColor, datatype.borderwhite);
+      for(int i = 0; i < buttons.length; i++) {
+        if(e.getSource() == buttons[i]){
+      datatype.setButton(buttons[i], datatype.bTextColor, datatype.borderwhite);
     //for(int i = 0; i < buttons.length; i++){
     //if (e.getSource() == buttons[i])       {
       //      buttons[i].setBorder(datatype.borderwhite);

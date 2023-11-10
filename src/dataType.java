@@ -123,11 +123,11 @@ import javax.swing.border.Border;
           public RoundRectangle2D.Double roundrectangle(int width, int height, int corner){
                    return new RoundRectangle2D.Double(0,0,width,height,corner,corner);
           }
-          public void setButton(JButton[] button, Color color, Border border){
-            for(JButton buttons : button){
-            buttons.setForeground(color);
-            buttons.setBorder(border);
-            }
+          public void setButton(JButton button, Color color, Border border){
+         
+            button.setForeground(color);
+            button.setBorder(border);
+            
  }
           dataType(){
                 //         icon.setBounds(25,70,22,22);
