@@ -19,6 +19,7 @@ import java.awt.geom.Point2D;
 class Dashboard extends JPanel{
 
     dataType datatype = new dataType();
+    tableData tabledata = new tableData();
 
    private JLabel  text = new JLabel("DashBoard"),
                    text2 = new JLabel("Përmbledhje"),
@@ -33,8 +34,7 @@ class Dashboard extends JPanel{
                          graph3 = new graphic(),
                          graph4 = new graphic();
                  tableData td = new tableData();
-                 JTable table = new JTable(td.data, td.columns);;
-                 JScrollPane pane = new JScrollPane(table);
+                 JScrollPane pane = new JScrollPane(tabledata.table);
             
 
     Dashboard(){
@@ -87,15 +87,15 @@ class Dashboard extends JPanel{
      datatype.topBar.add(text);
      datatype.topBar.add(Aicon);
 
-     table.setBounds(0, 0, 950, 330);
-     table.setRowHeight(30);
-     table.setAutoCreateRowSorter(true);
-     table.setFocusable(false);
-     table.setEnabled(false);     
-     table.setForeground(datatype.grayTextColor);
-     table.getTableHeader().setPreferredSize(new Dimension(0,35));
-     table.getTableHeader().setBackground(datatype.Col245);
-     table.getTableHeader().setFont(datatype.fontS12);
+     tabledata.table.setBounds(0, 0, 950, 330);
+     tabledata.table.setRowHeight(30);
+     tabledata.table.setAutoCreateRowSorter(true);
+     tabledata.table.setFocusable(false);
+     tabledata.table.setEnabled(false);     
+     tabledata.table.setForeground(datatype.grayTextColor);
+     tabledata.table.getTableHeader().setPreferredSize(datatype.dimension(0, 35));
+     tabledata.table.getTableHeader().setBackground(datatype.Col245);
+     tabledata.table.getTableHeader().setFont(datatype.fontS12);
 
     
      pane.setBounds(60, 270, 980, 350);
