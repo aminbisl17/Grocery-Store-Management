@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
+import org.python.util.PythonInterpreter;
+
  class dataType {
  
  //           JLabel icon = new JLabel(new ImageIcon(getClass().getResource("/Images/lIcon (1).png")));
@@ -30,6 +32,9 @@ import javax.swing.border.Border;
                      return null;
                  }
              }
+
+            public PythonInterpreter interpreter = new PythonInterpreter(),
+                                     interpreter1 = new PythonInterpreter();;
 
             final ImageIcon AIcon = imgi("/Images/adminIcon.png"), 
                        adminIcon = imgi("/Images/admin.png"),

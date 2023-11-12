@@ -77,7 +77,7 @@ class Dashboard extends JPanel{
      Aicon.setFont(datatype.fontS15);
      Aicon.addMouseListener(new MouseAdapter(){
               public void mouseEntered(MouseEvent e){
-                 Aicon.setBorder(datatype.Blackborder);   
+                 Aicon.setBorder(datatype.Blackborder);  
               }
               public void mouseExited(MouseEvent e){
                  Aicon.setBorder(null);

@@ -1,4 +1,3 @@
-
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -22,7 +21,6 @@ import org.python.util.PythonInterpreter;
  class Main extends JFrame implements ActionListener, MouseListener{
 
   dataType datatype = new dataType();
-  PythonInterpreter interpreter = new PythonInterpreter();
 
 
   private JPanel    leftPanel = new JPanel(),
@@ -85,13 +83,14 @@ int posX, posY;
 
   Main() {
 
-   interpreter.execfile("main/src/PYtutorial/time.py");
-   String date = interpreter.get("current_date", String.class);
-   String time = interpreter.get("current_time", String.class);
+   datatype.interpreter.execfile("main/src/PYtutorial/time.py");
+   String date = datatype.interpreter.get("current_date", String.class);
+   String time = datatype.interpreter.get("current_time", String.class);
 
 
     setDefaultCloseOperation(Main.EXIT_ON_CLOSE);
     setUndecorated(true);
+    setSize(1400, 800);
      setLocationRelativeTo(null);
     setShape(datatype.roundrectangle(1400,800,datatype.corner));
 
@@ -192,7 +191,6 @@ int posX, posY;
     add(topBar, BorderLayout.NORTH);
     add(centerPanel, BorderLayout.CENTER);
     add(leftPanel, BorderLayout.WEST);
-    setSize(1400, 800);
     initialiseGUI(this);
     setVisible(true);
 

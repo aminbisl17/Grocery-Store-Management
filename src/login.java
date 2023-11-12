@@ -29,9 +29,15 @@ class login extends JFrame implements ActionListener{
     private JTextField username_input = new JTextField();;
     private JPasswordField password_input = new JPasswordField();
       Border border;
-
+   
+       String userName;
 
     login() {
+
+       datatype.interpreter1.execfile("main/src/PYtutorial/sqlCon.py");
+
+        userName = datatype.interpreter1.get("result", String.class);
+
             setLocation(500, 200);
             setSize(650, 400); //650, 400
             setUndecorated(true);
@@ -119,7 +125,7 @@ class login extends JFrame implements ActionListener{
       if(e.getSource() == submit){
              if(username_input.getText().isEmpty()
              || password(password_input).isEmpty()
-             ||!username_input.getText().equals("admin")
+             ||!username_input.getText().equals(userName)
              ||!password(password_input).equals("123")){
                 JOptionPane.showMessageDialog(  
                 null, 
