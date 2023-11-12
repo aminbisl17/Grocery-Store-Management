@@ -1,3 +1,4 @@
+
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -17,11 +18,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
+import org.python.util.PythonInterpreter;
 
 // MAIN PANEL STARTS HERE ------------------------------------------------------
  class Main extends JFrame implements ActionListener, MouseListener{
 
   dataType datatype = new dataType();
+  PythonInterpreter interpreter = new PythonInterpreter();
+
 
   private JPanel    leftPanel = new JPanel(),
                     centerPanel = new JPanel(),
@@ -83,6 +87,11 @@ int posX, posY;
 
 
   Main() {
+
+   interpreter.execfile("main/src/PYtutorial/tutorial.py");
+   String tim = interpreter.get("current_time", String.class);
+
+
     setDefaultCloseOperation(Main.EXIT_ON_CLOSE);
     setUndecorated(true);
      setLocationRelativeTo(null);
@@ -94,6 +103,7 @@ int posX, posY;
     categoriestxt.setIcon(datatype.categoryIcon);
     datatype.textCustomiser(categoriestxt, 25, 200, 245, 30, datatype.Col245, datatype.fontS17p, datatype.borderwhite);
     datatype.textCustomiser(dateText, 180, 0, 150, 40, datatype.whiteColor, datatype.fontS15, null);
+    dateText.setText(tim);
     datatype.textCustomiser(timeText, 191, 30, 150, 40, datatype.whiteColor, datatype.fontS12, null);
     // Leftpanel buttons.....................
     datatype.buttonCustomiser(dashBoardButton, null, datatype.bTextColor, 60, 80, 160, 30, false, false, true, false, this);
@@ -121,10 +131,11 @@ int posX, posY;
 
     datatype.panelCustomiser(topPanel,null, true, datatype.grayTextColor, null, 100, 80);
     topPanel.add(text);
+    topPanel.add(dateText);
     // this panel is within leftPanel and its served as an container for buttons so                              // i can easily move them if wanted
     container.setBounds(30, 50, 240, 450);
     datatype.panelCustomiser(container, null,  false, datatype.darkerGrayTextColor, null, 100, 100);
-    container.add(dateText);
+    //container.add(text);
     container.add(adminText);
     container.add(categoriestxt);
 
@@ -175,7 +186,7 @@ int posX, posY;
    setIconImage(datatype.imgi("/Images/icons8-cart-48.png").getImage());
     revalidate();
     repaint();
-    showDate();
+  //  showDate();
     setLayout(new BorderLayout());
    // showTime();
     add(topBar, BorderLayout.NORTH);
