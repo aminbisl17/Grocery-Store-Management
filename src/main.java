@@ -9,8 +9,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.management.timer.Timer;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -85,11 +83,11 @@ int posX, posY;
 }
 
 
-
   Main() {
 
-   interpreter.execfile("main/src/PYtutorial/tutorial.py");
-   String tim = interpreter.get("current_time", String.class);
+   interpreter.execfile("main/src/PYtutorial/time.py");
+   String date = interpreter.get("current_date", String.class);
+   String time = interpreter.get("current_time", String.class);
 
 
     setDefaultCloseOperation(Main.EXIT_ON_CLOSE);
@@ -103,8 +101,9 @@ int posX, posY;
     categoriestxt.setIcon(datatype.categoryIcon);
     datatype.textCustomiser(categoriestxt, 25, 200, 245, 30, datatype.Col245, datatype.fontS17p, datatype.borderwhite);
     datatype.textCustomiser(dateText, 180, 0, 150, 40, datatype.whiteColor, datatype.fontS15, null);
-    dateText.setText(tim);
-    datatype.textCustomiser(timeText, 191, 30, 150, 40, datatype.whiteColor, datatype.fontS12, null);
+    dateText.setText(date);
+    datatype.textCustomiser(timeText, 213, 20, 150, 40, datatype.whiteColor, datatype.fontS12, null);
+    timeText.setText(time);
     // Leftpanel buttons.....................
     datatype.buttonCustomiser(dashBoardButton, null, datatype.bTextColor, 60, 80, 160, 30, false, false, true, false, this);
     datatype.buttonCustomiser(categoriesButton, null, datatype.bTextColor, 60, 120, 160, 30, false, false, true, false, this);
@@ -132,6 +131,7 @@ int posX, posY;
     datatype.panelCustomiser(topPanel,null, true, datatype.grayTextColor, null, 100, 80);
     topPanel.add(text);
     topPanel.add(dateText);
+    topPanel.add(timeText);
     // this panel is within leftPanel and its served as an container for buttons so                              // i can easily move them if wanted
     container.setBounds(30, 50, 240, 450);
     datatype.panelCustomiser(container, null,  false, datatype.darkerGrayTextColor, null, 100, 100);
@@ -198,13 +198,14 @@ int posX, posY;
 
   }
  // -------------------------------       this below is DATE/TIME
+ /* 
   public void showDate() {  // date 
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
     Date date = new Date();
     dateText.setText(sdf.format(date));
     topPanel.add(dateText);
   }
-  /* 
+  
   public void showTime(){  // time
     new Timer(0, new ActionListener(){
       @Override
