@@ -1,7 +1,4 @@
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 
@@ -26,10 +23,7 @@ public class Pijet extends JPanel{
      text.setBorder(borderwhite);
 
      button.setBounds(30, 30, 100, 40);
-     button.addActionListener(new ActionListener() {
-
-      @Override
-      public void actionPerformed(ActionEvent e) {
+     button.addActionListener((e) -> {
       
                 tabledata.setId(1);
                 tabledata.setProduct("prod2");
@@ -41,7 +35,7 @@ public class Pijet extends JPanel{
                                                        tabledata.getPrice()}});
            //     tabledata.addRowOnTable(e);
                 System.out.println("dfsfsd " +  tabledata.getProduct());
-      }
+      
       
      });
 
