@@ -10,6 +10,8 @@ db = connector.connect(
 
 myCursor = db.cursor()
 
+
+ #def execute():
 myCursor.execute("SELECT name FROM admin")
 
 name = myCursor.fetchone()[0]

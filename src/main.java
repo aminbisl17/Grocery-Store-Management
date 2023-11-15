@@ -15,7 +15,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
-import org.python.util.PythonInterpreter;
 
 // MAIN PANEL STARTS HERE ------------------------------------------------------
  class Main extends JFrame implements ActionListener, MouseListener{

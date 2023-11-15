@@ -36,7 +36,7 @@ class login extends JFrame implements ActionListener{
 
        datatype.interpreter1.execfile("main/src/PYtutorial/sqlCon.py");
 
-        userName = datatype.interpreter1.get("result", String.class);
+        userName = datatype.interpreter1.get("name", String.class);
 
             setLocation(500, 200);
             setSize(650, 400); //650, 400
